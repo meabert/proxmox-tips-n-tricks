@@ -6,5 +6,12 @@ to use this work to additionally create more advanced scripts.
 Objectives:
 
     - Expand the scope of function beyond what is already available VIA Proxmox Helper Scripts
+
         -- https://community-scripts.github.io/ProxmoxVE/scripts
         -- https://github.com/community-scripts/ProxmoxVE
+
+    - Always have reliable access to one-shot install clips and key third party package repositories. I almost made this 
+    number one because I really feel anyone that is serious about Proxmox or overall virtualiation concepts.. a cookbook 
+    is essential otherwise you might lose your mind trying to remember all of this.
+
+    
