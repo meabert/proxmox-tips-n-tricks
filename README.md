@@ -9,8 +9,8 @@ Objectives:
 
   - Expand the scope of function beyond what is already available VIA Proxmox Helper Scripts
 
-    - https://community-scripts.github.io/ProxmoxVE/scripts
-    - https://github.com/community-scripts/ProxmoxVE
+- https://community-scripts.github.io/ProxmoxVE/scripts
+  - https://github.com/community-scripts/ProxmoxVE
 
   - Reliable access to one-shot install clips and key third party package repositories. I almost made this number one because I really feel anyone that is serious about
     Proxmox or overall virtualization concepts.. well you'll definitely want a cookbook. This is absolutely essential otherwise you WILL lose your mind trying to remember
