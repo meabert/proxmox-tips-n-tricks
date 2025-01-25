@@ -106,8 +106,6 @@ libpam-modules-bin
 libpam-mount
 libpam-mount-bin
 libpam-mysql
-libpam-net
-libpam-ldapd
 libpam-gnome-keyring
 libpam-google-authenticator
 libpam-doc
