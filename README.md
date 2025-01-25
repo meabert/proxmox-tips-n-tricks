@@ -83,10 +83,12 @@ git
 
 <p>PAM or Pluggable Authentication Modules involve a variety of different
 libraries used to facilitate different methods of authentication. I recommend
-learning and adapting to authenticating many ways besides passwords. Eventually
-I fell passwords will become obsolete and from a security standpoint it's
+learning and adapting to various forms of authentication besides passwords.
+Eventually passwords will become obsolete and from a security standpoint it's
 excellent knowledge educating yourself on these methods. A common PAM would be
-a YubiKey as an alternate form of ID.
+a YubiKey as an alternate form of ID, knowing this basic concept you can apply this
+same concept to the libpam-zfs library as an example, this library is for
+unlocking ZFS encrypted partitions.
 
 <h3>apt install</h3>
 libpam-yubico
