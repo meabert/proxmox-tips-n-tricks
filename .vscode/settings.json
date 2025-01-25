@@ -10,6 +10,7 @@
         "efibootmgr",
         "efitools",
         "equivs",
+        "IOMMU",
         "iperf",
         "ldapd",
         "libapache",
@@ -25,6 +26,7 @@
         "pwquality",
         "sbsigntool",
         "ufpidentity",
+        "vfio",
         "Yubi",
         "yubico"
     ]

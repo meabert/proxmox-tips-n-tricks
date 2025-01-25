@@ -123,4 +123,40 @@ libapache2-mod-intercept-form-submit<br />
 libauthen-pam-perl<br />
 libauthen-simple-pam-perl<br />
 libbio-tools-phylo-paml-perl<br />
-[EOF]
+
+### PCI Express Passthrough
+
+<p>These directions cover how to enable vfio and passthrough a
+system using SecureBoot with an NVIDIA RTX 4080 and a Broadcom
+9400-16i HBA - please note this is for a full passthrough such as
+for use in a virtual machine. Steps for running a GPU natively on
+the host such as for containers is out of scope for this section
+and different instructions should be used.</p>
+
+#### Enable IOMMU in the bootloader
+
+vim /etc/kernel/default/cmdline
+
+For AMD IOMMU is enabled by default - simply make sure it is
+enabled in the BIOS. Add applicable kernel flags.
+
+root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt initcall_blacklist=sysfb_init
+
+##### Kernel Admin Guide - AMD Parameters
+
+<https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/kernel-parameters.txt#L286?>
+
+For Intel add applicable kernel flags to enable, also ensure
+it is enabled in the BIOS.
+
+root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on
+
+##### Kernel Admin Guide - Intel Parameters
+
+<https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/kernel-parameters.txt#L2239>
+
+#### Enable the vfio modules
+
+echo "vfio" >> /etc/modules
+echo "vfio_iommu_type1" >> /etc/modules
+echo "vfio_pci" >> /etc/modules
