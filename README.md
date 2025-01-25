@@ -4,7 +4,7 @@
 
 <h2>Objectives:</h3>
 
-  <p>Expand the scope of beyond what is available VIA Proxmox Helper Scripts
+  <p>Expand the scope beyond what is available VIA Proxmox Helper Scripts
 
   <https://community-scripts.github.io/ProxmoxVE/scripts>
   <https://github.com/community-scripts/ProxmoxVE>
