@@ -168,3 +168,4 @@ root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on nomodeset
 echo "vfio" >> /etc/modules
 echo "vfio_iommu_type1" >> /etc/modules
 echo "vfio_pci" >> /etc/modules
+
