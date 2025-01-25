@@ -10,12 +10,43 @@ Expand the scope beyond what is available VIA Proxmox Helper Scripts
 <https://github.com/community-scripts/ProxmoxVE>
 
 Reliable access to one-shot install clips and key third party package
-repositories. I almost titled this you WILL lose your mind trying to remember
-all of the commands, concepts and lopsided code philosophy's so document it
-instead! The idea is to waste less time doing tedious configurations so
-instead you can spend that time on building up something unique.
+repositories. So many concepts and lopsided code philosophy's have led
+me to just document it instead! Waste less time doing tedious configurations
+so you can instead spend that time building something unique.
 
 ## Post Install Script Packages - Bare minimum packages to setup my workflow
+
+<p>These are the packages I install after every Proxmox install, the only changes
+that take place before this are running the Post-Installation Script and the CPU
+Microcode security patches both of which can be found VIA the following links.
+
+### Post-Install Script
+
+<https://community-scripts.github.io/ProxmoxVE/scripts?id=post-pve-install>
+
+### Microcode Patches
+
+<https://community-scripts.github.io/ProxmoxVE/scripts?id=microcode>
+
+#### Some optional items depending on your use-case
+
+### CPU Scaling Governor
+
+<p> This allows you to set a power/performance profile to your CPU(s) assuming
+they support a variety of profiles, some only support one or two.
+
+<https://community-scripts.github.io/ProxmoxVE/scripts?id=scaling-governor>
+
+### Host Backup
+
+<p> Enables extensive customization of backup outputs and location, not to
+be confused with Proxmox Backup Server.
+
+<https://community-scripts.github.io/ProxmoxVE/scripts?id=host-backup>
+
+### Proxmox Datacenter Manager
+
+<https://community-scripts.github.io/ProxmoxVE/scripts?id=proxmox-datacenter-manager>
 
 <h3>apt install</h3>
 sudo
@@ -67,7 +98,6 @@ libpam-radius-auth
 libpam-python
 libpam-pwquality
 libpam-poldi
-libpam-passwdqc
 libpam-oath
 libpam-modules
 libpam-modules-bin
