@@ -20,6 +20,7 @@
         "libnginx",
         "libpam",
         "mokutil",
+        "nomodeset",
         "paml",
         "passwdqc",
         "phylo",

@@ -135,21 +135,29 @@ and different instructions should be used.</p>
 
 #### Enable IOMMU in the bootloader
 
+<p>Your mileage may vary with specific kernel boot flags, however
+after testing across various devices to a custom built AMD Epyc server,
+a converted gaming desktop and even some GMKTec NUC's. These are
+the settings that have worked across the board for me.</p>
+
+##### AMD Kernel Flags
+
+SecureBoot:
 vim /etc/kernel/default/cmdline
 
+Note: Grub users should instead modify /etc/default/grub
+
 For AMD IOMMU is enabled by default - simply make sure it is
-enabled in the BIOS. Add applicable kernel flags.
+enabled in the BIOS and add applicable kernel flags.
 
-root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt initcall_blacklist=sysfb_init
+root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset
 
-##### Kernel Admin Guide - AMD Parameters
-
-<https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/kernel-parameters.txt#L286?>
+##### Intel Kernel Flags
 
 For Intel add applicable kernel flags to enable, also ensure
 it is enabled in the BIOS.
 
-root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on
+root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on nomodeset
 
 ##### Kernel Admin Guide - Intel Parameters
 
