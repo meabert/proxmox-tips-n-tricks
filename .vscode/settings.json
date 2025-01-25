@@ -1,6 +1,9 @@
 {
     "cSpell.words": [
+        "alreadyloggedin",
+        "authnz",
         "btop",
+        "ccreds",
         "debhelper",
         "devscripts",
         "dkmssbsigntool",
@@ -8,8 +11,21 @@
         "efitools",
         "equivs",
         "iperf",
+        "ldapd",
+        "libapache",
+        "libbio",
+        "libnginx",
+        "libpam",
         "mokutil",
+        "paml",
+        "passwdqc",
+        "phylo",
+        "poldi",
         "powertop",
-        "sbsigntool"
+        "pwquality",
+        "sbsigntool",
+        "ufpidentity",
+        "Yubi",
+        "yubico"
     ]
 }
