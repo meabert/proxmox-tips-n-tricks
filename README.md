@@ -126,12 +126,18 @@ libbio-tools-phylo-paml-perl<br />
 
 ### PCI Express Passthrough
 
-<p>These directions cover how to enable vfio and passthrough a
-system using SecureBoot with an NVIDIA RTX 4080 and a Broadcom
+<p>These directions cover how to enable vfio and passthrough a GPU
+on a system running SecureBoot with an NVIDIA RTX 4080 and a Broadcom
 9400-16i HBA - please note this is for a full passthrough such as
 for use in a virtual machine. Steps for running a GPU natively on
 the host such as for containers is out of scope for this section
 and different instructions should be used.</p>
+
+Use case on the passthrough hardware:
+
+GPU - Dedicated docker VM for LLM, Transcoding and Rendering
+
+HBA - Fully virtualized TrueNAS with 12 drive RaidZ2
 
 #### Enable IOMMU in the bootloader
 
@@ -159,13 +165,12 @@ it is enabled in the BIOS.
 
 root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on nomodeset
 
-##### Kernel Admin Guide - Intel Parameters
+##### Kernel Admin Guide -  Boot Parameters
 
-<https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/kernel-parameters.txt#L2239>
+<https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/kernel-parameters.txt>
 
 #### Enable the vfio modules
 
 echo "vfio" >> /etc/modules
 echo "vfio_iommu_type1" >> /etc/modules
 echo "vfio_pci" >> /etc/modules
-
