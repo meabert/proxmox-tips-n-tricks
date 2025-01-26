@@ -177,4 +177,66 @@ echo "vfio_pci" >> /etc/modules</b>
 
 #### Locate your PCI device ID's
 
-<b>lspci -n</b>
+##### GPU
+
+<b>lspci -nn | grep 'NVIDIA'</b>
+
+43:00.0 VGA compatible controller [0300]: NVIDIA Corporation AD106
+[GeForce RTX 4060 Ti] <b>[10de:2803]</b> (rev a1)
+
+43:00.1 Audio device [0403]: NVIDIA Corporation AD106M High Definition
+Audio Controller <b>[10de:22bd]</b> (rev a1)
+
+##### HBA
+
+<b>lspci -nn | grep 'LSI'</b>
+
+02:00.0 Serial Attached SCSI controller [0107]: Broadcom / LSI SAS3416
+Fusion-MPT Tri-Mode I/O Controller Chip (IOC) <b>[1000:00ac]</b> (rev 01)d
+
+Now you can integrate these device ID's into the vfio configuration, note
+that I've included two device ID's for the GPU - this is because one is for
+video and the other for audio. Not passing through both can cause issues.
+
+#### VFIO configuration file
+
+echo "options vfio-pci ids=1000:00ac,10de:2803,10de:22bd" >> /etc/modprobe.d/vfio.conf
+
+##### For NVIDIA GPU's
+
+echo "softdep nouveau pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep nvidia pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep nvidiafb pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep nvidia_drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+
+##### For AMD GPU's
+
+echo "softdep radeon pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep amdgpu pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+
+##### For Intel GPU's
+
+echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep snd_hda_codec_hdmi pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep i915 pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+
+#### Blacklist file for fallback in case first steps fail
+
+vim /etc/modprobe.d/blacklist.conf
+
+blacklist mpt3sas
+blacklist radeon
+blacklist amdgpu
+blacklist nouveau
+blacklist nvidia
+blacklist nvidiafb
+blacklist nvidia_drm
+blacklist snd_hda_intel
+blacklist snd_hda_codec_hdmi
+blacklist i915
+
+### Update initramfs and refresh boot tool
+
+update-initramfs -u -k all
+proxmox-boot-tool refresh
