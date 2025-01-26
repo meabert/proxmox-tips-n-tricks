@@ -9,16 +9,16 @@ Expand the scope beyond what is available VIA Proxmox Helper Scripts
 <https://community-scripts.github.io/ProxmoxVE/scripts>
 <https://github.com/community-scripts/ProxmoxVE>
 
-Reliable access to one-shot install clips and key third party package
+<p>Reliable access to one-shot install clips and key third party package
 repositories. So many concepts and lopsided code philosophy's have led
 me to just document it instead! Waste less time doing tedious configurations
-so you can instead spend that time building something unique.
+so you can instead spend that time building something unique.</p>
 
 ### Bare minimum packages to setup my workflow
 
 <p>These are the packages I install after every Proxmox install, the only changes
 that take place before this are running the Post-Installation Script and the CPU
-Microcode security patches both of which can be found VIA the following links.
+Microcode security patches both of which can be found VIA the following links.</P>
 
 #### Post-Install Script
 
@@ -32,15 +32,15 @@ Microcode security patches both of which can be found VIA the following links.
 
 #### CPU Scaling Governor
 
-<p> This allows you to set a power/performance profile to your CPU(s) assuming
-they support a variety of profiles, some only support one or two.
+<p>This allows you to set a power/performance profile to your CPU(s) assuming
+they support a variety of profiles, some only support one or two.</p>
 
 <https://community-scripts.github.io/ProxmoxVE/scripts?id=scaling-governor>
 
 #### Host Backup
 
-<p> Enables extensive customization of backup outputs and location, not to
-be confused with Proxmox Backup Server.
+<p>Enables extensive customization of backup outputs and location, not to
+be confused with Proxmox Backup Server.</p>
 
 <https://community-scripts.github.io/ProxmoxVE/scripts?id=host-backup>
 
@@ -50,7 +50,7 @@ be confused with Proxmox Backup Server.
 
 ### Manually added packages
 
-<h3>apt install</h3>
+<b><h3>apt install</h3>
 sudo<br />
 iperf3<br />
 btop<br />
@@ -79,7 +79,7 @@ mokutil<br />
 devscripts<br />
 debhelper<br />
 equivs<br />
-git<br />
+git<br /></b>
 
 ### Authentication - PAM Modules, add or remove as needed depending on your use case
 
@@ -90,9 +90,9 @@ Eventually passwords will become obsolete and from a security standpoint it's
 excellent knowledge educating yourself on these methods. A common PAM would be
 a YubiKey as an alternate form of ID, knowing this basic concept you can apply this
 same concept to the libpam-zfs library as an example, this library is for
-unlocking ZFS encrypted partitions.
+unlocking ZFS encrypted partitions.</p>
 
-<h3>apt install</h3>
+<b><h3>apt install</h3>
 libpam-yubico<br />
 libpam-zfs<br />
 libpam-u2f<br />
@@ -122,7 +122,7 @@ libapache2-mod-authnz-pam<br />
 libapache2-mod-intercept-form-submit<br />
 libauthen-pam-perl<br />
 libauthen-simple-pam-perl<br />
-libbio-tools-phylo-paml-perl<br />
+libbio-tools-phylo-paml-perl<br /></b>
 
 ### PCI Express Passthrough
 
@@ -149,21 +149,21 @@ the settings that have worked across the board for me.</p>
 ##### AMD Kernel Flags
 
 SecureBoot:
-vim /etc/kernel/default/cmdline
+<b>vim /etc/kernel/default/cmdline</b>
 
 Note: Grub users should instead modify /etc/default/grub
 
 For AMD IOMMU is enabled by default - simply make sure it is
 enabled in the BIOS and add applicable kernel flags.
 
-root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset
+<b>root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset</b>
 
 ##### Intel Kernel Flags
 
 For Intel add applicable kernel flags to enable, also ensure
 it is enabled in the BIOS.
 
-root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on nomodeset
+<b>root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on nomodeset</b>
 
 ##### Kernel Admin Guide -  Boot Parameters
 
@@ -171,6 +171,10 @@ root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on nomodeset
 
 #### Enable the vfio modules
 
-echo "vfio" >> /etc/modules
+<b>echo "vfio" >> /etc/modules
 echo "vfio_iommu_type1" >> /etc/modules
-echo "vfio_pci" >> /etc/modules
+echo "vfio_pci" >> /etc/modules</b>
+
+#### Locate your PCI device ID's
+
+<b>lspci -n</b>
