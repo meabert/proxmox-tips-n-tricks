@@ -149,7 +149,7 @@ the settings that have worked across the board for me.</p>
 ##### AMD Kernel Flags
 
 SecureBoot:
-<b>vim /etc/kernel/default/cmdline</b>
+<b>vim /etc/kernel/cmdline</b>
 
 Note: Grub users should instead modify /etc/default/grub
 
