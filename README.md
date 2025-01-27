@@ -171,9 +171,9 @@ it is enabled in the BIOS.
 
 #### Enable the vfio modules
 
-<b>echo "vfio" >> /etc/modules
-echo "vfio_iommu_type1" >> /etc/modules
-echo "vfio_pci" >> /etc/modules</b>
+<b>echo "vfio" >> /etc/modules<br />
+echo "vfio_iommu_type1" >> /etc/modules<br />
+echo "vfio_pci" >> /etc/modules</b><br />
 
 #### Locate your PCI device ID's
 
@@ -204,39 +204,39 @@ echo "options vfio-pci ids=1000:00ac,10de:2803,10de:22bd" >> /etc/modprobe.d/vfi
 
 ##### For NVIDIA GPU's
 
-echo "softdep nouveau pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
-echo "softdep nvidia pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
-echo "softdep nvidiafb pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
-echo "softdep nvidia_drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
-echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep nouveau pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
+echo "softdep nvidia pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
+echo "softdep nvidiafb pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
+echo "softdep nvidia_drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
+echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
 
 ##### For AMD GPU's
 
-echo "softdep radeon pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
-echo "softdep amdgpu pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep radeon pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
+echo "softdep amdgpu pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
 
 ##### For Intel GPU's
 
-echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
-echo "softdep snd_hda_codec_hdmi pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
-echo "softdep i915 pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
+echo "softdep snd_hda_codec_hdmi pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
+echo "softdep i915 pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
 
 #### Blacklist file for fallback in case first steps fail
 
 vim /etc/modprobe.d/blacklist.conf
 
-blacklist mpt3sas
-blacklist radeon
-blacklist amdgpu
-blacklist nouveau
-blacklist nvidia
-blacklist nvidiafb
-blacklist nvidia_drm
-blacklist snd_hda_intel
-blacklist snd_hda_codec_hdmi
-blacklist i915
+blacklist mpt3sas<br />
+blacklist radeon<br />
+blacklist amdgpu<br />
+blacklist nouveau<br />
+blacklist nvidia<br />
+blacklist nvidiafb<br />
+blacklist nvidia_drm<br />
+blacklist snd_hda_intel<br />
+blacklist snd_hda_codec_hdmi<br />
+blacklist i915<br />
 
 ### Update initramfs and refresh boot tool
 
-update-initramfs -u -k all
+update-initramfs -u -k all<br/>
 proxmox-boot-tool refresh
