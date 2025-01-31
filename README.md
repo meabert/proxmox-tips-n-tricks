@@ -56,6 +56,17 @@ lm-sensors powertop htop btop vim-nox shim-signed shim-helpers-amd64-signed
 grub-efi-amd64-signed proxmox-headers-6.8.12-7-pve sbsigntool efibootmgr
 efitools uuid-runtime dkmssbsigntool mokutil devscripts debhelper equivs git
 
+<b><h4>Bonus: If you are using a server chances are high the motherboard has
+some sort of administrative controller, these tools will help to monitor, divulge
+logs and send SET changes to the controller. Various tools, not all may be required
+depending on your motherboard ex. Redfish is not manufacturer specific.
+
+<b><h3>apt install</h3></b>
+
+ilorest python3-sushy redfishtool python3-pyipmi python3-pyghmi prometheus-ipmi-exporter
+opemipmi nut-ipmi ipmiutil ipmitool freeipmi freeipmi-tools freeipmi-ipmiseld
+freeipmi-bmc-watchdog freeipmi-ipmidetect
+
 ### Authentication - PAM Modules, add or remove as needed depending on your use case
 
 <p>PAM or Pluggable Authentication Modules involve a variety of different
