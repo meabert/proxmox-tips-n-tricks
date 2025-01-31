@@ -18,7 +18,7 @@ so you can instead spend that time building something unique.</p>
 
 <p>These are the packages I install after every Proxmox install, the only changes
 that take place before this are running the Post-Installation Script and the CPU
-Microcode security patches both of which can be found VIA the following links.</P>
+Microcode security patches both of which can be found VIA the following links.</p>
 
 #### Post-Install Script
 
@@ -53,8 +53,8 @@ be confused with Proxmox Backup Server.</p>
 ```bash
 apt install sudo iperf3 btop gcc make cmake automake autoconf build-essential git
 unzip lm-sensors powertop htop btop vim-nox shim-signed shim-helpers-amd64-signed
-grub-efi-amd64-signed proxmox-headers-6.8.12-7-pve sbsigntool efibootmgr
-efitools uuid-runtime dkmssbsigntool mokutil devscripts debhelper equivs git
+grub-efi-amd64-signed proxmox-headers-6.8.12-7-pve sbsigntool efibootmgr efitools
+uuid-runtime dkmssbsigntool mokutil devscripts debhelper equivs git
 ```
 
 <b><h4>Bonus:</h4></b> If you are using a server chances are high the motherboard
@@ -62,7 +62,7 @@ has some sort of administrative controller, these tools will help to monitor, di
 logs and send SET changes to the controller. Various tools, not all may be required
 depending on your motherboard ex. Redfish is not manufacturer specific.
 
-```text
+```bash
 apt install ilorest python3-sushy redfishtool python3-pyipmi python3-pyghmi
 prometheus-ipmi-exporter openipmi nut-ipmi ipmiutil ipmitool freeipmi
 freeipmi-tools freeipm-ipmiseld freeipmi-bmc-watchdog freeipmi-ipmidetect
