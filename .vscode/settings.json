@@ -8,6 +8,7 @@
         "cmdline",
         "debhelper",
         "devscripts",
+        "dkms",
         "dkmssbsigntool",
         "efibootmgr",
         "efitools",
