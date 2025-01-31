@@ -63,9 +63,10 @@ depending on your motherboard ex. Redfish is not manufacturer specific.
 
 <b><h3>apt install</h3></b>
 
-ilorest python3-sushy redfishtool python3-pyipmi python3-pyghmi prometheus-ipmi-exporter
-opemipmi nut-ipmi ipmiutil ipmitool freeipmi freeipmi-tools freeipm-ipmiseld
-freeipmi-bmc-watchdog freeipmi-ipmidetect
+ilorest python3-sushy redfishtool python3-pyipmi python3-pyghmi
+prometheus-ipmi-exporter openipmi nut-ipmi ipmiutil ipmitool freeipmi
+freeipmi-tools freeipm-ipmiseld freeipmi-bmc-watchdog freeipmi-ipmidetect
+libipmimonitoring6
 
 ### Authentication - PAM Modules, add or remove as needed depending on your use case
 
