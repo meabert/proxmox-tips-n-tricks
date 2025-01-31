@@ -51,9 +51,9 @@ be confused with Proxmox Backup Server.</p>
 ### Manually added packages
 
 ```bash
-apt install sudo iperf3 btop gcc make cmake automake autoconf build-essential git/
-unzip lm-sensors powertop htop btop vim-nox shim-signed shim-helpers-amd64-signed/
-grub-efi-amd64-signed proxmox-headers-6.8.12-7-pve sbsigntool efibootmgr efitools/
+apt install sudo iperf3 btop gcc make cmake automake autoconf build-essential git&nbsp;/
+unzip lm-sensors powertop htop btop vim-nox shim-signed shim-helpers-amd64-signed&nbsp;/
+grub-efi-amd64-signed proxmox-headers-6.8.12-7-pve sbsigntool efibootmgr efitools&nbsp;/
 uuid-runtime dkms sbsigntool mokutil devscripts debhelper equivs git
 ```
 
