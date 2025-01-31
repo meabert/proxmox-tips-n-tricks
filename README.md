@@ -127,7 +127,7 @@ For AMD IOMMU is enabled by default - simply make sure it is
 enabled in the BIOS and add applicable kernel flags.
 
 ```bash
-root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset</b>
+root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset
 ```
 
 ##### Intel Kernel Flags
