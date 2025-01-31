@@ -130,18 +130,22 @@ enabled in the BIOS and add applicable kernel flags.
 For Intel add applicable kernel flags to enable, also ensure
 it is enabled in the BIOS.
 
-<b>root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on nomodeset</b>
+```bash
+root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on nomodeset
+```
 
 ##### Kernel Admin Guide -  Boot Parameters
 
-<https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/kernel-parameters.txt>
+```bash
+https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/kernel-parameters.txt
+```
 
 #### Enable the vfio modules
 
 ```bash
-echo "vfio" >> /etc/modules<br />
-echo "vfio_iommu_type1" >> /etc/modules<br />
-echo "vfio_pci" >> /etc/modules</b><br />
+echo "vfio" >> /etc/modules
+echo "vfio_iommu_type1" >> /etc/modules
+echo "vfio_pci" >> /etc/modules
 ```
 
 #### Locate your PCI device ID's
