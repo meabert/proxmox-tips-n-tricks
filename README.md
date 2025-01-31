@@ -116,14 +116,19 @@ the settings that have worked across the board for me.</p>
 ##### AMD Kernel Flags
 
 SecureBoot:
-<b>vim /etc/kernel/cmdline</b>
+
+```bash
+vim /etc/kernel/cmdline
+```
 
 Note: Grub users should instead modify /etc/default/grub
 
 For AMD IOMMU is enabled by default - simply make sure it is
 enabled in the BIOS and add applicable kernel flags.
 
+```bash
 <b>root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset</b>
+```
 
 ##### Intel Kernel Flags
 
@@ -136,7 +141,7 @@ root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on nomodeset
 
 ##### Kernel Admin Guide -  Boot Parameters
 
-```bash
+```text
 https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/kernel-parameters.txt
 ```
 
@@ -152,7 +157,9 @@ echo "vfio_pci" >> /etc/modules
 
 ##### GPU
 
-<b>lspci -nn | grep 'NVIDIA'</b>
+```bash
+lspci -nn | grep 'NVIDIA'
+```
 
 43:00.0 VGA compatible controller [0300]: NVIDIA Corporation AD106
 [GeForce RTX 4060 Ti] <b>[10de:2803]</b> (rev a1)
@@ -162,7 +169,9 @@ Audio Controller <b>[10de:22bd]</b> (rev a1)
 
 ##### HBA
 
-<b>lspci -nn | grep 'LSI'</b>
+```bash
+<b>lspci -nn | grep 'LSI'
+```
 
 02:00.0 Serial Attached SCSI controller [0107]: Broadcom / LSI SAS3416
 Fusion-MPT Tri-Mode I/O Controller Chip (IOC) <b>[1000:00ac]</b> (rev 01)d
@@ -173,31 +182,42 @@ video and the other for audio. Not passing through both can cause issues.
 
 #### VFIO configuration file
 
+```bash
 echo "options vfio-pci ids=1000:00ac,10de:2803,10de:22bd" >> /etc/modprobe.d/vfio.conf
+```
 
 ##### For NVIDIA GPU's
 
+```bash
 echo "softdep nouveau pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
 echo "softdep nvidia pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
 echo "softdep nvidiafb pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
 echo "softdep nvidia_drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
 echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
+```
 
 ##### For AMD GPU's
 
+```bash
 echo "softdep radeon pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
 echo "softdep amdgpu pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
+```
 
 ##### For Intel GPU's
 
+```bash
 echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
 echo "softdep snd_hda_codec_hdmi pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
 echo "softdep i915 pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
+```
 
 #### Blacklist file for fallback in case first steps fail
 
+```bash
 vim /etc/modprobe.d/blacklist.conf
+```
 
+```bash
 blacklist mpt3sas<br />
 blacklist radeon<br />
 blacklist amdgpu<br />
@@ -208,8 +228,11 @@ blacklist nvidia_drm<br />
 blacklist snd_hda_intel<br />
 blacklist snd_hda_codec_hdmi<br />
 blacklist i915<br />
+```
 
 ### Update initramfs and refresh boot tool
 
+```bash
 update-initramfs -u -k all<br/>
 proxmox-boot-tool refresh
+```
