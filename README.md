@@ -50,23 +50,24 @@ be confused with Proxmox Backup Server.</p>
 
 ### Manually added packages
 
-```bash apt install sudo iperf3 btop gcc make cmake automake autoconf
-build-essential git unzip lm-sensors powertop htop btop vim-nox 
-shim-signed shim-helpers-amd64-signed grub-efi-amd64-signed 
-proxmox-headers-6.8.12-7-pve sbsigntool efibootmgr efitools uuid-runtime 
-dkms sbsigntool mokutil devscripts debhelper equivs git```
+<pre style="white-space: pre-wrap;">
+apt install sudo iperf3 btop gcc make cmake automake autoconf build-essential git
+unzip lm-sensors powertop htop btop vim-nox shim-signed shim-helpers-amd64-signed
+grub-efi-amd64-signed proxmox-headers-6.8.12-7-pve sbsigntool efibootmgr efitools
+uuid-runtime dkms sbsigntool mokutil devscripts debhelper equivs git
+</pre>
 
 <b><h4>Bonus:</h4></b> If you are using a server chances are high the motherboard
 has some sort of administrative controller, these tools will help to monitor, divulge
 logs and send SET changes to the controller. Various tools, not all may be required
 depending on your motherboard ex. Redfish is not manufacturer specific.
 
-```bash
+<pre style="white-space: pre-wrap;">
 apt install ilorest python3-sushy redfishtool python3-pyipmi python3-pyghmi
 prometheus-ipmi-exporter openipmi nut-ipmi ipmiutil ipmitool freeipmi
 freeipmi-tools freeipm-ipmiseld freeipmi-bmc-watchdog freeipmi-ipmidetect
 libipmimonitoring6
-```
+</pre>
 
 ### Authentication - PAM Modules, add or remove as needed depending on your use case
 
@@ -79,7 +80,7 @@ a YubiKey as an alternate form of ID, knowing this basic concept you can apply t
 same concept to the libpam-zfs library as an example, this library is for
 unlocking ZFS encrypted partitions.</p>
 
-```text
+<pre style="white-space: pre-wrap;">
 apt install libpam-yubico libpam-zfs libpam-u2f libpam-ufpidentity
 libpam-ssh-agent-auth libpam-radius-auth libpam-python libpam-pwquality
 libpam-poldi libpam-oath libpam-modules libpam-modules-bin libpam-mount 
@@ -88,7 +89,7 @@ libpam-doc libpam-ccreds libpam-cads libpam-cgroup libpam-alreadyloggedin libpam
 libpam-abl libnginx-mod-http-auth-pam libapache2-mod-authnz-pam
 libapache2-mod-intercept-form-submit libauthen-pam-perl libauthen-simple-pam-perl
 libbio-tools-phylo-paml-perl
-```
+</pre>
 
 ### PCI Express Passthrough
 

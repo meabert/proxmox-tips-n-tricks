@@ -4,7 +4,7 @@
       "h1","h2", "h3", "h4", "h5", "h6", "blockquote", "a", "code", "pre", "em", 
           "strong", "ul", "ol", "li", "p", "hr", "img", "table", "tr", "th", "td", 
           "thead", "tbody", "tfoot", "details", "summary","br", "mark", "small", "sub", 
-          "sup", "abbr", "time", "var", "s", "u", "kbd", "wbr","b", "span"
+          "sup", "abbr", "time", "var", "s", "u", "kbd", "wbr","b","span"
                 ]
           }
-        }
+}
