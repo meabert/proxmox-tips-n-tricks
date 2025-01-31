@@ -50,7 +50,7 @@ be confused with Proxmox Backup Server.</p>
 
 ### Manually added packages
 
-```text
+```bash
 apt install sudo iperf3 btop gcc make cmake automake autoconf build-essential git
 unzip lm-sensors powertop htop btop vim-nox shim-signed shim-helpers-amd64-signed
 grub-efi-amd64-signed proxmox-headers-6.8.12-7-pve sbsigntool efibootmgr
@@ -83,7 +83,7 @@ unlocking ZFS encrypted partitions.</p>
 ```text
 apt install libpam-yubico libpam-zfs libpam-u2f libpam-ufpidentity
 libpam-ssh-agent-auth libpam-radius-auth libpam-python libpam-pwquality
-libpam-poldi libpam-oath libpam-modules libpam-modules-bin libpam-mount
+libpam-poldi libpam-oath libpam-modules libpam-modules-bin libpam-mount 
 libpam-mount-bin libpam-mysql libpam-gnome-keyring libpam-google-authenticator 
 libpam-doc libpam-ccreds libpam-cads libpam-cgroup libpam-alreadyloggedin libpam-apparmor
 libpam-abl libnginx-mod-http-auth-pam libapache2-mod-authnz-pam
