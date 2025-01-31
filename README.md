@@ -50,36 +50,11 @@ be confused with Proxmox Backup Server.</p>
 
 ### Manually added packages
 
-<b><h3>apt install</h3>
-sudo<br />
-iperf3<br />
-btop<br />
-gcc<br />
-make<br />
-cmake<br />
-automake<br />
-build-essential<br />
-git<br />
-unzip<br />
-lm-sensors<br />
-powertop<br />
-htop<br />
-btop<br />
-vim-nox<br />
-shim-signed<br />
-shim-helpers-amd64-signed<br />
-grub-efi-amd64-signed<br />
-proxmox-headers-6.8.12-7-pve<br />
-sbsigntool<br />
-efibootmgr<br />
-efitools<br />
-uuid-runtime<br />
-dkmssbsigntool<br />
-mokutil<br />
-devscripts<br />
-debhelper<br />
-equivs<br />
-git<br /></b>
+<b><h3>apt install</h3></b>
+sudo iperf3 btop gcc make cmake automake autoconf build-essential git unzip
+lm-sensors powertop htop btop vim-nox shim-signed shim-helpers-amd64-signed
+grub-efi-amd64-signed proxmox-headers-6.8.12-7-pve sbsigntool efibootmgr
+efitools uuid-runtime dkmssbsigntool mokutil devscripts debhelper equivs git
 
 ### Authentication - PAM Modules, add or remove as needed depending on your use case
 
@@ -92,37 +67,15 @@ a YubiKey as an alternate form of ID, knowing this basic concept you can apply t
 same concept to the libpam-zfs library as an example, this library is for
 unlocking ZFS encrypted partitions.</p>
 
-<b><h3>apt install</h3>
-libpam-yubico<br />
-libpam-zfs<br />
-libpam-u2f<br />
-libpam-ufpidentity<br />
-libpam-ssh-agent-auth<br />
-libpam-radius-auth<br />
-libpam-python<br />
-libpam-pwquality<br />
-libpam-poldi<br />
-libpam-oath<br />
-libpam-modules<br />
-libpam-modules-bin<br />
-libpam-mount<br />
-libpam-mount-bin<br />
-libpam-mysql<br />
-libpam-gnome-keyring<br />
-libpam-google-authenticator<br />
-libpam-doc<br />
-libpam-ccreds<br />
-libpam-cads<br />
-libpam-cgroup<br />
-libpam-alreadyloggedin<br />
-libpam-apparmor<br />
-libpam-abl<br />
-libnginx-mod-http-auth-pam<br />
-libapache2-mod-authnz-pam<br />
-libapache2-mod-intercept-form-submit<br />
-libauthen-pam-perl<br />
-libauthen-simple-pam-perl<br />
-libbio-tools-phylo-paml-perl<br /></b>
+<b><h3>apt install</h3></b>
+libpam-yubico libpam-zfs libpam-u2f libpam-ufpidentity libpam-ssh-agent-auth
+libpam-radius-auth libpam-python libpam-pwquality libpam-poldi libpam-oath
+libpam-modules libpam-modules-bin libpam-mount libpam-mount-bin libpam-mysql
+libpam-gnome-keyring libpam-google-authenticator libpam-doc libpam-ccreds
+libpam-cads libpam-cgroup libpam-alreadyloggedin libpam-apparmor
+libpam-abl libnginx-mod-http-auth-pam libapache2-mod-authnz-pam
+libapache2-mod-intercept-form-submit libauthen-pam-perl libauthen-simple-pam-perl
+libbio-tools-phylo-paml-perl
 
 ### PCI Express Passthrough
 
