@@ -127,7 +127,7 @@ For AMD IOMMU is enabled by default - simply make sure it is
 enabled in the BIOS and add applicable kernel flags.
 
 ```bash
-<b>root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset</b>
+root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset</b>
 ```
 
 ##### Intel Kernel Flags
@@ -170,7 +170,7 @@ Audio Controller <b>[10de:22bd]</b> (rev a1)
 ##### HBA
 
 ```bash
-<b>lspci -nn | grep 'LSI'
+lspci -nn | grep 'LSI'
 ```
 
 02:00.0 Serial Attached SCSI controller [0107]: Broadcom / LSI SAS3416
@@ -189,26 +189,26 @@ echo "options vfio-pci ids=1000:00ac,10de:2803,10de:22bd" >> /etc/modprobe.d/vfi
 ##### For NVIDIA GPU's
 
 ```bash
-echo "softdep nouveau pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
-echo "softdep nvidia pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
-echo "softdep nvidiafb pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
-echo "softdep nvidia_drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
-echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
+echo "softdep nouveau pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep nvidia pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep nvidiafb pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep nvidia_drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
 ##### For AMD GPU's
 
 ```bash
-echo "softdep radeon pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
-echo "softdep amdgpu pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
+echo "softdep radeon pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep amdgpu pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
 ##### For Intel GPU's
 
 ```bash
-echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
-echo "softdep snd_hda_codec_hdmi pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
-echo "softdep i915 pre: vfio-pci" >> /etc/modprobe.d/vfio.conf<br />
+echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep snd_hda_codec_hdmi pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep i915 pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
 #### Blacklist file for fallback in case first steps fail
@@ -218,21 +218,21 @@ vim /etc/modprobe.d/blacklist.conf
 ```
 
 ```bash
-blacklist mpt3sas<br />
-blacklist radeon<br />
-blacklist amdgpu<br />
-blacklist nouveau<br />
-blacklist nvidia<br />
-blacklist nvidiafb<br />
-blacklist nvidia_drm<br />
-blacklist snd_hda_intel<br />
-blacklist snd_hda_codec_hdmi<br />
-blacklist i915<br />
+blacklist mpt3sas
+blacklist radeon
+blacklist amdgpu
+blacklist nouveau
+blacklist nvidia
+blacklist nvidiafb
+blacklist nvidia_drm
+blacklist snd_hda_intel
+blacklist snd_hda_codec_hdmi
+blacklist i915
 ```
 
 ### Update initramfs and refresh boot tool
 
 ```bash
-update-initramfs -u -k all<br/>
+update-initramfs -u -k all
 proxmox-boot-tool refresh
 ```
