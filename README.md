@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD013 -->
+
 # Documentation
 
 ## Haphazardly collected scripts & tricks I've refined while building my homelab
@@ -186,7 +188,7 @@ echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ##### For AMD GPU's
 
 ```bash
-echo "softdep radeon pre: vfio-pci" >> /etc.modprobe.d/vfio.conf
+echo "softdep radeon pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep amdgpu pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
