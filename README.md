@@ -62,7 +62,7 @@ logs and send SET changes to the controller. Various tools, not all may be requi
 depending on your motherboard ex. Redfish is not manufacturer specific.
 
 <pre style="white-space: pre-wrap;">
-apt install ilorest python3-sushy redfishtool python3-pyipmi python3-pyghmi prometheus-ipmi-exporter openipmi nut-ipmi ipmiutil ipmitool freeipmi freeipmi-tools freeipmi-ipmiseld freeipmi-bmc-watchdog freeipmi-ipmidetect libipmimonitoring6 libpam-abl libpam-biometric
+apt install ilorest python3-sushy redfishtool python3-pyipmi python3-pyghmi prometheus-ipmi-exporter openipmi nut-ipmi ipmiutil ipmitool freeipmi freeipmi-tools freeipmi-ipmiseld freeipmi-bmc-watchdog freeipmi-ipmidetect libipmimonitoring6 libpam-abl libpam-biometric libpam-poldi libpam-pkcs11 libpam-p11
 </pre>
 
 ### Authentication - PAM Modules, add or remove as needed depending on your use case
