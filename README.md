@@ -50,12 +50,12 @@ be confused with Proxmox Backup Server.</p>
 
 ### Manually added packages
 
-<pre style="white-space: pre-wrap;">
+<pre style="white-space: pre-wrap;"><code class="language-python">
 apt install sudo iperf3 btop gcc make cmake automake autoconf build-essential git
 unzip lm-sensors powertop htop btop vim-nox shim-signed shim-helpers-amd64-signed
 grub-efi-amd64-signed proxmox-headers-6.8.12-7-pve sbsigntool efibootmgr efitools
 uuid-runtime dkms sbsigntool mokutil devscripts debhelper equivs git
-</pre>
+</code></pre>
 
 <b><h4>Bonus:</h4></b> If you are using a server chances are high the motherboard
 has some sort of administrative controller, these tools will help to monitor, divulge
