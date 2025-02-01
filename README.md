@@ -77,7 +77,7 @@ same concept to the libpam-zfs library as an example, this library is for
 unlocking ZFS encrypted partitions.</p>
 
 <pre style="white-space: pre-wrap;">
-apt install libpam-yubico libpam-zfs libpam-u2f libpam-ufpidentity libpam-ssh-agent-auth libpam-radius-auth libpam-python libpam-pwquality libpam-poldi libpam-oath libpam-modules libpam-modules-bin libpam-mount libpam-mount-bin libpam-mysql libpam-gnome-keyring libpam-google-authenticator libpam-doc libpam-ccreds libpam-cads libpam-cgroup libpam-alreadyloggedin libpam-apparmor libpam-abl libnginx-mod-http-auth-pam libapache2-mod-authnz-pam libapache2-mod-intercept-form-submit libauthen-pam-perl libauthen-simple-pam-perl libbio-tools-phylo-paml-perl
+apt install libpam-yubico libpam-zfs libpam-u2f libpam-ufpidentity libpam-ssh-agent-auth libpam-radius-auth libpam-python libpam-pwquality libpam-poldi libpam-oath libpam-modules libpam-modules-bin libpam-mount libpam-mount-bin libpam-mysql libpam-gnome-keyring libpam-google-authenticator libpam-doc libpam-ccreds libpam-cap libpam-cgroup libpam-alreadyloggedin libpam-apparmor libpam-abl libnginx-mod-http-auth-pam libapache2-mod-authnz-pam libapache2-mod-intercept-form-submit libauthen-pam-perl libauthen-simple-pam-perl libbio-tools-phylo-paml-perl
 </pre>
 
 ### PCI Express Passthrough
