@@ -69,10 +69,13 @@ apt install ilorest python3-sushy redfishtool python3-pyipmi python3-pyghmi prom
 
 <p>PAM or Pluggable Authentication Modules involve a variety of different
 libraries used to facilitate different methods of authentication. I recommend
-learning and adapting to various forms of authentication besides passwords.
-Eventually passwords will become obsolete and from a security standpoint it's
-excellent knowledge educating yourself on these methods. A common PAM would be
-a YubiKey as an alternate form of ID, knowing this basic concept you can apply this
+learning and adapting to various forms of authentication besides passwords since
+ they will almost certainly become obsolete and from a security standpoint it's
+good practice to know what alternatives area available. educating yourself on
+these various methods will help increase the utility of your security toolbox.
+
+Use-case example: YubiKey, a common for of PAM, an alternate form of ID is an essential authentication
+tool for one to learn, knowing the basic concepts of FIDO,OTp...etc. As a can apply this
 same concept to the libpam-zfs library as an example, this library is for
 unlocking ZFS encrypted partitions.</p>
 
