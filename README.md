@@ -56,7 +56,7 @@ be confused with Proxmox Backup Server.</p>
 apt install sudo iperf3 btop gcc make cmake automake autoconf build-essential git unzip lm-sensors powertop htop btop vim-nox shim-signed shim-helpers-amd64-signed grub-efi-amd64-signed proxmox-headers-6.8.12-7-pve sbsigntool efibootmgr efitools uuid-runtime dkms sbsigntool mokutil devscripts debhelper equivs git
 </pre>
 
-<b><h4>Bonus:</h4></b> If you are using a server chassis your chances are good the motherboard
+<b><h4>Bonus:</h4></b> If you are using a server chances are high the motherboard
 has some sort of administrative controller, these tools will help to monitor, divulge
 logs and send SET changes to the controller. Various tools, not all may be required
 depending on your motherboard ex. Redfish is not manufacturer specific.
@@ -69,13 +69,10 @@ apt install ilorest python3-sushy redfishtool python3-pyipmi python3-pyghmi prom
 
 <p>PAM or Pluggable Authentication Modules involve a variety of different
 libraries used to facilitate different methods of authentication. I recommend
-learning and adapting to various forms of authentication besides passwords since
- they will almost certainly become obsolete and from a security standpoint it's
-good practice to know what alternatives area available. educating yourself on
-these various methods will help increase the utility of your security toolbox.
-
-Use-case example: YubiKey, a common for of PAM, an alternate form of ID is an essential authentication
-tool for one to learn, knowing the basic concepts of FIDO,OTp...etc. As a can apply this
+learning and adapting to various forms of authentication besides passwords.
+Eventually passwords will become obsolete and from a security standpoint it's
+excellent knowledge educating yourself on these methods. A common PAM would be
+a YubiKey as an alternate form of ID, knowing this basic concept you can apply this
 same concept to the libpam-zfs library as an example, this library is for
 unlocking ZFS encrypted partitions.</p>
 
@@ -85,8 +82,8 @@ apt install libpam-yubico libpam-zfs libpam-u2f libpam-ufpidentity libpam-ssh-ag
 
 ### PCI Express Passthrough
 
-<p>These directions cover how to enable vfio and passthrough a GPU
-on a system running SecureBoot with an NVIDIA RTX 4080 and a Broadcom
+<p>This section covers how to enable vfio and passthrough a GPU,
+test case has a hardware payload of NVIDIA RTX 4060 Ti and Broadcom
 9400-16i HBA - please note this is for a full passthrough such as
 for use in a virtual machine. Steps for running a GPU natively on
 the host such as for containers is out of scope for this section
