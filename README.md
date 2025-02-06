@@ -104,7 +104,7 @@ the settings that have worked across the board for me.</p>
 
 ##### AMD Kernel Flags
 
-SecureBoot:
+systemd-boot :
 
 ```bash
 vim /etc/kernel/cmdline
