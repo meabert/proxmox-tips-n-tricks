@@ -204,20 +204,16 @@ echo "softdep i915 pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 #### Blacklist file for fallback in case first steps fail
 
 ```bash
-vim /etc/modprobe.d/blacklist.conf
-```
-
-```bash
-blacklist mpt3sas
-blacklist radeon
-blacklist amdgpu
-blacklist nouveau
-blacklist nvidia
-blacklist nvidiafb
-blacklist nvidia_drm
-blacklist snd_hda_intel
-blacklist snd_hda_codec_hdmi
-blacklist i915
+echo "blacklist mpt3sas" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist radeon" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist amdgpu" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist nvidia" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist nvidiafb" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist nvidia_drm" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist snd_hda_intel" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist snd_hda_codec_hdmi" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist i915" >> /etc/modprobe.d/blacklist.conf
 ```
 
 ### Update initramfs and refresh boot tool
