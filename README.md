@@ -167,7 +167,8 @@ Fusion-MPT Tri-Mode I/O Controller Chip (IOC) <b>[1000:00ac]</b> (rev 01)d
 
 Now you can integrate these device ID's into the vfio configuration, note
 that I've included two device ID's for the GPU - this is because one is for
-video and the other for audio. Not passing through both can cause issues.
+video and the other for audio. Failure to include both can and will likely
+cause issues.
 
 #### VFIO configuration file
 
