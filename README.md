@@ -218,6 +218,8 @@ echo "blacklist i915" >> /etc/modprobe.d/blacklist.conf
 
 ### Update initramfs and refresh boot tool
 
+Don't mind the mess, it's Friday!
+
 ```bash
 update-initramfs -u -k all
 proxmox-boot-tool refresh

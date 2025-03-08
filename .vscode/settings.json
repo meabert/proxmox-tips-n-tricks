@@ -51,5 +51,16 @@
         "vfio",
         "Yubi",
         "yubico"
-    ]
+    ],
+
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/.git": true,
+        "**/.DS_Store": true,
+        "**/tmp": true,
+        "**/coverage": true,
+        "**/ios": true,
+        "**/android": true
+    }
 }
