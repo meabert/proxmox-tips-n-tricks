@@ -176,7 +176,13 @@ cause issues.
 echo "options vfio-pci ids=1000:00ac,10de:2803,10de:22bd" >> /etc/modprobe.d/vfio.conf
 ```
 
-##### For NVIDIA GPU's
+##### For LSI or Broadcomm HBA's
+
+```bash
+echo "softdep mpt3sas pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+```
+
+##### NVIDIA GPU's
 
 ```bash
 echo "softdep nouveau pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
@@ -184,6 +190,9 @@ echo "softdep nvidia pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep nvidiafb pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep nvidia_drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+
+<b>NOTE</b> You may need to add an exception for the audio the GPU
+outputs VIA the HDMI ports - this will show as an audio device.
 ```
 
 ##### For AMD GPU's
