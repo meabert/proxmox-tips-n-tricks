@@ -190,8 +190,11 @@ echo "softdep nvidia pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep nvidiafb pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep nvidia_drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+```
 
-<b>NOTE</b> You may need to add an exception for the audio the GPU
+##### You may need to add an exception for the audio the GPU
+
+```bash
 outputs VIA the HDMI ports - this will show as an audio device.
 ```
 
