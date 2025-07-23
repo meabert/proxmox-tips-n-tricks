@@ -1,5 +1,11 @@
 
 {
+
+  "default": true,
+  "MD003": { "style": "atx_closed" },
+  "MD007": { "indent": 4 },
+  "no-hard-tabs": false,
+
   "MD033": {
     "allowed_elements": [
       "h1", "h2", "h3", "h4", "h5", "h6", "blockquote", "a", "code", "pre", "em",

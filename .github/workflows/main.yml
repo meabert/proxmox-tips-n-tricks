@@ -1,0 +1,22 @@
+name: Markdownlint Workflow
+on:
+  push:
+    branches:
+      - main
+      - design/file-structure
+
+  pull_request:
+    branches:
+      - main
+      - design/file-structure
+
+jobs:
+  build:
+    name: Markdownlint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2 # Action to check out your repository code
+      - name: Markdown Lint
+        uses: docker://avtodev/markdown-lint:v1 # Or another Markdownlint Action like `markdownlint-cli2-action`
+        with:
+          args: "**/*.md" # Specify the Markdown files to lint
