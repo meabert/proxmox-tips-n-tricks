@@ -43,7 +43,6 @@ upHours=$((uptime/60/60%24))
 upMins=$((uptime/60%60))
 upSecs=$((uptime%60))
 
-
 #Additional checks can be placed in this directory on the server
 CUSTOM_CHECKS_DIR='/etc/dynmotd.d'
 
