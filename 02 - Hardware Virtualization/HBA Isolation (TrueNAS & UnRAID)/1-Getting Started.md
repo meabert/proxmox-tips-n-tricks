@@ -1,6 +1,6 @@
-# 1 - Getting Started
+# 1 - Getting Started #
 
-### HBA Isolation - Giving the VM full control of the hardware
+## HBA Isolation - Giving the VM full control of the hardware ##
 
 <p>Quick background - we will be using a Broadcom 9400-16i for this exercise, as a bonus I
 already have an existing array for demonstration. Essentially we are taking the bare metal
@@ -13,7 +13,9 @@ overview using one of the most common types of cards.</p>
 > Your personal planning and integrity are a direct reflection of the very same data integrity!
 > Lastly for goodness sakes, RAID is NOT a backup!
 
-### Dual RaidZ2 Array - Each VDEV (Virtual Device) has a two drive failure threshold
+## Dual RaidZ2 Array:<br/> ##
+
+### Each VDEV (Virtual Device) has a two drive failure threshold ###
 
 <p>This means you can lose two drives in each VDEV in the combined array (a total of four
 assuming one is that lucky) however as a consequence this is 32TB of sacrificed space for
@@ -27,27 +29,60 @@ lose the entire array, whereas the L2ARC can be added and pulled at will with no
 the data integrity. Again this isn't a ZFS lesson but adding context here in case anyone is
 interested what a functioning setup looks like and how to set it up. </p>
 
-#### ZFS VDEV Types
+## ZFS VDEV Types ##
 
 <p>**Mirror:** Highest integrity, largest space loss - usually in pairs of two, three or more
  the data is the same on all drives in the pool.
 
-### Vault VDEV
+### Vault VDEV ###
 
-| RaidZ2 VDEV1 6x HDD Drives | RaidZ2 VDEV2 32TB Usable  |  ZIL LOG VDEV3 (Write Cache)  |  L2ARC VDEV4 (Read Cache) | Spare VDEV5 (Hot-Spare)   |
-| -------------------------- | ------------------------- | ----------------------------- | ------------------------- | ------------------------- |
-| 8TB Seagate IronWolf SATA  | 8TB Seagate IronWolf SATA | 256GB Samsung PM981a NVMe     | Intel Optane 905p 1.5TB   | 8TB Seagate IronWolf SATA |
-| 8TB Seagate IronWolf SATA  | 8TB Seagate IronWolf SATA | 256GB Samsung PM981a NVMe     | NGFF U.2 NVMe Drive       |                           |
-| 8TB Seagate IronWolf SATA  | 8TB Seagate IronWolf SATA | PCI-Express 3.0 x 4           | PCI-Express 3.0 x 4       |                           |
-| 8TB Seagate IronWolf SATA  | 8TB Seagate IronWolf SATA |                               |                           |                           |
-| 8TB Seagate IronWolf SATA  | 8TB Seagate IronWolf SATA |                               |                           |                           |
-| 8TB Seagate IronWolf SATA  | 8TB Seagate IronWolf SATA | 2200MB/s Write Speed          | 2600MB/s Read Speed       |                           |
-| -------------------------- | ------------------------- | ----------------------------- | ------------------------- | ------------------------- |
-|                            |                           |                               |                           |                           |
-|                            |                           |                               |                           |                           |
-|                            |                           |                               |                           |                           |
-|                            |                           | 2200MB/s Write Speed          | 2600MB/s Read Speed       |                           |
-|                            |                           | 150 TBW / MTBF 1.5 Million    | 27PBW / MTBF 1.6 Million  |                           |
-| 3400R / 2119W Block IOPS   | 3400R / 2200W Block IOPS  | 480,000 Random Write IOPS     | 575,000 Random Read IOPS  |                           |
-| -------------------------- | ------------------------- | ----------------------------- | ------------------------- | ------------------------- |
-| -------------------------- | ------------------------- | ----------------------------- | ------------------------- | ------------------------- |
+| RaidZ2 VDEV1 6xHDD Drives | RaidZ2 VDEV2 6xHDD Drives |    Parity   |
+| ------------------------- | ------------------------- | ----------- |
+| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA |  Data Disk  |
+| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA |  Data Disk  |
+| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA |  Data Disk  |
+| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA |  Data Disk  |
+| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA | Parity Disk |
+| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA | Parity Disk |
+| ------------------------- | ------------------------- | ----------- |
+|                           |                           |
+|                           |                           |
+|                           |                           |
+|                           |                           |
+|                           |                           |
+| 3400R / 2119W Block IOPS  | 3400R / 2200W Block IOPS  |
+| ------------------------- | ------------------------- |
+| ------------------------- | ------------------------- |
+| ZIL LOG VDEV3 Write Cache |  L2ARC VDEV4 (Read Cache) |
+| ------------------------- | ------------------------- |
+| 256GB Samsung PM981a NVMe | Intel Optane 905p 1.5TB   |
+| 256GB Samsung PM981a NVMe | NGFF U.2 NVMe Drive       |
+| PCI-Express 3.0 x 4       | PCI-Express 3.0 x 4       |
+|                           |                           |
+|                           |                           |
+| 2200MB/s Write Speed      | 2600MB/s Read Speed       |
+| ------------------------- | ------------------------- |
+|                           |                           |
+|                           |                           |
+|                           |                           |
+| 2200MB/s Write Speed      | 2600MB/s Read Speed       |
+| 150 TBW/MTBF 1.5 Million  | 27PBW / MTBF 1.6 Million  |
+| 480,000 Random Write IOPS | 575,000 Random Read IOPS  |
+| ------------------------- | ------------------------- |
+|  Spare VDEV5 (Hot-Spare)   |
+| -------------------------- |
+| 8TB Seagate IronWolf SATA  |
+|                            |  
+|                            |
+|                            |
+|                            |
+|                            |
+| -------------------------- |
+|                            |
+|                            |
+|                            |
+|                            |
+|                            |
+|                            |
+| -------------------------- |
+| -------------------------- |
