@@ -33,13 +33,20 @@ interested what a functioning setup looks like and how to set it up. </p>
 
 ### Vault VDEV
 
-| RaidZ2 VDEV1 32TB Usable  | RaidZ2 VDEV2 32TB Usable  | ZIL LOG VDEV3 (Write Cache)   | L2ARC VDEV4 (Read Cache)  |
-| ------------------------- | ------------------------- | ----------------------------- | ------------------------- |
-| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA | 256GB Samsung PM981a NVMe     | Intel Optane 905p 1.5TB   |
-| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA | 256GB Samsung PM981a NVMe     | NGFF U.2 NVMe Drive       |
-| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA | PCI-Express 3.0 x 4           | PCI-Express 3.0 x 4       |
-| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA | 2200MB/s Write Speed          | 2600MB/s Read Speed       |
-| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA | 150 TBW / MTBF 1.5 Million    | 27 PBW / MTBF 1.6 Million |
-| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA |                               |                           |
-| 3400R / 2119W Block IOPS  | 3400R / 2200W Block IOPS  | 480,000 Random Write IOPS     | 575,000 Random Read IOPS  |
-| ------------------------------------------------------------------------------------------------------------------|
+| RaidZ2 VDEV1 6x HDD Drives | RaidZ2 VDEV2 32TB Usable  | ZIL LOG VDEV3 (Write Cache)   | L2ARC VDEV4 (Read Cache)  |
+| -------------------------- | ------------------------- | ----------------------------- | ------------------------- |
+| 8TB Seagate IronWolf SATA  | 8TB Seagate IronWolf SATA | 256GB Samsung PM981a NVMe     | Intel Optane 905p 1.5TB   |
+| 8TB Seagate IronWolf SATA  | 8TB Seagate IronWolf SATA | 256GB Samsung PM981a NVMe     | NGFF U.2 NVMe Drive       |
+| 8TB Seagate IronWolf SATA  | 8TB Seagate IronWolf SATA | PCI-Express 3.0 x 4           | PCI-Express 3.0 x 4       |
+| 8TB Seagate IronWolf SATA  | 8TB Seagate IronWolf SATA |                               |                           |
+| 8TB Seagate IronWolf SATA  | 8TB Seagate IronWolf SATA |                               |                           |
+| 8TB Seagate IronWolf SATA  | 8TB Seagate IronWolf SATA | 2200MB/s Write Speed          | 2600MB/s Read Speed       |
+|                            |                           | 150 TBW / MTBF 1.5 Million    | 27 PBW / MTBF 1.6 Million |   
+| 3400R / 2119W Block IOPS   | 3400R / 2200W Block IOPS  | 480,000 Random Write IOPS     | 575,000 Random Read IOPS  |
+| -------------------------- | ------------------------- | ----------------------------- | --------------------------|
+|                            |                           |                               |                           | 
+| -------------------------- | ------------------------- | ----------------------------- | --------------------------|
+|                            |                           |                               |                           | 
+| -------------------------- | ------------------------- | ----------------------------- | --------------------------|
+|                            |                           |                               |                           | 
+| -------------------------- | ------------------------- | ----------------------------- | --------------------------|
