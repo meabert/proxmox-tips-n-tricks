@@ -31,8 +31,8 @@ interested what a functioning setup looks like and how to set it up. </p>
 
 ## ZFS VDEV Types ##
 
-<p>**Mirror:** Highest integrity, largest space loss - usually in pairs of two, three or more
- the data is the same on all drives in the pool.
+<p>**Mirror:** Highest integrity, largest space loss - usually in pairs of two,
+three or more the data is the same on all drives in the pool.
 
 ### Vault VDEV ###
 
