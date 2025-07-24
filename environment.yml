@@ -5,4 +5,3 @@ channels:
 dependencies:
   - python=3.7
   - markdownlint-cli2
-prefix: /home/rob/.conda/envs/pre-commit
