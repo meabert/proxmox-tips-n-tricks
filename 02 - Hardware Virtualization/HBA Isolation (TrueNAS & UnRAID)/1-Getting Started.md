@@ -37,35 +37,34 @@ and pulled at will with no impact to the data integrity.</p>
 
 ## ZFS VDEV Types ##
 
-<p>**Mirror:** Highest integrity, largest space loss - usually in pairs of two,su
+**Mirror:** Highest integrity, largest space loss - usually in pairs of two,su
 three or more the data is the same on all drives in the pool.
 
 ### Vault VDEV ###
 
-| RaidZ2 VDEV1 6xHDD Drives | RaidZ2 VDEV2 6xHDD Drives |    Parity   |
-| ------------------------- | ------------------------- | ----------- |
-| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA |  Data Disk  |
-| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA |  Data Disk  |
-| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA |  Data Disk  |
-| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA |  Data Disk  |
-| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA | Parity Disk |
-| 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA | Parity Disk |
+| RaidZ2 VDEV1 6xHDD Drives |
+| --- |
+| `8TB Seagate IronWolf` |
+| `8TB Seagate IronWolf` |
+| `8TB Seagate IronWolf` |
+| `8TB Seagate IronWolf` |
+| `8TB Seagate IronWolf` |
+| `8TB Seagate IronWolf` |
 
-| ------------------------- | ------------------------- | ----------- |
-|  Spare VDEV5 (Hot-Spare)  |                           |             |
-| 8TB Seagate IronWolf SATA |                           |             |
+| RaidZ2 VDEV2 6xHDD Drives |
+| --- |
+| `8TB Seagate IronWolf` |
+| `8TB Seagate IronWolf` |
+| `8TB Seagate IronWolf` |
+| `8TB Seagate IronWolf` |
+| `8TB Seagate IronWolf` |
+| `8TB Seagate IronWolf` |
 
-| ------------------------- | ------------------------- | ----------- |
-| 3400R / 2119W Block IOPS  | 3400R / 2200W Block IOPS  |             |
-| ------------------------- | ------------------------- |             |
-| ZIL LOG VDEV3 Write Cache |  L2ARC VDEV4 (Read Cache) |             |
-| ------------------------- | ------------------------- |             |
-| 256GB Samsung PM981a NVMe | Intel Optane 905p 1.5TB   |             |
-| 256GB Samsung PM981a NVMe | NGFF U.2 NVMe Drive       |             |
-| PCI-Express 3.0 x 4       | PCI-Express 3.0 x 4       |             |
-| ------------------------- | ------------------------- |             |
-| 2200MB/s Write Speed      | 2600MB/s Read Speed       |             |
-| ------------------------- | ------------------------- |             |
-| 2200MB/s Write Speed      | 2600MB/s Read Speed       |             |
-| 150 TBW/MTBF 1.5 Million  | 27PBW / MTBF 1.6 Million  |             |
-| 480,000 Random Write IOPS | 575,000 Random Read IOPS  |             |
+| Log VDEV 2xNVMe Mirrored |
+| --- |
+| `256GB Samsung PM981a NVMe` |
+| `256GB Samsung PM981a NVMe` |
+
+| L2ARC VDEV 1x U.2 Striped |
+| --- |
+| `Intel Optane 905p 1.5TB` |
