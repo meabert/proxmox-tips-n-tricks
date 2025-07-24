@@ -1,15 +1,20 @@
-#!/bin/sh
+<!-- markdownlint-disable -->
+# !/bin/sh
+
 HOSTNAME=$(hostname -s)
 figlet $HOSTNAME
 IP=$(hostname -I | awk '{print $1}')
 
-#EXT_IP=$(curl -s ipinfo.io/ip)
-#EXT_IP=${EXT_IP:-None}
+## EXT_IP=$(curl -s ipinfo.io/ip) ##
 
-#IP=$(getent hosts $(hostname -s) | awk '{print $1}')
+## EXT_IP=${EXT_IP:-None} ##
+
+## IP=$(getent hosts $(hostname -s) | awk '{print $1}') ##
+
 KERNEL=$(uname -r)
 
-#OS distro
+## OS distro ##
+
 if [ -f /etc/debian_version ]; then
         OS_VERSION=$(lsb_release -ds)
 elif [ -f /etc/oracle-release ]; then
@@ -22,7 +27,6 @@ else
         OS_VERSION='Unrecognized Linux distribution'
 fi
 
-
 CPU_COUNT=$(lscpu | grep ^'CPU(s)' | awk -F ': ' {'print $2'} | xargs)
 CPU_VENDOR=$(lscpu | grep ^'Vendor ID' | awk -F ': ' {'print $2'} | xargs)
 CPU_MODEL=$(lscpu | grep ^'Model name' | awk -F ': ' {'print $2'} | xargs)
@@ -31,34 +35,37 @@ SWAP=$(free -h | grep "Swap" | awk '{print $2,"-",$3,"-",$4}')
 PSA=$(ps -Afl | wc -l)
 ZOMBIE=$(pgrep defunct | wc -l)
 
-#System load
+## System load ##
+
 LOAD1=$(awk '{print $1}' < /proc/loadavg)
 LOAD5=$(awk '{print $2}' < /proc/loadavg)
 LOAD15=$(awk '{print $3}' < /proc/loadavg)
 
-#System uptime
+## System uptime ##
+
 uptime=$(cut -f1 -d. < /proc/uptime)
 upDays=$((uptime/60/60/24))
 upHours=$((uptime/60/60%24))
 upMins=$((uptime/60%60))
 upSecs=$((uptime%60))
 
-#Additional checks can be placed in this directory on the server
-CUSTOM_CHECKS_DIR='/etc/dynmotd.d'
+### Additional checks can be placed in this directory on the server ###
 
-#---------------------------------------------------------------------------#
+CUSTOM_CHECKS_DIR='/etc/dynmotd.d'
 
 COLOR_COLUMN="\e[1m-"
 COLOR_VALUE="\e[31m"
 RESET_COLORS="\e[0m"
 
-echo "
+echo"
 ==============================================================================
+
  ${COLOR_COLUMN}- Hostname${RESET_COLORS}...........: ${COLOR_VALUE} ${HOSTNAME} (${IP}) ${RESET_COLORS}
  ${COLOR_COLUMN}- OS version${RESET_COLORS}.........: ${COLOR_VALUE} ${OS_VERSION} ${RESET_COLORS}
  ${COLOR_COLUMN}- Kernel release${RESET_COLORS}.....: ${COLOR_VALUE} ${KERNEL} ${RESET_COLORS}
  ${COLOR_COLUMN}- Users${RESET_COLORS}..............: ${COLOR_VALUE} Currently $(users | wc -w) user(s) logged on ${RESET_COLORS}
 ==============================================================================
+
  ${COLOR_COLUMN}- CPUs${RESET_COLORS}...............: ${COLOR_VALUE} ${CPU_COUNT} x ${CPU_VENDOR}/${CPU_MODEL} ${RESET_COLORS}
  ${COLOR_COLUMN}- Load average${RESET_COLORS}.......: ${COLOR_VALUE} ${LOAD1} - ${LOAD5} - ${LOAD15} (1-5-15 min) ${RESET_COLORS}
  ${COLOR_COLUMN}- Memory${RESET_COLORS}.............: ${COLOR_VALUE} ${MEMORY} (total-used-free) ${RESET_COLORS}
