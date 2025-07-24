@@ -44,10 +44,6 @@ be confused with Proxmox Backup Server.</p>
 
 <https://community-scripts.github.io/ProxmoxVE/scripts?id=host-backup>
 
-## Proxmox Data Center Manager ##
-
-<https://community-scripts.github.io/ProxmoxVE/scripts?id=proxmox-datacenter-manager>
-
 ### Manually added packages ###
 
 <pre style="white-space: pre-wrap;">
@@ -146,7 +142,7 @@ root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on nomodeset
 ##### Kernel Admin Guide -  Boot Parameters #####
 
 ```text
-https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/kernel-parameters.txt
+<https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/
 ```
 
 #### Enable the vfio modules ####
@@ -188,7 +184,8 @@ cause issues.
 #### VFIO configuration file ####
 
 ```bash
-echo "options vfio-pci ids=1000:00ac,10de:2803,10de:22bd" >> /etc/modprobe.d/vfio.conf
+echo "options vfio-pci ids=1000:00ac,10de:2803,10de:22bd" >> \
+/etc/modprobe.d/vfio.conf
 ```
 
 ##### For LSI or Broadcomm HBA's #####
