@@ -46,7 +46,7 @@ three or more the data is the same on all drives in the pool.
 | --- | ---| --- | --- |
 | `8TB Seagate IronWolf` | `8TB Seagate IronWolf` | `256GB Samsung PM981a NVMe` | `Intel Optane 905p 1.5TB` |
 | `8TB Seagate IronWolf` | `8TB Seagate IronWolf` | `256GB Samsung PM981a NVMe` |  |
-| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` | test |  |
-| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` | --- |  |
+| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |  |  |
+| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |  |  |
 | `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |  |  |
 | `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |  |  |
