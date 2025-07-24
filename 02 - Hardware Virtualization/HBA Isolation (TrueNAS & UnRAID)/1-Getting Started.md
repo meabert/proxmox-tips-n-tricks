@@ -42,29 +42,16 @@ three or more the data is the same on all drives in the pool.
 
 ### Vault VDEV ###
 
-| RaidZ2 VDEV1 6xHDD Drives |
-| --- |
-| `8TB Seagate IronWolf` |
-| `8TB Seagate IronWolf` |
-| `8TB Seagate IronWolf` |
-| `8TB Seagate IronWolf` |
-| `8TB Seagate IronWolf` |
-| `8TB Seagate IronWolf` |
+| RaidZ2 VDEV1 6xHDD Drives | RaidZ2 VDEV2 6xHDD Drives |
+| --- | ---|
+| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |
+| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |
+| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |
+| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |
+| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |
+| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |
 
-| RaidZ2 VDEV2 6xHDD Drives |
-| --- |
-| `8TB Seagate IronWolf` |
-| `8TB Seagate IronWolf` |
-| `8TB Seagate IronWolf` |
-| `8TB Seagate IronWolf` |
-| `8TB Seagate IronWolf` |
-| `8TB Seagate IronWolf` |
-
-| Log VDEV 2xNVMe Mirrored |
-| --- |
-| `256GB Samsung PM981a NVMe` |
-| `256GB Samsung PM981a NVMe` |
-
-| L2ARC VDEV 1x U.2 Striped |
-| --- |
-| `Intel Optane 905p 1.5TB` |
+| Log VDEV 2xNVMe Mirrored | L2ARC VDEV 1x U.2 Striped |
+| --- | --- |
+| `256GB Samsung PM981a NVMe` | `Intel Optane 905p 1.5TB` |
+| `256GB Samsung PM981a NVMe` | `` |
