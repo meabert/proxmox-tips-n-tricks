@@ -58,10 +58,13 @@ efitools uuid-runtime dkms sbsigntool mokutil devscripts
 debhelper equivs git vim-nox
 </pre>
 
-<b><h4>Bonus:</h4></b> If you are using a server chances are high the motherboard
-has some sort of administrative controller, these tools will help to monitor, divulge
-logs and send SET changes to the controller. Various tools, not all may be required
-depending on your motherboard ex. Redfish is not manufacturer specific.
+Bonus:
+If you are using a server chassis then chances are high the motherboard has
+some sort of administrative controller, commonly referred to as IPMI
+(Intelligent Platform Management Interface) or BMC (Baseboard Management
+Controller) these tools will help to monitor, divulge logs and send SET changes
+to the controller. Various tools, not all may be required depending on your
+motherboard make and mode ie. Redfish API is not manufacturer specific.
 
 <pre style="white-space: pre-wrap;">
 apt install ilorest python3-sushy redfishtool python3-pyipmi python3-pyghmi
