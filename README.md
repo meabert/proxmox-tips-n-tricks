@@ -142,7 +142,7 @@ root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on nomodeset
 ##### Kernel Admin Guide -  Boot Parameters #####
 
 ```text
-<https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/
+<https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/>
 ```
 
 #### Enable the vfio modules ####
