@@ -1,7 +1,7 @@
 # HBA Isolation - NAS Systems #
-
+<!-- markdownlint-disable -->
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
-
+<!-- markdownlint-enable -->
 ## 1 - Getting Started ##
 
 ### HBA Isolation - Giving the VM full control of the hardware ###
