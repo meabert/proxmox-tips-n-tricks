@@ -1,1 +1,0 @@
-markdownlint "**/*.md" --ignore AUTO-MOTD.sh
