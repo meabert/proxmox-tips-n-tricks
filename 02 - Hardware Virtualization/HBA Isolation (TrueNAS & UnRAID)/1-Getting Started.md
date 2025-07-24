@@ -50,9 +50,11 @@ three or more the data is the same on all drives in the pool.
 | 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA |  Data Disk  |
 | 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA | Parity Disk |
 | 8TB Seagate IronWolf SATA | 8TB Seagate IronWolf SATA | Parity Disk |
+
 | ------------------------- | ------------------------- | ----------- |
 |  Spare VDEV5 (Hot-Spare)  |                           |             |
 | 8TB Seagate IronWolf SATA |                           |             |
+
 | ------------------------- | ------------------------- | ----------- |
 | 3400R / 2119W Block IOPS  | 3400R / 2200W Block IOPS  |             |
 | ------------------------- | ------------------------- |             |
@@ -67,4 +69,3 @@ three or more the data is the same on all drives in the pool.
 | 2200MB/s Write Speed      | 2600MB/s Read Speed       |             |
 | 150 TBW/MTBF 1.5 Million  | 27PBW / MTBF 1.6 Million  |             |
 | 480,000 Random Write IOPS | 575,000 Random Read IOPS  |             |
-| ------------------------- | ------------------------- | ----------- |
