@@ -1,8 +1,6 @@
-<!-- markdownlint-disable -->
-# !/bin/sh
-
+#!/bin/sh
 HOSTNAME=$(hostname -s)
-figlet $HOSTNAME
+figlet "$HOSTNAME"
 IP=$(hostname -I | awk '{print $1}')
 
 ## EXT_IP=$(curl -s ipinfo.io/ip) ##
@@ -27,9 +25,9 @@ else
         OS_VERSION='Unrecognized Linux distribution'
 fi
 
-CPU_COUNT=$(lscpu | grep ^'CPU(s)' | awk -F ': ' {'print $2'} | xargs)
-CPU_VENDOR=$(lscpu | grep ^'Vendor ID' | awk -F ': ' {'print $2'} | xargs)
-CPU_MODEL=$(lscpu | grep ^'Model name' | awk -F ': ' {'print $2'} | xargs)
+CPU_COUNT=$(lscpu | grep ^'CPU(s)' | awk -F ': ' "{'print $2'}" | xargs)
+CPU_VENDOR=$(lscpu | grep ^'Vendor ID' | awk -F ': ' "{'print $2'}" | xargs)
+CPU_MODEL=$(lscpu | grep ^'Model name' | awk -F ': ' "{'print $2'}" | xargs)
 MEMORY=$(free -h | grep "Mem" | awk '{print $2,"-",$3,"-",$4}')
 SWAP=$(free -h | grep "Swap" | awk '{print $2,"-",$3,"-",$4}')
 PSA=$(ps -Afl | wc -l)
@@ -49,15 +47,13 @@ upHours=$((uptime/60/60%24))
 upMins=$((uptime/60%60))
 upSecs=$((uptime%60))
 
-### Additional checks can be placed in this directory on the server ###
-
-CUSTOM_CHECKS_DIR='/etc/dynmotd.d'
+## Colors ##
 
 COLOR_COLUMN="\e[1m-"
 COLOR_VALUE="\e[31m"
 RESET_COLORS="\e[0m"
 
-echo"
+echo "
 ==============================================================================
 
  ${COLOR_COLUMN}- Hostname${RESET_COLORS}...........: ${COLOR_VALUE} ${HOSTNAME} (${IP}) ${RESET_COLORS}
@@ -72,12 +68,6 @@ echo"
  ${COLOR_COLUMN}- Swap${RESET_COLORS}...............: ${COLOR_VALUE} ${SWAP} (total-used-free) ${RESET_COLORS}
  ${COLOR_COLUMN}- Processes${RESET_COLORS}..........: ${COLOR_VALUE} ${PSA} running - ${ZOMBIE} zombies ${RESET_COLORS}
  ${COLOR_COLUMN}- System uptime${RESET_COLORS}......: ${COLOR_VALUE} ${upDays} days ${upHours} hours ${upMins} minutes ${upSecs} seconds ${RESET_COLORS}"
-
-if [ -d ${CUSTOM_CHECKS_DIR} ] && [ ! -z "$(ls -A ${CUSTOM_CHECKS_DIR})" ]; then
-    for i in "${CUSTOM_CHECKS_DIR}"/*.sh; do
-        . "${i}"
-    done
-fi
 
 echo '=============================================================================='
 echo ''
