@@ -1,0 +1,9 @@
+name: proxmox-tutorials
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - pip
+  - python
+  - pip:
+    - pre-commit
