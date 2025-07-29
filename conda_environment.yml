@@ -9,15 +9,4 @@ dependencies:
     - pre-commit
     - black
     - flake8
-    - mypy
-    - pytest
-    - pytest-cov
-    - pytest-mock
-    - pytest-asyncio
-    - pytest-xdist
-    - pytest-timeout
-    - pytest-benchmark
-    - pytest-html
-    - pytest-rerunfailures
-    - pytest-randomly
-    - pytest-sugar
+
