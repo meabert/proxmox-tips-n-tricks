@@ -1,4 +1,4 @@
-name: proxmox-tutorials
+name: proxmox-tips-n-tricks
 channels:
   - defaults
   - conda-forge
@@ -7,3 +7,17 @@ dependencies:
   - python
   - pip:
     - pre-commit
+    - black
+    - flake8
+    - mypy
+    - pytest
+    - pytest-cov
+    - pytest-mock
+    - pytest-asyncio
+    - pytest-xdist
+    - pytest-timeout
+    - pytest-benchmark
+    - pytest-html
+    - pytest-rerunfailures
+    - pytest-randomly
+    - pytest-sugar
