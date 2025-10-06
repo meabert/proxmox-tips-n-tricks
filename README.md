@@ -115,19 +115,43 @@ the settings that have worked across the board for me.</p>
 
 ##### AMD Kernel Flags #####
 
+> [!IMPORTANT]
+> Make sure you update the right bootloader:
+> 
+> systemdboot users should use proxmox-boot-tool
+> Grub users should shoud use update-grub
+> 
+> For AMD IOMMU is enabled by default - simply make sure it is
+> enabled in the BIOS and add applicable kernel flags.
+
 systemd-boot :
 
 ```bash
 vim /etc/kernel/cmdline
 ```
 
-Note: Grub users should instead modify /etc/default/grub
-
-For AMD IOMMU is enabled by default - simply make sure it is
-enabled in the BIOS and add applicable kernel flags.
-
 ```bash
 root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset
+```
+
+```bash
+proxmox-boot-tool refresh
+update-initramfs -u
+```
+
+Grub:
+
+```bash
+vim /etc/default/grub
+```
+
+```bash
+GRUB_CMDLINE_LINUX_DEFAULT="quiet iommu=pt nomodeset"
+```
+
+```bash
+update-grub
+update-initramfs -u
 ```
 
 ##### Intel Kernel Flags #####
@@ -136,7 +160,31 @@ For Intel add applicable kernel flags to enable, also ensure
 it is enabled in the BIOS.
 
 ```bash
-root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on nomodeset
+vim /etc/kernel/cmdline
+```
+
+```bash
+root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on iommu=pt nomodeset
+```
+
+```bash
+proxmox-boot-tool refresh
+update-initramfs -u
+```
+
+Grub:
+
+```bash
+vim /etc/default/grub
+```
+
+```bash
+GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt nomodeset"
+```
+
+```bash
+update-grub
+update-initramfs -u
 ```
 
 ##### Kernel Admin Guide -  Boot Parameters #####
