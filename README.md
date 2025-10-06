@@ -113,8 +113,6 @@ after testing across various devices to a custom built AMD Epyc server,
 a converted gaming desktop and even some GMKTec NUC's. These are
 the settings that have worked across the board for me.</p>
 
-##### AMD Kernel Flags #####
-
 > [!IMPORTANT]
 > Make sure you update the right bootloader:
 > 
@@ -123,6 +121,8 @@ the settings that have worked across the board for me.</p>
 > 
 > For AMD IOMMU is enabled by default - simply make sure it is
 > enabled in the BIOS and add applicable kernel flags.
+
+##### AMD Kernel Flags #####
 
 systemd-boot :
 
