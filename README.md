@@ -118,13 +118,14 @@ the settings that have worked across the board for me.</p>
 > 
 > systemdboot users should use proxmox-boot-tool
 > Grub users should shoud use update-grub
-> 
-> For AMD IOMMU is enabled by default - simply make sure it is
-> enabled in the BIOS and add applicable kernel flags.
+
 
 ##### AMD Kernel Flags #####
 
-systemd-boot :
+For AMD IOMMU is enabled by default - simply make sure it is
+enabled in the BIOS and add applicable kernel flags.
+
+###### systemd-boot: ######
 
 ```bash
 vim /etc/kernel/cmdline
@@ -139,7 +140,7 @@ proxmox-boot-tool refresh
 update-initramfs -u
 ```
 
-Grub:
+###### Grub: ######
 
 ```bash
 vim /etc/default/grub
@@ -159,6 +160,8 @@ update-initramfs -u
 For Intel add applicable kernel flags to enable, also ensure
 it is enabled in the BIOS.
 
+###### systemdboot: ######
+
 ```bash
 vim /etc/kernel/cmdline
 ```
@@ -172,7 +175,7 @@ proxmox-boot-tool refresh
 update-initramfs -u
 ```
 
-Grub:
+###### Grub: ######
 
 ```bash
 vim /etc/default/grub
