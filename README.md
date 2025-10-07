@@ -126,7 +126,7 @@ the settings that have worked across the board for me.</p>
 > this boot flag disables D3 sleep states on VFIO devices, this is recommended 
 > for GPUs and especially HBA's since D3 has been known to cause issues with 
 > passthrough hardware. Your mileage may vary however all the ZFS issues 
-> I experienced stopped after enabling. Prior to adding the flag drives would
+> I experienced stopped after disabling. Prior to adding the flag drives would
 > randomly fault out and pools would disconnect with drives missing.
 
 ##### AMD Kernel Flags #####
