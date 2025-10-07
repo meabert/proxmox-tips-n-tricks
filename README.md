@@ -118,13 +118,13 @@ the settings that have worked across the board for me.</p>
 > [!IMPORTANT]
 > Make sure you update the right bootloader:
 > 
-> systemdboot users should use proxmox-boot-tool
+> systemdboot users should use proxmox-boot-tool<br>
 > Grub users should shoud use update-grub
 
 > [!CAUTION]
-> **vfio-pci.disable_idle_d3=1** 
-> this boot flag disables D3 sleep states on VFIO devices this is recommended 
-> for GPUs and especially HBA's, as D3 has been known to cause issues with 
+> **vfio-pci.disable_idle_d3=1**<br>
+> this boot flag disables D3 sleep states on VFIO devices, this is recommended 
+> for GPUs and especially HBA's since D3 has been known to cause issues with 
 > passthrough hardware. Your mileage may vary however all the ZFS issues 
 > I experienced stopped after enabling. Prior to adding the flag drives would
 > randomly fault out and pools would disconnect with drives missing.
