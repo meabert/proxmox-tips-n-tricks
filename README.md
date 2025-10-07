@@ -226,7 +226,6 @@ lspci -nnk | grep 'NVIDIA'
 
 43:00.0 VGA compatible controller [0300]: NVIDIA Corporation AD106
 [GeForce RTX 4060 Ti] <b>[10de:2803]</b> (rev a1)
-
 43:00.1 Audio device [0403]: NVIDIA Corporation AD106M High Definition
 Audio Controller <b>[10de:22bd]</b> (rev a1)
 
@@ -267,10 +266,10 @@ echo "softdep nvidia_drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
-##### You may need to add an exception for the audio the GPU #####
+##### An exception may be needed for GPU audio  #####
 
 ```bash
-outputs VIA the HDMI ports - this will show as an audio device.
+echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
 ##### For AMD GPU's #####
@@ -286,6 +285,7 @@ echo "softdep amdgpu pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep snd_hda_codec_hdmi pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep i915 pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep xe pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
 #### Blacklist file for fallback in case first steps fail ####
@@ -301,6 +301,7 @@ echo "blacklist nvidia_drm" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist snd_hda_intel" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist snd_hda_codec_hdmi" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist i915" >> /etc/modprobe.d/blacklist.conf
+ecoh "blacklist xe" >> /etc/modprobe.d/blacklist.conf
 ```
 
 ### Update initramfs and refresh boot tool ###
