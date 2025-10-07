@@ -121,10 +121,11 @@ the settings that have worked across the board for me.</p>
 > systemdboot users should use proxmox-boot-tool
 > Grub users should shoud use update-grub
 
-*Note: vfio-pci.disable_idle_d3=1 disables D3 sleep states on VFIO devices*
-*this is recommended for GPUs and especially HBA's, as it can cause*
-*issues with specific hardware, mileage may vary however all of my*
-*TrueNAS / ZFS issues stopped after enabling this*
+**Note: vfio-pci.disable_idle_d3=1 disables D3 sleep states on VFIO devices
+this is recommended for GPUs and especially HBA's, as it can cause issues 
+with specific hardware, mileage may vary however all of my TrueNAS / ZFS 
+issues stopped after enabling, prior drives randomly would randomly fault
+out and pools would disconnect with random drives missing**
 
 ##### AMD Kernel Flags #####
 
