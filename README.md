@@ -301,7 +301,7 @@ echo "blacklist nvidia_drm" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist snd_hda_intel" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist snd_hda_codec_hdmi" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist i915" >> /etc/modprobe.d/blacklist.conf
-ecoh "blacklist xe" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist xe" >> /etc/modprobe.d/blacklist.conf
 ```
 
 ### Update initramfs and refresh boot tool ###
