@@ -121,6 +121,10 @@ the settings that have worked across the board for me.</p>
 > systemdboot users should use proxmox-boot-tool
 > Grub users should shoud use update-grub
 
+*Note: vfio-pci.disable_idle_d3=1 disables D3 sleep states on VFIO devices*
+*this is recommended for GPUs and especially HBA's, as it can cause*
+*issues with specific hardware, mileage may vary however all of my*
+*TrueNAS / ZFS issues stopped after enabling this*
 
 ##### AMD Kernel Flags #####
 
@@ -134,7 +138,7 @@ vim /etc/kernel/cmdline
 ```
 
 ```bash
-root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset
+root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset vfio-pci.disable_idle_d3=1
 ```
 
 ```bash
@@ -149,7 +153,7 @@ vim /etc/default/grub
 ```
 
 ```bash
-GRUB_CMDLINE_LINUX_DEFAULT="quiet iommu=pt nomodeset"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet iommu=pt nomodeset vfio-pci.disable_idle_d3=1"
 ```
 
 ```bash
