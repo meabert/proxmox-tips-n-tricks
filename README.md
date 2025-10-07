@@ -14,7 +14,7 @@ I really like what the community scripts team is doing however my goal
 with this repo is documenting and detailing how to actually get ones hands
 dirty over pressing the easy button on everything.
 
-### Bare minimum packages to setup my workflow ###
+### What to install before starting
 
 <p>These are the packages I install after every Proxmox install, the only changes
 that take place before this are running the Post-Installation Script and the CPU
@@ -45,6 +45,8 @@ be confused with Proxmox Backup Server.</p>
 <https://community-scripts.github.io/ProxmoxVE/scripts?id=host-backup>
 
 ### Manually added packages ###
+
+Adjust based on needs:
 
 <pre style="white-space: pre-wrap;">
 apt install sudo iperf3 btop gcc make cmake automake autoconf build-essential
@@ -208,8 +210,18 @@ echo "vfio_pci" >> /etc/modules
 
 ##### GPU #####
 
+In order to make the lspci output easier to read it's recommended to update
+PCI ID's as they are updated frequently and will give names to devices that
+otherwise may have ambiguous names:
+
 ```bash
-lspci -nn | grep 'NVIDIA'
+update-pciids
+```
+
+List PCI devices:
+
+```bash
+lspci -nnk | grep 'NVIDIA'
 ```
 
 43:00.0 VGA compatible controller [0300]: NVIDIA Corporation AD106
