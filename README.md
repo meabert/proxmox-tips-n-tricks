@@ -141,7 +141,7 @@ vim /etc/kernel/cmdline
 ```
 
 ```bash
-root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset vfio-pci.disable_idle_d3=1
+root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset vfio-pci.disable_idle_d3=1 pci=assign-busses pci=realloc pci=noaer kvm.ignore_msrs=1 video=vesafb:off video=efifb:off
 ```
 
 ```bash
@@ -156,7 +156,7 @@ vim /etc/default/grub
 ```
 
 ```bash
-GRUB_CMDLINE_LINUX_DEFAULT="quiet iommu=pt nomodeset vfio-pci.disable_idle_d3=1"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet iommu=pt nomodeset vfio-pci.disable_idle_d3=1 pci=assign-busses pci=realloc pci=noaer kvm.ignore_msrs=1 video=vesafb:off video=efifb:off"
 ```
 
 ```bash
@@ -176,7 +176,7 @@ vim /etc/kernel/cmdline
 ```
 
 ```bash
-root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on iommu=pt nomodeset
+root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on iommu=pt nomodeset vfio-pci.disable_idle_d3=1 pci=assign-busses pci=realloc pci=noaer kvm.ignore_msrs=1 video=vesafb:off video=efifb:off
 ```
 
 ```bash
@@ -191,7 +191,7 @@ vim /etc/default/grub
 ```
 
 ```bash
-GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on iommu=pt nomodeset"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on nomodeset vfio-pci.disable_idle_d3=1 pci=assign-busses pci=realloc pci=noaer kvm.ignore_msrs=1 video=vesafb:off video=efifb:off"
 ```
 
 ```bash
