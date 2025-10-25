@@ -2,9 +2,10 @@
 
 # Documentation - Updated 10/6/2025 #
 
-Documenting the evolution of my homelab, the guide will never be
-a blanket solutionn but my goal with this is documenting nuanced
-issues. The kind you google and there's a bunch of forum posts with
+Documenting the evolution of my homelab, this guide is not intended
+to be a blanket solutionn or a one size fits all. The objective is 
+ultimately creating a unique resource that targets documenting nuanced
+issues. The kind you Google and there's a bunch of forum posts with
 questions but no answers.
 
 > [!CAUTION]
@@ -15,91 +16,37 @@ questions but no answers.
 
 ### Objectives ###
 
-Expand the scope beyond what is available VIA Proxmox Helper Scripts
-
-<https://community-scripts.github.io/ProxmoxVE/>
-
-I really like what the community scripts team is doing however my goal
-with this repo is documenting and detailing how to actually get ones hands
-dirty over pressing the easy button on everything.
+Create a centralized repository for the inner workings of Proxmox, 
+Homelab tools and general Linux items that are directly related.
 
 ### What to install before starting ###
 
-<p>These are the packages I install after every Proxmox install, the only changes
-that take place before this are running the Post-Installation Script and the CPU
-Microcode security patches both of which can be found VIA the following links.</p>
+- A proxmox instance, formatted, booted and ready to go. 
+- Run some form of post install script or your own process
+- apt is working with either non-subscription/subscription repos
+- Optional: If you aren't a Debian fan or have background with RHEL/Fedora
+  nala is a very viable replacemnt to apt that functions more like yum/dnf.
 
-### Post-Install Script ###
-
-<https://community-scripts.github.io/ProxmoxVE/scripts?id=post-pve-install>
-
-### Microcode Patches ###
-
-<https://community-scripts.github.io/ProxmoxVE/scripts?id=microcode>
+```bash
+sudo apt update && sudo apt install nala
+```
 
 #### Some optional items depending on your use-case ####
 
 ### CPU Scaling Governor ###
 
-<p>This allows you to set a power/performance profile to your CPU(s) assuming
-they support a variety of profiles, some only support one or two.</p>
-
-<https://community-scripts.github.io/ProxmoxVE/scripts?id=scaling-governor>
-
-### Host Backup ###
-
-<p>Enables extensive customization of backup outputs and location, not to
-be confused with Proxmox Backup Server.</p>
-
-<https://community-scripts.github.io/ProxmoxVE/scripts?id=host-backup>
+This will widely depend on your CPU, it's age, if it has a p-state driver. 
+Bottom line make sure you have it on the desired govenor and if applicable
+the right p-state driver.
 
 ### Manually added packages ###
 
-Adjust based on needs:
+Adjust based on your hardware profiles:
 
 <pre style="white-space: pre-wrap;">
 apt install sudo iperf3 btop gcc make cmake automake autoconf build-essential
-git unzip lm-sensors powertop htop btop shim-signed shim-helpers-amd64-signed
-grub-efi-amd64-signed proxmox-headers-6.8.12-7-pve sbsigntool efibootmgr
-efitools uuid-runtime dkms sbsigntool mokutil devscripts
-debhelper equivs git vim-nox
-</pre>
-
-Bonus:
-If you are using a server chassis then chances are high the motherboard has
-some sort of administrative controller, commonly referred to as IPMI
-(Intelligent Platform Management Interface) or BMC (Baseboard Management
-Controller) these tools will help to monitor, divulge logs and send SET changes
-to the controller. Various tools, not all may be required depending on your
-motherboard make and mode ie. Redfish API is not manufacturer specific.
-
-<pre style="white-space: pre-wrap;">
-apt install ilorest python3-sushy redfishtool python3-pyipmi python3-pyghmi
-prometheus-ipmi-exporter openipmi nut-ipmi ipmiutil ipmitool freeipmi
-freeipmi-tools freeipmi-ipmiseld freeipmi-bmc-watchdog freeipmi-ipmidetect
-libipmimonitoring6 libpam-abl libpam-biometric libpam-poldi libpam-pkcs11 libpam-p11
-</pre>
-
-### Authentication - PAM Modules, add or remove as needed based on use case ###
-
-<p>PAM or Pluggable Authentication Modules involve a variety of different
-libraries used to facilitate different methods of authentication. I recommend
-learning and adapting to various forms of authentication besides passwords.
-Eventually passwords will become obsolete and from a security standpoint it's
-excellent knowledge educating yourself on these methods. A common PAM would be
-a YubiKey as an alternate form of ID, knowing this basic concept you can apply this
-same concept to the libpam-zfs library as an example, this library is for
-unlocking ZFS encrypted partitions.</p>
-
-<pre style="white-space: pre-wrap;">
-apt install libpam-yubico libpam-zfs libpam-u2f libpam-ufpidentity cpan
-libpam-ssh-agent-auth libpam-radius-auth libpam-python libpam-pwquality
-libpam-poldi libpam-oath libpam-modules libpam-modules-bin libpam-mount
-libpam-mount-bin libpam-mysql libpam-gnome-keyring libpam-google-authenticator
-libpam-doc libpam-ccreds libpam-cap libpam-cgroup libpam-alreadyloggedin
-libpam-apparmor libpam-abl libnginx-mod-http-auth-pam libapache2-mod-authnz-pam
-libapache2-mod-intercept-form-submit libauthen-pam-perl cpandm plucky
-libauthen-simple-pam-perl libbio-tools-phylo-paml-perl
+git unzip lm-sensors powertop htop btop pve-headers dkms devscripts debhelper 
+equivs nut nut-server nut-monitor ipmitool redfishtool nvme-cli
 </pre>
 
 ### PCI Express Passthrough ###
