@@ -1,7 +1,0 @@
-name: pre-commit
-channels:
-  - conda-forge
-  - defaults
-dependencies:
-  - python=3.7
-  - markdownlint-cli2
