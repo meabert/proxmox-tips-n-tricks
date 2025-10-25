@@ -2,7 +2,16 @@
 
 # Documentation - Updated 10/6/2025 #
 
-## A dumpster fire of scripts, tricks and playbooks(coming soon) ##
+Documenting the evolution of my homelab, the guide will never be
+a blanket solutionn but my goal with this is documenting nuanced
+issues. The kind you google and there's a bunch of forum posts with
+questions but no answers.
+
+> [!CAUTION]
+> Everyone has different hardware, be sure to pay close attention
+> to whether or not kernel flags apply to your CPU/GPU/HBA or
+> whatever crazy nonsense particle accelerator is connected
+> to your PCI slot.
 
 ### Objectives ###
 
@@ -14,7 +23,7 @@ I really like what the community scripts team is doing however my goal
 with this repo is documenting and detailing how to actually get ones hands
 dirty over pressing the easy button on everything.
 
-### What to install before starting
+### What to install before starting ###
 
 <p>These are the packages I install after every Proxmox install, the only changes
 that take place before this are running the Post-Installation Script and the CPU
@@ -141,12 +150,12 @@ vim /etc/kernel/cmdline
 ```
 
 ```bash
-root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset vfio-pci.disable_idle_d3=1 pci=assign-busses pci=realloc pci=noaer kvm.ignore_msrs=1 video=vesafb:off video=efifb:off
+root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset vfio-pci.ids=10de:2803,10de:22bd vfio-pci.disable_idle_d3=1 video=vesafb:off video=efifb:off amd_pstate=guided transparent_hugepage=never hugepagesz=1G hugepages=16 hugepagesz=2M hugepages=2048
 ```
 
 ```bash
 proxmox-boot-tool refresh
-update-initramfs -u
+update-initramfs -u -k all
 ```
 
 ###### Grub: ######
@@ -156,12 +165,12 @@ vim /etc/default/grub
 ```
 
 ```bash
-GRUB_CMDLINE_LINUX_DEFAULT="quiet iommu=pt nomodeset vfio-pci.disable_idle_d3=1 pci=assign-busses pci=realloc pci=noaer kvm.ignore_msrs=1 video=vesafb:off video=efifb:off"
+GRUB_CMDLINE_LINUX_DEFAULT="iommu=pt nomodeset vfio-pci.ids=10de:2803,10de:22bd vfio-pci.disable_idle_d3=1 video=vesafb:off video=efifb:off amd_pstate=guided transparent_hugepage=never hugepagesz=1G hugepages=16 hugepagesz=2M hugepages=2048"
 ```
 
 ```bash
-update-grub
-update-initramfs -u
+proxmox-boot-tool refresh && update-grub
+update-initramfs -u -k all
 ```
 
 ##### Intel Kernel Flags #####
@@ -176,12 +185,12 @@ vim /etc/kernel/cmdline
 ```
 
 ```bash
-root=ZFS=rpool/ROOT/pve-1 boot=zfs intel_iommu=on iommu=pt nomodeset vfio-pci.disable_idle_d3=1 pci=assign-busses pci=realloc pci=noaer kvm.ignore_msrs=1 video=vesafb:off video=efifb:off
+root=ZFS=rpool/ROOT/pve-1 boot=zfs quiet intel_iommu=on,relax_rmrr iommu=pt vfio-pci.disable_idle_d3=1 intremap=no_x2apic_optout i915.enable_hangcheck=0 intel_pstate=active default_hugepagesz=2MB hugepagesz=1G hugepages=16 hugepagesz=2M hugepages=2048
 ```
 
 ```bash
 proxmox-boot-tool refresh
-update-initramfs -u
+update-initramfs -u -k all
 ```
 
 ###### Grub: ######
@@ -191,12 +200,12 @@ vim /etc/default/grub
 ```
 
 ```bash
-GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on nomodeset vfio-pci.disable_idle_d3=1 pci=assign-busses pci=realloc pci=noaer kvm.ignore_msrs=1 video=vesafb:off video=efifb:off"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on,relax_rmrr iommu=pt vfio-pci.disable_idle_d3=1 intremap=no_x2apic_optout i915.enable_hangcheck=0 intel_pstate=active default_hugepagesz=2MB hugepagesz=1G hugepages=16 hugepagesz=2M hugepages=2048"
 ```
 
 ```bash
-update-grub
-update-initramfs -u
+proxmox-boot-tool refresh && update-grub
+update-initramfs -u -k all
 ```
 
 ##### Kernel Admin Guide -  Boot Parameters #####
@@ -232,7 +241,8 @@ lspci -nnk | grep 'NVIDIA'
 ```
 
 43:00.0 VGA compatible controller [0300]: NVIDIA Corporation AD106
-[GeForce RTX 4060 Ti] <b>[10de:2803]</b> (rev a1)
+[GeForce RTX 4060 Ti] <b>[10de:2803]</b> (rev a1) <br>
+
 43:00.1 Audio device [0403]: NVIDIA Corporation AD106M High Definition
 Audio Controller <b>[10de:22bd]</b> (rev a1)
 
