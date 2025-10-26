@@ -74,20 +74,9 @@ the settings that have worked across the board for me.</p>
 
 > [!IMPORTANT]
 > Make sure you update the right bootloader:
->
 > systemdboot users should use proxmox-boot-tool<br>
 > Grub users should shoud use update-grub
-
-#### Boot Flag Example ####
-
-##### vfio-pci.disable_idle_d3=1 #####
-<p>this boot flag disables D3 sleep states on VFIO devices, this is recommended
-for GPUs and especially HBA's since D3 has been known to cause issues with
-passthrough hardware. Your mileage may vary however all the ZFS issues
-I experienced stopped when adding this, before my drives would randomly
-fault out, disappear or disconnect the pool with drives missing.</p>
 > [!WARNING]
-
 > Example bootflags are specific to my lab hardware, yours can and will likely
 > be different. Due dilligence is required with any kernel flags and if you're
 > not sure - refer to the offical kernel guides for your version.
