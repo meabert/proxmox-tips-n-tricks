@@ -1,6 +1,6 @@
 <!-- lint-disable MD013 -->
 
-# Documentation - Updated 10/6/2025 #
+# Documentation - Updated 10/26/2025 #
 
 Documenting the evolution of my homelab, this guide is not intended
 to be a blanket solutionn or a one size fits all. The objective is
