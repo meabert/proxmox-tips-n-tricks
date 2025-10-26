@@ -1,4 +1,4 @@
-![Markdown Linter](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/markdownlint.yml/badge.svg)
+![Super Linter](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/superlinter.yml/badge.svg)
 
 # Proxmox Tips & Tricks #
 
