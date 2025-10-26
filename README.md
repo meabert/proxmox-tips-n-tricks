@@ -68,13 +68,14 @@ after testing across various devices to a custom built AMD Epyc server,
 a converted gaming desktop and even some GMKTec NUC's. These are
 the settings that have worked across the board for me.</p>
 
+#### Kernel Boot Flags ####
+
 > [!IMPORTANT]
 > Make sure you update the right bootloader:
 >
 > systemdboot users should use proxmox-boot-tool<br>
 > Grub users should shoud use update-grub
-
-> [!CAUTION]
+##### Boot Flag Example #####
 > **vfio-pci.disable_idle_d3=1**<br>
 > this boot flag disables D3 sleep states on VFIO devices, this is recommended
 > for GPUs and especially HBA's since D3 has been known to cause issues with
