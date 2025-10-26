@@ -19,6 +19,6 @@ jobs:
         uses: github/super-linter@v5
         env:
           VALIDATE_MARKDOWN: true
-          MARKDOWN_CONFIG_FILE: .markdownlint-cli2.yaml
+          MARKDOWN_CONFIG_FILE: .markdownlint.yaml
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
