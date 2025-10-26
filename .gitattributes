@@ -2,6 +2,8 @@
 *.sh     text eol=lf
 *.yml    text eol=lf
 *.yaml   text eol=lf
+*.json   text eol=lf
+*.jsonc   text eol=lf
 
 # Markdown and docs: LF preferred for Super-Linter and GitHub rendering
 *.md     text eol=lf

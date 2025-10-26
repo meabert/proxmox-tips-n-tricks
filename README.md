@@ -1,6 +1,6 @@
-![Super Linter](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/superlinter.yml/badge.svg)
-
 # Proxmox Tips & Tricks #
+
+![Markdown Lint](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/superlinter.yml/badge.svg)
 
 ## Operator Overview - Updated 10/26/2025 ##
 
