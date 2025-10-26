@@ -14,7 +14,7 @@ questions but no answers.
 > whatever crazy nonsense particle accelerator is connected
 > to your PCI slot.
 
-### Objectives ###
+## Objectives ##
 
 Create a centralized repository for the inner workings of Proxmox, 
 Homelab tools and general Linux items that are directly related.
@@ -31,15 +31,13 @@ Homelab tools and general Linux items that are directly related.
 sudo apt update && sudo apt install nala
 ```
 
-#### Some optional items depending on your use-case ####
-
 ### CPU Scaling Governor ###
 
 This will widely depend on your CPU, it's age, if it has a p-state driver. 
 Bottom line make sure you have it on the desired govenor and if applicable
 the right p-state driver.
 
-### Manually added packages ###
+## Manually added packages ##
 
 Adjust based on your hardware profiles:
 
@@ -93,22 +91,26 @@ enabled in the BIOS and add applicable kernel flags.
 ###### systemd-boot: ######
 
 ```bash
-vim /etc/kernel/cmdline
+nano /etc/kernel/cmdline
 ```
+
+> [!WARNING]
+> These bootflags are specific to my lab hardware, yours can and will likely
+> be different. Due dilligence is advised with any kernel flags and if you're
+> not sure - refer to the offical kernel guides for your version.
 
 ```bash
 root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset vfio-pci.ids=10de:2803,10de:22bd vfio-pci.disable_idle_d3=1 video=vesafb:off video=efifb:off amd_pstate=guided transparent_hugepage=never hugepagesz=1G hugepages=16 hugepagesz=2M hugepages=2048
 ```
 
 ```bash
-proxmox-boot-tool refresh
-update-initramfs -u -k all
+update-initramfs -u -k all && proxmox-boot-tool refresh
 ```
 
 ###### Grub: ######
 
 ```bash
-vim /etc/default/grub
+nano /etc/default/grub
 ```
 
 ```bash
@@ -116,8 +118,7 @@ GRUB_CMDLINE_LINUX_DEFAULT="iommu=pt nomodeset vfio-pci.ids=10de:2803,10de:22bd 
 ```
 
 ```bash
-proxmox-boot-tool refresh && update-grub
-update-initramfs -u -k all
+update-initramfs -u -k all && update-grub refresh
 ```
 
 ##### Intel Kernel Flags #####
@@ -128,7 +129,7 @@ it is enabled in the BIOS.
 ###### systemdboot: ######
 
 ```bash
-vim /etc/kernel/cmdline
+nano /etc/kernel/cmdline
 ```
 
 ```bash
@@ -136,14 +137,13 @@ root=ZFS=rpool/ROOT/pve-1 boot=zfs quiet intel_iommu=on,relax_rmrr iommu=pt vfio
 ```
 
 ```bash
-proxmox-boot-tool refresh
-update-initramfs -u -k all
+update-initramfs -u -k all && proxmox-boot-tool refresh
 ```
 
 ###### Grub: ######
 
 ```bash
-vim /etc/default/grub
+nano /etc/default/grub
 ```
 
 ```bash
@@ -151,8 +151,7 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on,relax_rmrr iommu=pt vfio-pci.di
 ```
 
 ```bash
-proxmox-boot-tool refresh && update-grub
-update-initramfs -u -k all
+update-initramfs -u -k all && update-grub refresh
 ```
 
 ##### Kernel Admin Guide -  Boot Parameters #####
@@ -167,6 +166,20 @@ update-initramfs -u -k all
 echo "vfio" >> /etc/modules
 echo "vfio_iommu_type1" >> /etc/modules
 echo "vfio_pci" >> /etc/modules
+```
+
+**Update the bootloader**
+
+Systemdboot
+
+```bash
+update-initramfs -u -k all && proxmox-boot-tool refresh
+```
+
+Grub
+
+```bash
+update-initramfs -u -k all && update-grub refresh
 ```
 
 #### Locate your PCI device ID's ####
@@ -268,11 +281,17 @@ echo "blacklist i915" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist xe" >> /etc/modprobe.d/blacklist.conf
 ```
 
-### Update initramfs and refresh boot tool ###
+### Update initramfs and refresh bootloader ###
 
-Don't mind the mess, it's Friday!
+
+Systemdboot
 
 ```bash
-update-initramfs -u -k all
-proxmox-boot-tool refresh
+update-initramfs -u -k all && proxmox-boot-tool refresh
+```
+
+Grub
+
+```bash
+update-initramfs -u -k all && update-grub refresh
 ```
