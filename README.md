@@ -77,14 +77,18 @@ the settings that have worked across the board for me.</p>
 > systemdboot users should use proxmox-boot-tool<br>
 > Grub users should shoud use update-grub
 
-##### Kernel Admin Guide -  Boot Parameters #####
+#### Kernel Admin Guide -  Boot Parameters ####
 
 For documentation on what each boot flag is and the use case on when to use it
 please refer to the offical kernel admin-guide for details: 
 
-\[Kernel.org Admin Guide\](https://docs.kernel.org/admin-guide/kernel-parameters.html)
+##### Kernel.org #####
 
-\[GitHub.com Admin Guide\](https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/boot.parameters.html)
+[Kernel - Admin Guide - Kernel Parameters](https://docs.kernel.org/admin-guide/kernel-parameters.html)
+
+##### Github.com #####
+
+[GitHub - Admin Guide - Kernel Parameters](https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/boot.parameters.html)
 
 > [!WARNING]
 > Example bootflags are specific to my lab hardware, yours can and will likely
