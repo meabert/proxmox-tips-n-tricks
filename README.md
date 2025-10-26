@@ -78,7 +78,7 @@ the settings that have worked across the board for me.</p>
 > systemdboot users should use proxmox-boot-tool<br>
 > Grub users should shoud use update-grub
 
-**Boot Flag Example**
+#### Boot Flag Example ####
 
 > **vfio-pci.disable_idle_d3=1**<br>
 > this boot flag disables D3 sleep states on VFIO devices, this is recommended
@@ -97,7 +97,7 @@ the settings that have worked across the board for me.</p>
 For AMD IOMMU is enabled by default - simply make sure it is
 enabled in the BIOS and add applicable kernel flags.
 
-**systemd-boot**
+#### AMD systemdboot ####
 
 ```bash
 nano /etc/kernel/cmdline
@@ -111,7 +111,7 @@ root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset vfio-pci.ids=10de:2803,10d
 update-initramfs -u -k all && proxmox-boot-tool refresh
 ```
 
-**Grub**
+#### AMD Grub ####
 
 ```bash
 nano /etc/default/grub
@@ -130,7 +130,7 @@ update-initramfs -u -k all && update-grub refresh
 For Intel add applicable kernel flags to enable, also ensure
 it is enabled in the BIOS.
 
-**systemdboot**
+#### Intel systemdboot ####
 
 ```bash
 nano /etc/kernel/cmdline
@@ -144,7 +144,7 @@ root=ZFS=rpool/ROOT/pve-1 boot=zfs quiet intel_iommu=on,relax_rmrr iommu=pt vfio
 update-initramfs -u -k all && proxmox-boot-tool refresh
 ```
 
-**Grub**
+#### Intel Grub ####
 
 ```bash
 nano /etc/default/grub
