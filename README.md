@@ -36,7 +36,7 @@ This will widely depend on your CPU, it's age, if it has a p-state driver.
 Bottom line make sure you have it on the desired govenor and if applicable
 the right p-state driver.
 
-## Manually added packages ##
+### Manually added packages ###
 
 Adjust based on your hardware profiles:
 
@@ -45,6 +45,8 @@ apt install sudo iperf3 btop gcc make cmake automake autoconf build-essential
 git unzip lm-sensors powertop htop btop pve-headers dkms devscripts debhelper
 equivs nut nut-server nut-monitor ipmitool redfishtool nvme-cli
 </pre>
+
+## Hardware Provisioning for VM's ##
 
 ### PCI Express Passthrough ###
 
@@ -61,21 +63,23 @@ GPU - Dedicated docker VM for LLM, Transcoding and Rendering
 
 HBA - Fully virtualized TrueNAS with 12 drive RaidZ2
 
-#### Enable IOMMU in the bootloader ####
+### Enable IOMMU in the bootloader ###
 
 <p>Your mileage may vary with specific kernel boot flags, however
 after testing across various devices to a custom built AMD Epyc server,
 a converted gaming desktop and even some GMKTec NUC's. These are
 the settings that have worked across the board for me.</p>
 
-#### Kernel Boot Flags ####
+### Setting Kernel Boot Flags ###
 
 > [!IMPORTANT]
 > Make sure you update the right bootloader:
 >
 > systemdboot users should use proxmox-boot-tool<br>
 > Grub users should shoud use update-grub
-##### Boot Flag Example #####
+
+**Boot Flag Example**
+
 > **vfio-pci.disable_idle_d3=1**<br>
 > this boot flag disables D3 sleep states on VFIO devices, this is recommended
 > for GPUs and especially HBA's since D3 has been known to cause issues with
@@ -83,21 +87,21 @@ the settings that have worked across the board for me.</p>
 > I experienced stopped when adding this, before my drives would randomly
 > fault out, disappear or disconnect the pool with drives missing.
 
-##### AMD Kernel Flags #####
+> [!WARNING]
+> Example bootflags are specific to my lab hardware, yours can and will likely
+> be different. Due dilligence is required with any kernel flags and if you're
+> not sure - refer to the offical kernel guides for your version.
+
+### AMD Kernel Flags ###
 
 For AMD IOMMU is enabled by default - simply make sure it is
 enabled in the BIOS and add applicable kernel flags.
 
-###### systemd-boot: ######
+**systemd-boot**
 
 ```bash
 nano /etc/kernel/cmdline
 ```
-
-> [!WARNING]
-> These bootflags are specific to my lab hardware, yours can and will likely
-> be different. Due dilligence is advised with any kernel flags and if you're
-> not sure - refer to the offical kernel guides for your version.
 
 ```bash
 root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset vfio-pci.ids=10de:2803,10de:22bd vfio-pci.disable_idle_d3=1 video=vesafb:off video=efifb:off amd_pstate=guided transparent_hugepage=never hugepagesz=1G hugepages=16 hugepagesz=2M hugepages=2048
@@ -107,7 +111,7 @@ root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset vfio-pci.ids=10de:2803,10d
 update-initramfs -u -k all && proxmox-boot-tool refresh
 ```
 
-###### Grub: ######
+**Grub**
 
 ```bash
 nano /etc/default/grub
@@ -121,12 +125,12 @@ GRUB_CMDLINE_LINUX_DEFAULT="iommu=pt nomodeset vfio-pci.ids=10de:2803,10de:22bd 
 update-initramfs -u -k all && update-grub refresh
 ```
 
-##### Intel Kernel Flags #####
+### Intel Kernel Flags ###
 
 For Intel add applicable kernel flags to enable, also ensure
 it is enabled in the BIOS.
 
-###### systemdboot: ######
+**systemdboot**
 
 ```bash
 nano /etc/kernel/cmdline
@@ -140,7 +144,7 @@ root=ZFS=rpool/ROOT/pve-1 boot=zfs quiet intel_iommu=on,relax_rmrr iommu=pt vfio
 update-initramfs -u -k all && proxmox-boot-tool refresh
 ```
 
-###### Grub: ######
+**Grub**
 
 ```bash
 nano /etc/default/grub
