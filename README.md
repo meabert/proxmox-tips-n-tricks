@@ -3,7 +3,7 @@
 # Documentation - Updated 10/26/2025 #
 
 Documenting the evolution of my homelab, this guide is not intended
-to be a blanket solutionn or a one size fits all. The objective is
+to be a blanket solution or a one size fits all. The objective is
 ultimately creating a unique resource that targets documenting nuanced
 issues. The kind you Google and there's a bunch of forum posts with
 questions but no answers.
