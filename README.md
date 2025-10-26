@@ -3,7 +3,7 @@
 # Documentation - Updated 10/6/2025 #
 
 Documenting the evolution of my homelab, this guide is not intended
-to be a blanket solutionn or a one size fits all. The objective is 
+to be a blanket solutionn or a one size fits all. The objective is
 ultimately creating a unique resource that targets documenting nuanced
 issues. The kind you Google and there's a bunch of forum posts with
 questions but no answers.
@@ -21,11 +21,10 @@ Homelab tools and general Linux items that are directly related.
 
 ### What to install before starting ###
 
-- A proxmox instance, formatted, booted and ready to go. 
-- Run some form of post install script or your own process
-- apt is working with either non-subscription/subscription repos
-- Optional: If you aren't a Debian fan or have background with RHEL/Fedora
-  nala is a very viable replacemnt to apt that functions more like yum/dnf.
+- A proxmox instance that is already, installed, booted and ready to go. 
+- Recommend running some form of post-install script or your own process
+- Ensure apt is working with either the non-subscription or subscription repos
+- Optional: I like nala as my apt frontend as it supports parallel downloads:
 
 ```bash
 sudo apt update && sudo apt install nala
