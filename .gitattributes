@@ -1,7 +1,13 @@
-# Add LF line endings for sh files
-*.sh text eol=lf
-.editorconfig text eol=crlf
-*.json text eol=crlf
-*.md text eol=crlf
-*.ps1 text eol=crlf
-*.txt text eol=crlf
+# Scripts and config files: LF for Linux compatibility
+*.sh     text eol=lf
+*.yml    text eol=lf
+*.yaml   text eol=lf
+
+# Markdown and docs: LF preferred for Super-Linter and GitHub rendering
+*.md     text eol=lf
+*.txt    text eol=lf
+.editorconfig text eol=lf
+
+# Windows-specific files: CRLF if needed
+*.ps1    text eol=crlf
+*.bat    text eol=crlf
