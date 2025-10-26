@@ -420,7 +420,7 @@ Commercial use requires a separate license. Contact [licensing-email].
 
 [licensing-email]: mailto:licensing@techinasnap.com
 -->
-## License
+## License ##
 
 This project is dual-licensed:
 

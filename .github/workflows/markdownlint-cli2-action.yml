@@ -11,9 +11,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          config: '.markdownlint-cli2.jsonc'
 
       - name: Run markdownlint-cli2
         uses: DavidAnson/markdownlint-cli2-action@v20
         with:
           globs: '**/*.md'
-          config: '.markdownlint-cli2.jsonc'  # Optional, if you have a custom config
+          
