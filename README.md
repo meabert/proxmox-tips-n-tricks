@@ -59,9 +59,10 @@ and different instructions should be used.</p>
 
 Use case on the passthrough hardware:
 
-GPU - Dedicated docker VM for LLM, Transcoding and Rendering
+GPU - Dedicated docker VM for LLMs, Transcoding and Rendering
 
-HBA - Fully virtualized TrueNAS with 12 drive RaidZ2
+HBA - TrueNAS - Storage Inventory - 12 Hard Disks (Data), 1 Optane for
+L2ARC+SLOG, 6 SSD's (Metadata & Special Small Blocks) and three hot spares.
 
 ### Enable IOMMU in the bootloader ###
 
@@ -100,7 +101,7 @@ please refer to the offical kernel admin-guide for details:
 For AMD IOMMU is enabled by default - simply make sure it is
 enabled in the BIOS and add applicable kernel flags.
 
-#### AMD systemdboot ####
+#### AMD systemd-boot ####
 
 ```bash
 nano /etc/kernel/cmdline
@@ -114,7 +115,7 @@ root=ZFS=rpool/ROOT/pve-1 boot=zfs iommu=pt nomodeset vfio-pci.ids=10de:2803,10d
 update-initramfs -u -k all && proxmox-boot-tool refresh
 ```
 
-#### AMD Grub ####
+#### AMD GRUB ####
 
 ```bash
 nano /etc/default/grub
@@ -133,7 +134,7 @@ update-initramfs -u -k all && update-grub refresh
 For Intel add applicable kernel flags to enable, also ensure
 it is enabled in the BIOS.
 
-#### Intel systemdboot ####
+#### Intel systemd-boot ####
 
 ```bash
 nano /etc/kernel/cmdline
@@ -147,7 +148,7 @@ root=ZFS=rpool/ROOT/pve-1 boot=zfs quiet intel_iommu=on,relax_rmrr iommu=pt vfio
 update-initramfs -u -k all && proxmox-boot-tool refresh
 ```
 
-#### Intel Grub ####
+#### Intel GRUB ####
 
 ```bash
 nano /etc/default/grub
@@ -173,13 +174,13 @@ echo "vfio_pci" >> /etc/modules
 > Don't forget - whenever making changes to boot related items always update
 > the bootloader to finalize and apply the changes!
 
-#### systemdboot ####
+#### VFIO systemd-boot ####
 
 ```bash
 update-initramfs -u -k all && proxmox-boot-tool refresh
 ```
 
-#### grub ####
+#### VFIO GRUB ####
 
 ```bash
 update-initramfs -u -k all && update-grub refresh
@@ -322,14 +323,17 @@ echo "blacklist xe" >> /etc/modprobe.d/blacklist.conf
 
 ### Update initramfs and refresh bootloader ###
 
+> [!TIP]
+> Don't forget - whenever making changes to boot related items always update
+> the bootloader to finalize and apply the changes!
 
-Systemdboot
+#### Blacklist systemdboot ####
 
 ```bash
 update-initramfs -u -k all && proxmox-boot-tool refresh
 ```
 
-Grub
+#### Blacklist Grub ####
 
 ```bash
 update-initramfs -u -k all && update-grub refresh

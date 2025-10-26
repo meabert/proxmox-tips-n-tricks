@@ -40,18 +40,31 @@ and pulled at will with no impact to the data integrity.</p>
 **Mirror:** Highest integrity, largest space loss - usually in pairs of two,su
 three or more the data is the same on all drives in the pool.
 
-### Vault VDEV ###
+### ZFS Lab Pool ###
 
-| RaidZ2 VDEV1 6xHDD Drives | RaidZ2 VDEV2 6xHDD Drives |
-| :---: | :---: |
-| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |
-| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |
-| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |
-| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |
-| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |
-| `8TB Seagate IronWolf` | `8TB Seagate IronWolf` |
+##### HDD - Data Disks #####
 
- | Log VDEV 2xNVMe Mirrored | L2ARC VDEV 1x U.2 Striped |
- | :---: | :---: |
- | `256GB Samsung PM981a NVMe` | `Intel Optane 905p 1.5TB` |
- | `256GB Samsung PM981a NVMe` | |
+| Mirror-0 | Mirror-1 | Mirror-2 | Mirror-3 | Mirror-4 | Mirror-5 |
+| --- | --- | --- | --- | --- | --- |
+| 8TB HDD |  8TB HDD |  8TB HDD |  8TB HDD |  8TB HDD |  8TB HDD |
+| 8TB HDD |  8TB HDD |  8TB HDD |  8TB HDD |  8TB HDD |  8TB HDD |
+
+##### SSD - Metadata Disks #####
+
+| Mirror-0 | Mirror-1 | Mirror-3 |
+| --- | --- | --- |
+| 1TB SSD | 1TB SSD | 1TB SSD |
+| 1TB SSD | 1TB SSD | 1TB SSD |
+
+##### Optane - SLOG+L2ARC #####
+
+| L2ARC | SLOG |
+| --- | --- |
+| 1.5TB SSD | 1.5TB SSD |
+
+##### Hot Spares #####
+
+| Data | Metadata |
+| --- | --- |
+| 8TB HDD | 1TB SSD |
+| ------- | 1TB SSD |
