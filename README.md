@@ -80,7 +80,7 @@ the settings that have worked across the board for me.</p>
 #### Kernel Admin Guide -  Boot Parameters ####
 
 For documentation on what each boot flag is and the use case on when to use it
-please refer to the offical kernel admin-guide for details: 
+please refer to the offical kernel admin-guide for details:
 
 ##### Kernel.org #####
 
@@ -161,7 +161,7 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on,relax_rmrr iommu=pt vfio-pci.di
 update-initramfs -u -k all && update-grub refresh
 ```
 
-#### Enable the vfio modules ####
+### Enable VFIO modules ###
 
 ```bash
 echo "vfio" >> /etc/modules
@@ -169,23 +169,25 @@ echo "vfio_iommu_type1" >> /etc/modules
 echo "vfio_pci" >> /etc/modules
 ```
 
-**Update the bootloader**
+> [!TIP]
+> Don't forget - whenever making changes to boot related items always update
+> the bootloader to finalize and apply the changes!
 
-Systemdboot
+#### systemdboot ####
 
 ```bash
 update-initramfs -u -k all && proxmox-boot-tool refresh
 ```
 
-Grub
+#### grub ####
 
 ```bash
 update-initramfs -u -k all && update-grub refresh
 ```
 
-#### Locate your PCI device ID's ####
+### Locate your PCI device ID's ###
 
-##### GPU #####
+#### GPU ####
 
 In order to make the lspci output easier to read it's recommended to update
 PCI ID's as they are updated frequently and will give names to devices that
@@ -207,7 +209,7 @@ lspci -nnk | grep 'NVIDIA'
 43:00.1 Audio device [0403]: NVIDIA Corporation AD106M High Definition
 Audio Controller <b>[10de:22bd]</b> (rev a1)
 
-##### HBA #####
+#### Host Bus Adaper ####
 
 ```bash
 lspci -nn | grep 'LSI'
@@ -221,64 +223,100 @@ that I've included two device ID's for the GPU - this is because one is for
 video and the other for audio. Failure to include both can and will likely
 cause issues.
 
-#### VFIO configuration file ####
+### VFIO Configuration ###
+
+> [!WARNING]
+> The PCI ID's used in these example will likely not match your HBA or GPU
+be sure to get the correct device ID utilizing the lspci command
 
 ```bash
 echo "options vfio-pci ids=1000:00ac,10de:2803,10de:22bd" >> \
 /etc/modprobe.d/vfio.conf
 ```
 
-##### For LSI or Broadcomm HBA's #####
+#### LSI or Broadcom HBA's ####
 
 ```bash
 echo "softdep mpt3sas pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
-##### NVIDIA GPU's #####
+#### NVIDIA GPU's - RTX, GeForce, Hopper, Ampere, Turing, Volta ####
 
 ```bash
 echo "softdep nouveau pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep nvidia pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep nvidiafb pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep nvidia_modeset pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep nvidia_drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
-echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
-##### An exception may be needed for GPU audio  #####
+##### HDMI Audio - NVIDIA GPU's #####
 
 ```bash
 echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
-##### For AMD GPU's #####
+#### Dedicated - AMD GPU's ####
 
 ```bash
 echo "softdep radeon pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep amdgpu pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep ccp pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep xhci_hcd pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
-##### For Intel GPU's #####
+#### Integrated - Intel GPU's - iGPU ####
+
+```bash
+echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep snd_hda_codec_hdmi pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep i915 pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep i2c_algo_bit pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+```
+
+#### Dedicated - Intel GPU's - ARC ####
 
 ```bash
 echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep snd_hda_codec_hdmi pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep i915 pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep xe pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep i2c_algo_bit pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
-#### Blacklist file for fallback in case first steps fail ####
+### Blacklist Fallback - If VFIO Fails ###
+
+#### NVIDIA Drivers ####
+
+echo "blacklist nvidia" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist nvidia_modeset" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist nvidiafb" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist nvidia_drm" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist snd_hda_intel" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist snd_hda_codec_hdmi" >> /etc/modprobe.d/blacklist.conf
+
+#### AMD Drivers ####
+
+#### Intel iGPU Drivers ####
+
+#### Intel ARC Drivers ####
 
 ```bash
 echo "blacklist mpt3sas" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist radeon" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist amdgpu" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist ccp" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist xhci_hcd" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist nvidia" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist nvidia_modeset" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist nvidiafb" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist nvidia_drm" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist snd_hda_intel" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist snd_hda_codec_hdmi" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist i915" >> /etc/modprobe.d/blacklist.conf
+echo "blacklist i2c_algo_bit" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist xe" >> /etc/modprobe.d/blacklist.conf
 ```
 
