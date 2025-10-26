@@ -1,39 +1,42 @@
+/*
+ * markdownlint-cli2 config with Rob's custom rules
+ */
 {
   // Enable all default rules
   "default": true,
 
-  // Disable specific rules
-  "MD041": false, // First line should be a top-level heading
-  "MD010": false, // Disallow hard tabs
+  "fix": false, // Disable auto-fixing
 
-  // Customize heading style
-  "MD003": {
-    "style": "atx_closed" // Require # Heading #
-  },
+  // Custom rule overrides
+  "config": {
+    "first-line-heading": false, // MD041: allow non-heading first lines
+    "no-hard-tabs": false,       // MD010: allow hard tabs
 
-  // Customize list indentation
-  "MD007": {
-    "indent": 4
-  },
+    "heading-style": {
+      "style": "atx_closed"      // MD003: require # Heading #
+    },
 
-  // Customize line length behavior
-  "MD013": {
-    "line_length": 120,
-    "code_blocks": false,
-    "tables": false,
-    "headings": true
-  },
+    "ul-indent": {
+      "indent": 4                // MD007: list indentation
+    },
 
-  // Allow specific inline HTML elements
-  "MD033": {
-    "allowed_elements": [
-      "h1", "h2", "h3", "h4", "h5", "h6",
-      "blockquote", "a", "code", "pre", "em", "strong",
-      "ul", "ol", "li", "p", "hr", "img", "table", "tr",
-      "th", "td", "thead", "tbody", "tfoot", "details",
-      "summary", "br", "mark", "small", "sub", "sup",
-      "abbr", "time", "var", "s", "u", "kbd", "wbr",
-      "b", "span"
-    ]
+    "line-length": {
+      "line_length": 120,
+      "code_blocks": false,
+      "tables": false,
+      "headings": true           // MD013: line length rules
+    },
+
+    "no-inline-html": {
+      "allowed_elements": [
+        "h1", "h2", "h3", "h4", "h5", "h6",
+        "blockquote", "a", "code", "pre", "em", "strong",
+        "ul", "ol", "li", "p", "hr", "img", "table", "tr",
+        "th", "td", "thead", "tbody", "tfoot", "details",
+        "summary", "br", "mark", "small", "sub", "sup",
+        "abbr", "time", "var", "s", "u", "kbd", "wbr",
+        "b", "span"
+      ]
+    }
   }
 }

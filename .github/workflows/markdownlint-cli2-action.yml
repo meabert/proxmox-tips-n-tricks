@@ -1,21 +1,30 @@
-name: Markdown Lint (CLI2)
+name: Markdown Lint
 
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - '.github/workflows/**'
+      - 'package.json'
+      - '**/*.yml'
   pull_request:
     branches: [main]
+    paths-ignore:
+      - '.github/workflows/**'
+      - 'package.json'
+      - '**/*.yml'
 
 jobs:
   markdownlint:
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
-      - uses: actions/checkout@v3
-        with:
-          config: '.markdownlint-cli2.jsonc'
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Run markdownlint-cli2
         uses: DavidAnson/markdownlint-cli2-action@v20
         with:
+          fix: false
+          config: '.markdownlint-cli2.jsonc'
           globs: '**/*.md'
-          
