@@ -76,6 +76,7 @@ the settings that have worked across the board for me.</p>
 > Make sure you update the right bootloader:
 > systemdboot users should use proxmox-boot-tool<br>
 > Grub users should shoud use update-grub
+
 > [!WARNING]
 > Example bootflags are specific to my lab hardware, yours can and will likely
 > be different. Due dilligence is required with any kernel flags and if you're
