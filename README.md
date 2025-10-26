@@ -1,6 +1,6 @@
 # Proxmox Tips & Tricks #
 
-![Markdown Lint](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/superlinter.yml/badge.svg)
+![markdownlint-cli2](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/markdownlint-cli2-action.yml/badge.svg)
 
 ## Operator Overview - Updated 10/26/2025 ##
 
