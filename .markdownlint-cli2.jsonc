@@ -1,59 +1,39 @@
-MD041: false
+{
+  // Enable all default rules
+  "default": true,
 
-MD003:
-  style: atx_closed
+  // Disable specific rules
+  "MD041": false, // First line should be a top-level heading
+  "MD010": false, // Disallow hard tabs
 
-MD007:
-  indent: 4
+  // Customize heading style
+  "MD003": {
+    "style": "atx_closed" // Require # Heading #
+  },
 
-MD010: false
+  // Customize list indentation
+  "MD007": {
+    "indent": 4
+  },
 
-MD013:
-  line_length: 120
-  code_blocks: false
-  tables: false
-  headings: true
+  // Customize line length behavior
+  "MD013": {
+    "line_length": 120,
+    "code_blocks": false,
+    "tables": false,
+    "headings": true
+  },
 
-MD033:
-  allowed_elements:
-    - h1
-    - h2
-    - h3
-    - h4
-    - h5
-    - h6
-    - blockquote
-    - a
-    - code
-    - pre
-    - em
-    - strong
-    - ul
-    - ol
-    - li
-    - p
-    - hr
-    - img
-    - table
-    - tr
-    - th
-    - td
-    - thead
-    - tbody
-    - tfoot
-    - details
-    - summary
-    - br
-    - mark
-    - small
-    - sub
-    - sup
-    - abbr
-    - time
-    - var
-    - s
-    - u
-    - kbd
-    - wbr
-    - b
-    - span
+  // Allow specific inline HTML elements
+  "MD033": {
+    "allowed_elements": [
+      "h1", "h2", "h3", "h4", "h5", "h6",
+      "blockquote", "a", "code", "pre", "em", "strong",
+      "ul", "ol", "li", "p", "hr", "img", "table", "tr",
+      "th", "td", "thead", "tbody", "tfoot", "details",
+      "summary", "br", "mark", "small", "sub", "sup",
+      "abbr", "time", "var", "s", "u", "kbd", "wbr",
+      "b", "span"
+    ]
+  }
+}

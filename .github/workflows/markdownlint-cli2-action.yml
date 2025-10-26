@@ -1,33 +1,19 @@
-{
-  // Enable all default rules
-  "default": true,
+name: Markdown Lint (CLI2)
 
-  // Disable specific rules
-  "MD041": false, // First line in file should be a top-level heading
-  "MD010": false, // Hard tabs
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 
-  // Customize rules
-  "MD003": {
-    "style": "atx_closed" // Require # Heading #
-  },
-  "MD007": {
-    "indent": 4 // List indentation: 4 spaces
-  },
-  "MD013": {
-    "line_length": 120, // Max line length
-    "code_blocks": false, // Ignore code blocks
-    "tables": false,      // Ignore tables
-    "headings": true      // Enforce on headings
-  },
-  "MD033": {
-    "allowed_elements": [
-      "h1", "h2", "h3", "h4", "h5", "h6",
-      "blockquote", "a", "code", "pre", "em", "strong",
-      "ul", "ol", "li", "p", "hr", "img", "table", "tr",
-      "th", "td", "thead", "tbody", "tfoot", "details",
-      "summary", "br", "mark", "small", "sub", "sup",
-      "abbr", "time", "var", "s", "u", "kbd", "wbr",
-      "b", "span"
-    ]
-  }
-}
+jobs:
+  markdownlint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run markdownlint-cli2
+        uses: DavidAnson/markdownlint-cli2-action@v20
+        with:
+          globs: '**/*.md'
+          config: '.markdownlint-cli2.jsonc'  # Optional, if you have a custom config
