@@ -9,11 +9,11 @@
   "MD007": { "indent": 4 },
 
   // Disable hard tab rule
-  "no-hard-tabs": false,
+  "MD010": false,
 
   // Customize line length behavior
   "MD013": {
-    "line_length": 80,
+    "line_length": 120,
     "code_blocks": false,
     "tables": false,
     "headings": true

@@ -1,21 +1,28 @@
-<!-- lint-disable MD013 -->
 ![Markdown Linter](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/markdownlint.yml/badge.svg)
 
 # Proxmox Tips & Tricks #
+## License
 
-## Updated 10/26/2025 ##
+This project is dual-licensed:
 
-Documenting the evolution of my homelab, this guide is not intended
-to be a blanket solution or a one size fits all. The objective is
-ultimately creating a unique resource that targets documenting nuanced
-issues. The kind you Google and there's a bunch of forum posts with
-questions but no answers.
+- 🛠️ Scripts: [SSPL](https://www.mongodb.com/licensing/server-side-public-license)
+- 📚 Docs: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+
+Free to learn. Not free to resell.  
+If you profit, I invoice.  
+Contact [licensing-email] for commercial use.
+
+## Operator Overview - Updated 10/26/2025 ##
+
+This repository documents the ongoing evolution of my Proxmox-based homelab cluster — not as a generic how-to, but as a curated archive of edge-case fixes, hardware quirks, and kernel-level tooling. It’s built for operators who’ve Googled a boot flag and landed in a 12-post thread with zero answers.
+
+My goal is to create a resource that is:
+
+- Technically 
 
 > [!CAUTION]
-> Everyone has different hardware, be sure to pay close attention
-> to whether or not kernel flags apply to your CPU/GPU/HBA or
-> whatever crazy nonsense particle accelerator is connected
-> to your PCI slot.
+> Your hardware is not my hardware. Always verify kernel flags, BIOS settings, and driver behavior before applying
+> anything here. Especially if your PCI slot is hosting a particle accelerator.
 
 ## Objectives ##
 
@@ -142,11 +149,11 @@ please refer to the offical kernel admin-guide for details:
 
 ##### Kernel.org #####
 
-[Kernel - Admin Guide - Kernel Parameters](https://docs.kernel.org/admin-guide/kernel-parameters.html)
+[Kernel.org - Admin Guide - Kernel Parameters][kernel-guide-official]
 
 ##### Github.com #####
 
-[GitHub - Admin Guide - Kernel Parameters](https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/boot.parameters.html)
+[GitHub Tracking - Admin Guide - Kernel Parameters][kernel-guide-github]
 
 > [!WARNING]
 > Example bootflags are specific to my lab hardware, yours can and will likely
@@ -395,3 +402,38 @@ update-initramfs -u -k all && proxmox-boot-tool refresh
 ```bash
 update-initramfs -u -k all && update-grub refresh
 ```
+<!--
+🧪 Operator Advisory: Link Glossary
+All external references are declared below for markdownlint compliance and contributor clarity.
+-->
+[kernel-guide-github]: https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/boot.parameters.html
+[kernel-guide-official]: https://docs.kernel.org/admin-guide/kernel-parameters.html
+[licensing-email]: mailto:licensing@techinasnap.com
+<!--
+🛡️ Licensing Manifesto
+
+Steal it. Brand it. Ship it.  
+But if you profit, I invoice.
+
+This project is dual-licensed:
+
+- 🛠️ Scripts and tooling: Server Side Public License (SSPL)
+- 📚 Documentation and guides: Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0)
+
+Free for learning. Forbidden for resale. Attribution required.  
+Commercial use requires a separate license. Contact [licensing-email].
+
+[licensing-email]: mailto:licensing@techinasnap.com
+-->
+<!--
+🤖 Copilot Attribution Advisory
+
+This project includes operator-friendly content generated with help from Microsoft Copilot.  
+Copilot output is governed by the [Microsoft Services Agreement](https://www.microsoft.com/en-us/servicesagreement).  
+No license obligations are imposed by Copilot itself. Attribution optional, but appreciated.
+
+Copilot didn’t write this project — it riffed with me.  
+Every splash block, every advisory zone, every breadcrumb is mine.  
+Copilot just helped me sharpen the edges.
+
+-->
