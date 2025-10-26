@@ -1,16 +1,6 @@
 ![Markdown Linter](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/markdownlint.yml/badge.svg)
 
 # Proxmox Tips & Tricks #
-## License
-
-This project is dual-licensed:
-
-- 🛠️ Scripts: [SSPL](https://www.mongodb.com/licensing/server-side-public-license)
-- 📚 Docs: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
-
-Free to learn. Not free to resell.  
-If you profit, I invoice.  
-Contact [licensing-email] for commercial use.
 
 ## Operator Overview - Updated 10/26/2025 ##
 
@@ -425,6 +415,16 @@ Commercial use requires a separate license. Contact [licensing-email].
 
 [licensing-email]: mailto:licensing@techinasnap.com
 -->
+## License
+
+This project is dual-licensed:
+
+- 🛠️ Scripts: [SSPL](https://www.mongodb.com/licensing/server-side-public-license)
+- 📚 Docs: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
+
+Free to learn. Not free to resell.  
+If you profit, I invoice.  
+Contact [licensing][licensing-email] for commercial use.
 <!--
 🤖 Copilot Attribution Advisory
 
