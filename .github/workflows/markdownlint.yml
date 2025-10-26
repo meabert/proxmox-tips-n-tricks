@@ -1,4 +1,4 @@
-name: Docs Lint
+name: Markdown Linter
 
 on:
   push:

@@ -1,5 +1,5 @@
 <!-- lint-disable MD013 -->
-![Docs Lint](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/markdownlint.yml/badge.svg)
+![Markdown Linter](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/markdownlint.yml/badge.svg)
 
 # Proxmox Tips & Tricks #
 
