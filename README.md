@@ -82,9 +82,9 @@ the settings that have worked across the board for me.</p>
 For documentation on what each boot flag is and the use case on when to use it
 please refer to the offical kernel admin-guide for details: 
 
-[\[Kernel.org\]](https://docs.kernel.org/admin-guide/kernel-parameters.html)
+\[Kernel.org Admin Guide\](https://docs.kernel.org/admin-guide/kernel-parameters.html)
 
-[\[GitHub.com\]](https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/boot.parameters.html)
+\[GitHub.com Admin Guide\](https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/boot.parameters.html)
 
 > [!WARNING]
 > Example bootflags are specific to my lab hardware, yours can and will likely
