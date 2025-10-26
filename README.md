@@ -1,6 +1,9 @@
 <!-- lint-disable MD013 -->
+![Docs Lint](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/markdownlint.yml/badge.svg)
 
-# Documentation - Updated 10/26/2025 #
+# Proxmox Tips & Tricks #
+
+## Updated 10/26/2025 ##
 
 Documenting the evolution of my homelab, this guide is not intended
 to be a blanket solution or a one size fits all. The objective is
@@ -21,20 +24,74 @@ Homelab tools and general Linux items that are directly related.
 
 ### What to install before starting ###
 
-- A proxmox instance that is already, installed, booted and ready to go.
-- Recommend running some form of post-install script or your own process
-- Ensure apt is working with either the non-subscription or subscription repos
-- Optional: I like nala as my apt frontend as it supports parallel downloads:
+- A new Proxmox instance installed, booted and ready to go. Existing 
+installs will also work just fine, however, I do not recommend testing these
+changes on a live production server without ample testing. If your end goal 
+is live production, please for ones own sanity get a lab or replica to break
+before trying to roll this. The wrong boot flags can kill a system, literally.
+
+- If you are new to Proxmox or Linux in general I strongly suggest you review
+the official documentation before reading further:
+
+> [Proxmox Official Documentation](https://pve.proxmox.com/pve-docs/) |
+> [Admin Guide](https://pve.proxmox.com/pve-docs/pve-admin-guide.html)
+> [QEMU/KVM Virtual Machines](https://pve.proxmox.com/pve-docs/chapter-qm.html) |
+> [PCIe Passthrough](https://pve.proxmox.com/pve-docs/chapter-qm.html#qm_pci_passthrough) |
+> [General Requirements](https://pve.proxmox.com/pve-docs/chapter-qm.html#_general_requirements) |
+> [Host Device Passthrough](https://pve.proxmox.com/pve-docs/chapter-qm.html#_host_device_passthrough) |
+> [SR-IOV](https://pve.proxmox.com/pve-docs/chapter-qm.html#_sr_iov) |
+> [Mediated Devices](https://pve.proxmox.com/pve-docs/chapter-qm.html#_mediated_devices_vgpu_gvt_g) |
+> [vIOMMU](https://pve.proxmox.com/pve-docs/chapter-qm.html#qm_pci_viommu)
+> [Resource Mapping](https://pve.proxmox.com/pve-docs/chapter-qm.html#resource_mapping)
+
+- Post-install script:
+
+
+- Ensure apt is working with either the non-subscription or subscription repos:
+
+
+- Optional: **Nala** - a drop in replacement for apt that enables parallel package
+downloads and agile dependency resolution by way of verbose terminal output
+of changes as they are made:
+
+
+
+Nala is reminiscent of yum or dnf from CentOS/Fedora/Red Hat and can
+be used as a replacement for apt:
+
+
 
 ```bash
 sudo apt update && sudo apt install nala
 ```
 
+Use nala in place of apt after it's installed, apt will remain in place if you
+decide for whatever reason you like apt better. 
+
 ### CPU Scaling Governor ###
 
-This will widely depend on your CPU, it's age, if it has a p-state driver.
-Bottom line make sure you have it on the desired govenor and if applicable
-the right p-state driver.
+In order to get the desired functionality out of your setup the CPU governor
+needs to match your workload and power expectations. I use on-demand for my
+three nodes. The modes available vary widely depending on your CPU model,
+it's age, if it has a p-state driver available. The cpupower command can
+get you additional information about your CPU. This way make an informed
+choice on the setting itself:
+
+```bash
+sudo apt update && sudo apt install linux-cpupower
+```
+
+```bash
+sudo cpupower frequency-info
+```
+
+```bash
+sudo cpupower frequency-set ondemand
+```
+
+```bash
+sudo cpupower frequency-info
+```
 
 ### Manually added packages ###
 
