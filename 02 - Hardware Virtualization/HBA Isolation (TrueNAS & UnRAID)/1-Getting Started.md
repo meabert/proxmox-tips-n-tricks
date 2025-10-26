@@ -42,27 +42,27 @@ three or more the data is the same on all drives in the pool.
 
 ### ZFS Lab Pool ###
 
-##### HDD - Data Disks #####
+#### HDD - Data Disks ####
 
 | Mirror-0 | Mirror-1 | Mirror-2 | Mirror-3 | Mirror-4 | Mirror-5 |
 | --- | --- | --- | --- | --- | --- |
 | 8TB HDD |  8TB HDD |  8TB HDD |  8TB HDD |  8TB HDD |  8TB HDD |
 | 8TB HDD |  8TB HDD |  8TB HDD |  8TB HDD |  8TB HDD |  8TB HDD |
 
-##### SSD - Metadata Disks #####
+#### SSD - Metadata Disks ####
 
 | Mirror-0 | Mirror-1 | Mirror-3 |
 | --- | --- | --- |
 | 1TB SSD | 1TB SSD | 1TB SSD |
 | 1TB SSD | 1TB SSD | 1TB SSD |
 
-##### Optane - SLOG+L2ARC #####
+#### Optane - SLOG+L2ARC ####
 
 | L2ARC | SLOG |
 | --- | --- |
 | 1.5TB SSD | 1.5TB SSD |
 
-##### Hot Spares #####
+#### Hot Spares ####
 
 | Data | Metadata |
 | --- | --- |
