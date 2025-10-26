@@ -1,22 +1,23 @@
-name: Docs Lint
+name: Markdown Lint
 
 on:
   push:
-    branches: [main, design/file-structure]
+    paths:
+      - '**/*.md'
+      - '.markdownlint-cli2.yaml'
   pull_request:
-    branches: [main, design/file-structure]
+    paths:
+      - '**/*.md'
+      - '.markdownlint-cli2.yaml'
 
 jobs:
-  markdownlint:
-    name: Markdownlint
+  lint-markdown:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Show markdownlint config
-        run: cat .markdownlint-cli2.yaml
-
-      - name: Run markdownlint
+      - name: Run markdownlint-cli2
         uses: DavidAnson/markdownlint-cli2-action@v10
         with:
           globs: '**/*.md'
