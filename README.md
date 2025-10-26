@@ -80,7 +80,7 @@ the settings that have worked across the board for me.</p>
 
 #### Boot Flag Example ####
 
-**vfio-pci.disable_idle_d3=1**
+##### vfio-pci.disable_idle_d3=1 #####
 <p>this boot flag disables D3 sleep states on VFIO devices, this is recommended
 for GPUs and especially HBA's since D3 has been known to cause issues with
 passthrough hardware. Your mileage may vary however all the ZFS issues
