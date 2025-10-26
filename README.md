@@ -30,33 +30,27 @@ before trying to roll this. The wrong boot flags can kill a system, literally.
 - If you are new to Proxmox or Linux in general I strongly suggest you review
 the official documentation before reading further:
 
-> [Proxmox Official Documentation](https://pve.proxmox.com/pve-docs/) |
-> [Admin Guide](https://pve.proxmox.com/pve-docs/pve-admin-guide.html)
-> [QEMU/KVM Virtual Machines](https://pve.proxmox.com/pve-docs/chapter-qm.html) |
-> [PCIe Passthrough](https://pve.proxmox.com/pve-docs/chapter-qm.html#qm_pci_passthrough) |
-> [General Requirements](https://pve.proxmox.com/pve-docs/chapter-qm.html#_general_requirements) |
-> [Host Device Passthrough](https://pve.proxmox.com/pve-docs/chapter-qm.html#_host_device_passthrough) |
-> [SR-IOV](https://pve.proxmox.com/pve-docs/chapter-qm.html#_sr_iov) |
-> [Mediated Devices](https://pve.proxmox.com/pve-docs/chapter-qm.html#_mediated_devices_vgpu_gvt_g) |
-> [vIOMMU](https://pve.proxmox.com/pve-docs/chapter-qm.html#qm_pci_viommu)
-> [Resource Mapping](https://pve.proxmox.com/pve-docs/chapter-qm.html#resource_mapping)
+> [Proxmox Official Documentation][pvel-docs]
+> [Admin Guide][pvel-admin]
+> [QEMU/KVM Virtual Machines][pvel-kvm]
+> [PCIe Passthrough][pvel-pcie]
+> [General Requirements][pvel-requirements]
+> [Host Device Passthrough][pvel-hostpass]
+> [SR-IOV][pvel-SR-IOV]
+> [Mediated Devices][pvel-mediated]
+> [vIOMMU][pvel-IOMMU]
+> [Resource Mapping][pvel-resourcemap]
 
 - Post-install script:
 
-
 - Ensure apt is working with either the non-subscription or subscription repos:
-
 
 - Optional: **Nala** - a drop in replacement for apt that enables parallel package
 downloads and agile dependency resolution by way of verbose terminal output
 of changes as they are made:
 
-
-
 Nala is reminiscent of yum or dnf from CentOS/Fedora/Red Hat and can
 be used as a replacement for apt:
-
-
 
 ```bash
 sudo apt update && sudo apt install nala
@@ -399,6 +393,17 @@ All external references are declared below for markdownlint compliance and contr
 [kernel-guide-github]: https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/boot.parameters.html
 [kernel-guide-official]: https://docs.kernel.org/admin-guide/kernel-parameters.html
 [licensing-email]: mailto:licensing@techinasnap.com
+[pvel-docs]: https://pve.proxmox.com/pve-docs/
+[pvel-admin]: https://pve.proxmox.com/pve-docs/pve-admin-guide.html
+[pvel-kvm]: https://pve.proxmox.com/pve-docs/chapter-qm.html
+[pvel-pcie]: https://pve.proxmox.com/pve-docs/chapter-qm.html#qm_pci_passthrough
+[pvel-requirements]: https://pve.proxmox.com/pve-docs/chapter-qm.html#_general_requirements
+[pvel-hostpass]: https://pve.proxmox.com/pve-docs/chapter-qm.html#_host_device_passthrough
+[pvel-SR-IOV]: https://pve.proxmox.com/pve-docs/chapter-qm.html#_sr_iov
+[pvel-mediated]: https://pve.proxmox.com/pve-docs/chapter-qm.html#_mediated_devices_vgpu_gvt_g
+[pvel-IOMMU]: https://pve.proxmox.com/pve-docs/chapter-qm.html#qm_pci_viommu
+[pvel-resourcemap]: https://pve.proxmox.com/pve-docs/chapter-qm.html#resource_mapping
+
 <!--
 🛡️ Licensing Manifesto
 
