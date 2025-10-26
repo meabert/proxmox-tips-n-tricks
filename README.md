@@ -4,11 +4,9 @@
 
 ## Operator Overview - Updated 10/26/2025 ##
 
-This repository documents the ongoing evolution of my Proxmox-based homelab cluster — not as a generic how-to, but as a curated archive of edge-case fixes, hardware quirks, and kernel-level tooling. It’s built for operators who’ve Googled a boot flag and landed in a 12-post thread with zero answers.
-
-My goal is to create a resource that is:
-
-- Technically 
+This repository documents the ongoing evolution of my Proxmox-based homelab cluster — not as a generic how-to, but as a 
+curated archive of edge-case fixes, hardware quirks, and kernel-level tooling. It’s built for operators who’ve Googled 
+a boot flag and landed in a 12-post thread with zero answers.
 
 > [!CAUTION]
 > Your hardware is not my hardware. Always verify kernel flags, BIOS settings, and driver behavior before applying
@@ -16,19 +14,17 @@ My goal is to create a resource that is:
 
 ## Objectives ##
 
-Create a centralized repository for the inner workings of Proxmox,
-Homelab tools and general Linux items that are directly related.
+Create a centralized repository for the inner workings of Proxmox, Homelab tools and general Linux items that are 
+directly related.
 
 ### What to install before starting ###
 
-- A new Proxmox instance installed, booted and ready to go. Existing 
-installs will also work just fine, however, I do not recommend testing these
-changes on a live production server without ample testing. If your end goal 
-is live production, please for ones own sanity get a lab or replica to break
-before trying to roll this. The wrong boot flags can kill a system, literally.
+- A new Proxmox instance installed, booted and ready to go. Existing installs will also work just fine, however, I do 
+not recommend testing these changes on a live production server without ample testing. If your end goal is live 
+production, please for ones own sanity get a lab or replica to break before trying to roll this. The wrong boot flags
+can kill a system, literally.
 
-- If you are new to Proxmox or Linux in general I strongly suggest you review
-the official documentation before reading further:
+- If you are new to Proxmox or Linux overall I suggest reviewing the official documentation before reading further:
 
 > [Proxmox Official Documentation][pvel-docs]
 > [Admin Guide][pvel-admin]
@@ -45,12 +41,12 @@ the official documentation before reading further:
 
 - Ensure apt is working with either the non-subscription or subscription repos:
 
-- Optional: **Nala** - a drop in replacement for apt that enables parallel package
-downloads and agile dependency resolution by way of verbose terminal output
-of changes as they are made:
+- Optional: **Nala** - a drop in replacement for apt that enables parallel package downloads and agile dependency 
+resolution by way of verbose terminal outputof changes as they are made:
 
-Nala is reminiscent of yum or dnf from CentOS/Fedora/Red Hat and can
-be used as a replacement for apt:
+**NEED SCREENSHOT**
+
+Nala is reminiscent of yum or dnf from CentOS/Fedora/Red Hat and can be used as a drop in replacement for apt:
 
 ```bash
 sudo apt update && sudo apt install nala
