@@ -77,6 +77,17 @@ the settings that have worked across the board for me.</p>
 > systemdboot users should use proxmox-boot-tool<br>
 > Grub users should shoud use update-grub
 
+##### Kernel Admin Guide -  Boot Parameters #####
+
+For documentation on what each boot flag is and the use case on when to use it
+please refer to the offical kernel admin-guide for details: 
+
+[Kernel.org]
+(https://docs.kernel.org/admin-guide/kernel-parameters.html)
+
+[GitHub.com]
+(https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/boot.parameters.html)
+
 > [!WARNING]
 > Example bootflags are specific to my lab hardware, yours can and will likely
 > be different. Due dilligence is required with any kernel flags and if you're
@@ -146,12 +157,6 @@ GRUB_CMDLINE_LINUX_DEFAULT="quiet intel_iommu=on,relax_rmrr iommu=pt vfio-pci.di
 
 ```bash
 update-initramfs -u -k all && update-grub refresh
-```
-
-##### Kernel Admin Guide -  Boot Parameters #####
-
-```text
-<https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/>
 ```
 
 #### Enable the vfio modules ####
