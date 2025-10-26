@@ -16,12 +16,12 @@ questions but no answers.
 
 ## Objectives ##
 
-Create a centralized repository for the inner workings of Proxmox, 
+Create a centralized repository for the inner workings of Proxmox,
 Homelab tools and general Linux items that are directly related.
 
 ### What to install before starting ###
 
-- A proxmox instance that is already, installed, booted and ready to go. 
+- A proxmox instance that is already, installed, booted and ready to go.
 - Recommend running some form of post-install script or your own process
 - Ensure apt is working with either the non-subscription or subscription repos
 - Optional: I like nala as my apt frontend as it supports parallel downloads:
@@ -32,7 +32,7 @@ sudo apt update && sudo apt install nala
 
 ### CPU Scaling Governor ###
 
-This will widely depend on your CPU, it's age, if it has a p-state driver. 
+This will widely depend on your CPU, it's age, if it has a p-state driver.
 Bottom line make sure you have it on the desired govenor and if applicable
 the right p-state driver.
 
@@ -42,7 +42,7 @@ Adjust based on your hardware profiles:
 
 <pre style="white-space: pre-wrap;">
 apt install sudo iperf3 btop gcc make cmake automake autoconf build-essential
-git unzip lm-sensors powertop htop btop pve-headers dkms devscripts debhelper 
+git unzip lm-sensors powertop htop btop pve-headers dkms devscripts debhelper
 equivs nut nut-server nut-monitor ipmitool redfishtool nvme-cli
 </pre>
 
@@ -70,17 +70,17 @@ the settings that have worked across the board for me.</p>
 
 > [!IMPORTANT]
 > Make sure you update the right bootloader:
-> 
+>
 > systemdboot users should use proxmox-boot-tool<br>
 > Grub users should shoud use update-grub
 
 > [!CAUTION]
 > **vfio-pci.disable_idle_d3=1**<br>
-> this boot flag disables D3 sleep states on VFIO devices, this is recommended 
-> for GPUs and especially HBA's since D3 has been known to cause issues with 
-> passthrough hardware. Your mileage may vary however all the ZFS issues 
-> I experienced stopped after disabling. Prior to adding the flag drives would
-> randomly fault out and pools would disconnect with drives missing.
+> this boot flag disables D3 sleep states on VFIO devices, this is recommended
+> for GPUs and especially HBA's since D3 has been known to cause issues with
+> passthrough hardware. Your mileage may vary however all the ZFS issues
+> I experienced stopped when adding this, before my drives would randomly
+> fault out, disappear or disconnect the pool with drives missing.
 
 ##### AMD Kernel Flags #####
 
