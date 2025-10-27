@@ -4,8 +4,8 @@
 
 ## Operator Overview - Updated 10/26/2025 ##
 
-This repository documents the ongoing evolution of my Proxmox-based homelab cluster — not as a generic how-to, but as a 
-curated archive of edge-case fixes, hardware quirks, and kernel-level tooling. It’s built for operators who’ve Googled 
+This repository documents the ongoing evolution of my Proxmox-based homelab cluster — not as a generic how-to, but as a
+curated archive of edge-case fixes, hardware quirks, and kernel-level tooling. It’s built for operators who’ve Googled
 a boot flag and landed in a 12-post thread with zero answers.
 
 > [!CAUTION]
@@ -14,37 +14,57 @@ a boot flag and landed in a 12-post thread with zero answers.
 
 ## Objectives ##
 
-Create a centralized repository for the inner workings of Proxmox, Homelab tools and general Linux items that are 
+Create a centralized repository for the inner workings of Proxmox, Homelab tools and general Linux items that are
 directly related.
 
 ### What to install before starting ###
 
-- A new Proxmox instance installed, booted and ready to go. Existing installs will also work just fine, however, I do 
-not recommend testing these changes on a live production server without ample testing. If your end goal is live 
+- A new Proxmox instance installed, booted and ready to go. Existing installs will also work just fine, however, I do
+not recommend testing these changes on a live production server without ample testing. If your end goal is live
 production, please for ones own sanity get a lab or replica to break before trying to roll this. The wrong boot flags
 can kill a system, literally.
 
 - If you are new to Proxmox or Linux overall I suggest reviewing the official documentation before reading further:
 
-> [Proxmox Official Documentation][pvel-docs]
-> [Admin Guide][pvel-admin]
-> [QEMU/KVM Virtual Machines][pvel-kvm]
-> [PCIe Passthrough][pvel-pcie]
-> [General Requirements][pvel-requirements]
-> [Host Device Passthrough][pvel-hostpass]
-> [SR-IOV][pvel-SR-IOV]
-> [Mediated Devices][pvel-mediated]
-> [vIOMMU][pvel-IOMMU]
+> [Proxmox Official Documentation][pvel-docs] |
+> [Admin Guide][pvel-admin] |
+> [QEMU/KVM Virtual Machines][pvel-kvm] |
+> [PCIe Passthrough][pvel-pcie] |
+> [General Requirements][pvel-requirements] |
+> [Host Device Passthrough][pvel-hostpass] |
+> [SR-IOV][pvel-SR-IOV] |
+> [Mediated Devices][pvel-mediated] |
+> [vIOMMU][pvel-IOMMU] |
 > [Resource Mapping][pvel-resourcemap]
 
-- Post-install script:
+- Post-install process - Enable apt repositories i.e. enterprise or no-subscription, 
+
+
+- Clusters Only: 
+
+If you're running multiple Proxmox nodes and want full control over high availability behavior, you'll need to disable
+Proxmox HA services. In my lab, I’ve done exactly that — HA is disabled, but Corosync remains active for:
+
+- Node-to-node transfers
+
+- Shared Ceph pools
+
+- Access all nodes from one UI
+
+Instead of relying on Proxmox’s HA stack, I use a redundant HAProxy + Keepalived setup to manage frontend failover and routing. This gives me full visibility and control over how services are exposed — without the risk of Proxmox auto-restarting VMs in ways I didn’t authorize.
+
+[!WARNING] You own the failover logic. With HA disabled, LXC containers and VMs won’t auto-migrate or restart on other nodes. If a node dies, it’s on you to detect it and recover workloads manually.
+
+This setup is ideal for labs and edge deployments where predictability and control matter more than automation. Just make sure your HAProxy + Keepalived config is tight — and test failover before you trust it.
+
+Want to add a diagram or table showing how your HAProxy + Keepalived setup routes traffic across nodes? I can help you sketch it out in Markdown or Mermaid.
 
 - Ensure apt is working with either the non-subscription or subscription repos:
 
-- Optional: **Nala** - a drop in replacement for apt that enables parallel package downloads and agile dependency 
-resolution by way of verbose terminal outputof changes as they are made:
+- Optional: **Nala** - a drop in replacement for apt that enables parallel package downloads and agile dependency
+resolution by way of verbose terminal output of changes as they are made:
 
-**NEED SCREENSHOT**
+TBD Screenshot
 
 Nala is reminiscent of yum or dnf from CentOS/Fedora/Red Hat and can be used as a drop in replacement for apt:
 
@@ -52,8 +72,43 @@ Nala is reminiscent of yum or dnf from CentOS/Fedora/Red Hat and can be used as 
 sudo apt update && sudo apt install nala
 ```
 
-Use nala in place of apt after it's installed, apt will remain in place if you
-decide for whatever reason you like apt better. 
+apt will remain if you decide for whatever reason you like apt better.
+
+For command details refer to the help page:
+
+```bash
+root@proxmox:~# nala help
+                                                                                                                
+ Usage: nala [OPTIONS] COMMAND [ARGS]...                                                                        
+                                                                                                                
+ Each command has its own help page.                                                                            
+ For Example: `nala history --help`                                                                             
+                                                                                                                
+╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ --version                       Show program's version number and exit.                                      │
+│ --license                       Reads the GPLv3 which Nala is licensed under.                                │
+│ --install-completion            Install completion for the current shell.                                    │
+│ --show-completion               Show completion for the current shell, to copy it or customize the           │
+│                                 installation.                                                                │
+│ --help                -h        Show this message and exit.                                                  │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭─ Commands ───────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ fetch          Fetch fast mirrors to speed up downloads.                                                     │
+│ update         Update package list.                                                                          │
+│ upgrade        Upgrade the system by upgrading packages only.                                                │
+│ full-upgrade   Upgrade the system by removing/installing/upgrading packages.                                 │
+│ install        Install packages.                                                                             │
+│ purge          Purge packages.                                                                               │
+│ remove         Remove packages.                                                                              │
+│ autopurge      Autopurge packages that are no longer needed.                                                 │
+│ autoremove     Autoremove packages that are no longer needed.                                                │
+│ show           Show package details.                                                                         │
+│ search         Search package names and descriptions.                                                        │
+│ list           List packages based on package names.                                                         │
+│ clean          Clear out the local archive of downloaded package files.                                      │
+│ history        Show transaction history.                                                                     │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+```
 
 ### CPU Scaling Governor ###
 
@@ -279,6 +334,18 @@ echo "options vfio-pci ids=1000:00ac,10de:2803,10de:22bd" >> \
 /etc/modprobe.d/vfio.conf
 ```
 
+### Be aware of device functions ###
+
+If you only isolate the GPU, but not the audio you won't get any audio. Some GPU's also have USB-C connections for VR
+and various other functions - these are no different, if the USB-C is not isolated and passed through in addition to 
+the GPU the function will not work.
+
+#### HDMI Audio ####
+
+```bash
+echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+```
+
 #### LSI or Broadcom HBA's ####
 
 ```bash
@@ -293,15 +360,10 @@ echo "softdep nvidia pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep nvidiafb pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep nvidia_modeset pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep nvidia_drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
-```
-
-##### HDMI Audio - NVIDIA GPU's #####
-
-```bash
 echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
-#### Dedicated - AMD GPU's ####
+#### Dedicated - AMD GPU's Navi, Vega, Polaris, Instinct, Radeon Pro ####
 
 ```bash
 echo "softdep radeon pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
@@ -311,6 +373,24 @@ echo "softdep ccp pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep xhci_hcd pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
+### Special Care: Intel ARC + iGPU ###
+
+> [!WARNING]
+> If you run a newer hybrid Intel setup (e.g. Ultra 7 265K + Arc B580) you'll need to be **extremely careful** when
+> blocking kernel modules for VFIO as some may overlap.
+
+- iGPU uses ```i915``` - blocking this will break host graphics unless you have a fallback GPU that does not rely on
+the **i915** module.
+- ARC uses ```xe``` - this is the module you want to block for dedicated GPU's like the B580.
+
+- Both GPU's may share the same HDMI audio ```snd_hda_intel``` and DRM stack ```drm``` & ```drm_kms_helper``` - block
+these only if you're passing through a dedicated Intel ARC GPU.
+
+> [!TIP]
+> If all you have is an iGPU, consider instead **sharing it with the host** and running workloads in **LXC containers**
+> instead of full passthrough. This avoids driver conflics and allows you to keep your local display running even while
+> running isolated tasks.
+
 #### Integrated - Intel GPU's - iGPU ####
 
 ```bash
@@ -318,21 +398,82 @@ echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep snd_hda_codec_hdmi pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep i915 pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep i2c_algo_bit pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep drm_kms_helper pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
 #### Dedicated - Intel GPU's - ARC ####
 
 ```bash
-echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
-echo "softdep snd_hda_codec_hdmi pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
-echo "softdep i915 pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep xe pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep i2c_algo_bit pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep drm_kms_helper pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep snd_hda_codec_hdmi pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+```
+
+### Troubleshooting ###
+
+> [!TIP]
+> Update your PCI and SMART databases before running lspci — this helps decode ambiguous device names:
+> ```bash
+> sudo update-pciids && update-smart-drivedb
+> ```
+
+#### Step 1: Identify Your PCI Device ####
+
+If VFIO isnt grabbing your device at boot, you can validate and override it **at runtime**. This isn't
+persistent - changes will be lost on reboot - but it's excellent for testing.
+
+Use ```lspci -nnk``` to find your device and its function numbers. Example output for a GPU:
+
+```bash
+41:00.0 VGA compatible controller [0300]: NVIDIA Corporation AD106 [GeForce RTX 4060 Ti] [10de:2803] (rev a1)
+41:00.1 Audio device [0403]: NVIDIA Corporation AD106M High Definition Audio Controller [10de:22bd] (rev a1)
+```
+
+> [!NOTE]
+> Most GPUs expose **multiple functions** - video, audio, USB-C, optical. You must bind **all functions** to 
+> VFIO or passthrough will break.
+
+
+#### PCI ID Breakdown ####
+
+| Segment | Definition |
+| --- | --- |
+| 0000 | PCI Domain |
+| 41 | Bus Number |
+| 00 | Device Number |
+| .1 | Function number |
+
+#### Step 2: Runtime Override (Temporary) ####
+
+Replace ```YOUR:DE:VI.CE``` with your full PCI ID (e.g. 0000:41:00.1):
+
+```bash
+echo "vfio-pci" > /sys/bus/pci/devices/YOUR:DE:VI.CE/driver_override
+echo 1 > /sys/bus/pci/devices/YOUR:DE:VI.CE/remove
+echo 1 > /sys/bus/pci/rescan
+```
+Ensure there is an entry for each **device function** or you risk a kernel module loading which will block VFIO:
+
+```bash
+# GPU core
+echo "vfio-pci" > /sys/bus/pci/devices/0000:41:00.0/driver_override
+echo 1 > /sys/bus/pci/devices/0000:41:00.0/remove
+
+# HDMI audio
+echo "vfio-pci" > /sys/bus/pci/devices/0000:41:00.1/driver_override
+echo 1 > /sys/bus/pci/devices/0000:41:00.1/remove
+
+# Rescan PCI bus
+echo 1 > /sys/bus/pci/rescan
 ```
 
 ### Blacklist Fallback - If VFIO Fails ###
 
-#### NVIDIA Drivers ####
+#### NVIDIA Modules ####
 
 echo "blacklist nvidia" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist nvidia_modeset" >> /etc/modprobe.d/blacklist.conf
@@ -341,29 +482,45 @@ echo "blacklist nvidia_drm" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist snd_hda_intel" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist snd_hda_codec_hdmi" >> /etc/modprobe.d/blacklist.conf
 
-#### AMD Drivers ####
+#### AMD Modules ####
 
-#### Intel iGPU Drivers ####
-
-#### Intel ARC Drivers ####
-
-```bash
-echo "blacklist mpt3sas" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist radeon" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist amdgpu" >> /etc/modprobe.d/blacklist.conf
-echo "blacklist nouveau" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist ccp" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist xhci_hcd" >> /etc/modprobe.d/blacklist.conf
-echo "blacklist nvidia" >> /etc/modprobe.d/blacklist.conf
-echo "blacklist nvidia_modeset" >> /etc/modprobe.d/blacklist.conf
-echo "blacklist nvidiafb" >> /etc/modprobe.d/blacklist.conf
-echo "blacklist nvidia_drm" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist snd_hda_intel" >> /etc/modprobe.d/blacklist.conf
-echo "blacklist snd_hda_codec_hdmi" >> /etc/modprobe.d/blacklist.conf
-echo "blacklist i915" >> /etc/modprobe.d/blacklist.conf
-echo "blacklist i2c_algo_bit" >> /etc/modprobe.d/blacklist.conf
-echo "blacklist xe" >> /etc/modprobe.d/blacklist.conf
-```
+
+#### Intel iGPU Modules ####
+
+echo "softdep i915 pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep xe pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep snd_hda_codec_hdmi pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep i2c_algo_bit pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+echo "softdep drm_kms_helper pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+
+#### Intel Modules ####
+
+##### Intel ARC/Battlemage (dGPU) VFIO Blacklist #####
+
+echo "blacklist xe" >> /etc/modprobe.d/vfio-blacklist.conf
+echo "blacklist snd_hda_intel" >> /etc/modprobe.d/vfio-blacklist.conf
+echo "blacklist drm" >> /etc/modprobe.d/vfio-blacklist.conf
+echo "blacklist drm_kms_helper" >> /etc/modprobe.d/vfio-blacklist.conf
+echo "blacklist i2c_algo_bit" >> /etc/modprobe.d/vfio-blacklist.conf
+echo "blacklist intel_vsec" >> /etc/modprobe.d/vfio-blacklist.conf
+
+##### Intel iGPU (Meteor Lake or older) VFIO Blacklist #####
+
+echo "blacklist i915" >> /etc/modprobe.d/vfio-blacklist.conf
+echo "blacklist snd_hda_intel" >> /etc/modprobe.d/vfio-blacklist.conf
+echo "blacklist drm" >> /etc/modprobe.d/vfio-blacklist.conf
+echo "blacklist drm_kms_helper" >> /etc/modprobe.d/vfio-blacklist.conf
+echo "blacklist i2c_algo_bit" >> /etc/modprobe.d/vfio-blacklist.conf
+echo "blacklist intel_gtt" >> /etc/modprobe.d/vfio-blacklist.conf
+echo "blacklist intel_uncore" >> /etc/modprobe.d/vfio-blacklist.conf
+echo "blacklist intel_vsec" >> /etc/modprobe.d/vfio-blacklist.conf
 
 ### Update initramfs and refresh bootloader ###
 
