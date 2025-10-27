@@ -56,10 +56,7 @@ auto-restarting VMs in ways I didn’t authorize.
 
 > [!WARNING] You own the failover logic. With HA disabled, LXC containers and VMs won’t auto-migrate or restart on other
 > nodes. If a node dies, it’s on you to detect it and recover workloads manually. This setup is ideal for labs and edge
-> deployments where predictability and control matter more than automation. Just make sure your HAProxy + Keepalived
-> config is tight — and test failover before you trust it. Want to add a diagram or table showing how your 
-> HAProxy + Keepalived setup routes traffic across nodes? I can help you sketch it out in Markdown or Mermaid.
-
+> deployments where predictability and control matter more than automation.
 
 ### CPU Scaling Governor ###
 
