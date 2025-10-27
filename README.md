@@ -1,6 +1,6 @@
 # Proxmox Tips & Tricks #
 
-## 🛠️ Automation Status
+## 🛠️ Automation Status ##
 
 | Workflow | Status |
 |----------|--------|
@@ -57,7 +57,7 @@ equivs nut nut-server nut-monitor ipmitool redfishtool nvme-cli
 
 The post-install phase can be quick or deeply customized depending on your environment. While community scripts exist,
 the most reliable and maintainable approach is to build your own — tailored to your infrastructure, workflows, and
-operational standards. For inspiration, check out the post-install script I’ve put together. It’s modular, 
+operational standards. For inspiration, check out the post-install script I’ve put together. It’s modular,
 operator-friendly, and easy to extend:
 
 <details>
@@ -71,7 +71,7 @@ operator-friendly, and easy to extend:
 ### CPU Scaling Governor ###
 
 In order to get the desired functionality out of your setup the CPU governor needs to match your workload and power
-expectations. I use on-demand for my three nodes. The modes to you vary depending on your CPU model, it's age, and if 
+expectations. I use on-demand for my three nodes. The modes to you vary depending on your CPU model, it's age, and if
 a p-state driver is available. The ```cpupower``` command will show you which governors are available to you.
 
 ```bash
@@ -508,7 +508,6 @@ All external references are declared below for markdownlint compliance and contr
 -->
 [kernel-guide-github]: https://github.com/torvalds/linux/blob/master/Documentation/admin-guide/boot.parameters.html
 [kernel-guide-official]: https://docs.kernel.org/admin-guide/kernel-parameters.html
-[licensing-email]: mailto:licensing@techinasnap.com
 [pvel-docs]: https://pve.proxmox.com/pve-docs/
 [pvel-admin]: https://pve.proxmox.com/pve-docs/pve-admin-guide.html
 [pvel-kvm]: https://pve.proxmox.com/pve-docs/chapter-qm.html
