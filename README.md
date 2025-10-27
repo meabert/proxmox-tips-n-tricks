@@ -39,16 +39,16 @@ directly related.
 
 - Post-install process - Enable apt i.e. enterprise or no-subscription repos, update system to test connectivity.
 
+### Clusters Only - Skip for Single Nodes ###
+
+If you're running multiple Proxmox nodes and want full control over high availability behavior, you'll
+need to disable Proxmox HA services. In my lab, I’ve done exactly that — HA is disabled, but Corosync active for:
+
 - Node-to-node transfers
 
 - Shared Ceph pools
 
 - Access all nodes from one UI
-
-### Clusters Only - Skip for Single Nodes ###
-
-If you're running multiple Proxmox nodes and want full control over high availability behavior, you'll
-need to disable Proxmox HA services. In my lab, I’ve done exactly that — HA is disabled, but Corosync active for:
 
 Instead of relying on Proxmox’s HA stack, I use a redundant HAProxy + Keepalived setup to manage frontend failover and
 routing. This gives me full visibility and control over how services are exposed — without the risk of Proxmox
