@@ -1,4 +1,4 @@
-name: Inject Post-Install Script into README
+name: Script Injection
 
 on:
   push:

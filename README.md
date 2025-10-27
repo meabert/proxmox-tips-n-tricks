@@ -1,8 +1,8 @@
 # Proxmox Tips & Tricks #
 
 ![markdownlint-cli2](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/markdownlint-cli2-action.yml/badge.svg)
-![Inject Script](https://github.com/your-username/your-repo/actions/workflows/inject-postinstall.yml/badge.svg)
-[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+![Script Injection](https://github.com/your-username/your-repo/actions/workflows/inject-postinstall.yml/badge.svg)
+![License: CC BY-NC 4.0][(https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 ## Operator Overview - Updated 10/26/2025 ##
 
 This repository documents the ongoing evolution of my Proxmox-based homelab cluster — not as a generic how-to, but as a
