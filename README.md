@@ -39,30 +39,21 @@ directly related.
 
 - Post-install process - Enable apt i.e. enterprise or no-subscription repos, update system to test connectivity.
 
-### Clusters Only - Skip for Single Nodes ###
+### Manually added packages ###
 
-If you're running multiple Proxmox nodes and want full control over high availability behavior, you'll
-need to disable Proxmox HA services. In my lab, I’ve done exactly that — HA is disabled, but Corosync active for:
+Adjust based on your hardware profiles:
 
-- Node-to-node transfers
-
-- Shared Ceph pools
-
-- Access all nodes from one UI
-
-Instead of relying on Proxmox’s HA stack, I use a redundant HAProxy + Keepalived setup to manage frontend failover and
-routing. This gives me full visibility and control over how services are exposed — without the risk of Proxmox
-auto-restarting VMs in ways I didn’t authorize.
-
-> [!WARNING] You own the failover logic. With HA disabled, LXC containers and VMs won’t auto-migrate or restart on other
-> nodes. If a node dies, it’s on you to detect it and recover workloads manually. This setup is ideal for labs and edge
-> deployments where predictability and control matter more than automation.
+<pre style="white-space: pre-wrap;">
+apt install sudo iperf3 btop gcc make cmake automake autoconf build-essential
+git unzip lm-sensors powertop htop btop pve-headers dkms devscripts debhelper
+equivs nut nut-server nut-monitor ipmitool redfishtool nvme-cli
+</pre>
 
 ### CPU Scaling Governor ###
 
 In order to get the desired functionality out of your setup the CPU governor needs to match your workload and power
 expectations. I use on-demand for my three nodes. The modes available vary widely depending on your CPU model, it's age,
-and if a p-state driver is available. The cpupower command can get you additional information about your CPU so you can
+and if a p-state driver is available. The ```cpupower``` command can get you additional information about your CPU so you can
 an informed decision on the setting itself:
 
 ```bash
@@ -81,15 +72,25 @@ sudo cpupower frequency-set ondemand
 sudo cpupower frequency-info
 ```
 
-### Manually added packages ###
+### Clusters Only - Skip for Single Nodes ###
 
-Adjust based on your hardware profiles:
+If you're running multiple Proxmox nodes and want full control over high availability behavior, you'll
+need to disable Proxmox HA services. In my lab, I’ve done exactly that — HA is disabled, but Corosync active for:
 
-<pre style="white-space: pre-wrap;">
-apt install sudo iperf3 btop gcc make cmake automake autoconf build-essential
-git unzip lm-sensors powertop htop btop pve-headers dkms devscripts debhelper
-equivs nut nut-server nut-monitor ipmitool redfishtool nvme-cli
-</pre>
+- Node-to-node transfers
+
+- Shared Ceph pools
+
+- Access all nodes from one UI
+
+Instead of relying on Proxmox’s HA stack, I use a redundant HAProxy + Keepalived setup to manage frontend failover and
+routing. This gives me full visibility and control over how services are exposed — without the risk of Proxmox
+auto-restarting VMs in ways I didn’t authorize.
+
+> [!WARNING]
+> You own the failover logic. With HA disabled, LXC containers and VMs won’t auto-migrate or restart on other
+> nodes. If a node dies, it’s on you to detect it and recover workloads manually. This setup is ideal for labs and edge
+> deployments where predictability and control matter more than automation.
 
 ## Hardware Provisioning for VM's ##
 
