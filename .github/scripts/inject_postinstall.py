@@ -21,13 +21,13 @@ with open(SCRIPT, "r", encoding="utf-8") as f:
 # Wrap in a Markdown code block
 code_block = f"```bash\n{script_content}\n```"
 
-# Read the README and inject the script
+# Read the README
 with open(README, "r", encoding="utf-8") as f:
     readme = f.read()
 
+# Replace using a function to avoid escape parsing
 pattern = re.compile(f"{START}.*?{END}", re.DOTALL)
-replacement = f"{START}\n{code_block}\n{END}"
-updated = pattern.sub(replacement, readme)
+updated = pattern.sub(lambda _: f"{START}\n{code_block}\n{END}", readme)
 
 # Write the updated README
 with open(README, "w", encoding="utf-8") as f:

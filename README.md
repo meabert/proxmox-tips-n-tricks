@@ -463,9 +463,7 @@ echo "softdep i2c_algo_bit pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep drm_kms_helper pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 
-#### Intel Modules ####
-
-##### Intel ARC/Battlemage (dGPU) VFIO Blacklist #####
+#### Intel ARC/Battlemage (dGPU) Blacklist ####
 
 echo "blacklist xe" >> /etc/modprobe.d/vfio-blacklist.conf
 echo "blacklist snd_hda_intel" >> /etc/modprobe.d/vfio-blacklist.conf
@@ -474,7 +472,7 @@ echo "blacklist drm_kms_helper" >> /etc/modprobe.d/vfio-blacklist.conf
 echo "blacklist i2c_algo_bit" >> /etc/modprobe.d/vfio-blacklist.conf
 echo "blacklist intel_vsec" >> /etc/modprobe.d/vfio-blacklist.conf
 
-##### Intel iGPU (Meteor Lake or older) VFIO Blacklist #####
+##### Intel iGPU (Meteor Lake or older) Blacklist #####
 
 echo "blacklist i915" >> /etc/modprobe.d/vfio-blacklist.conf
 echo "blacklist snd_hda_intel" >> /etc/modprobe.d/vfio-blacklist.conf
