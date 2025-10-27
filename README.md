@@ -1,7 +1,8 @@
 # Proxmox Tips & Tricks #
 
 ![markdownlint-cli2](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/markdownlint-cli2-action.yml/badge.svg)
-
+![Inject Script](https://github.com/your-username/your-repo/actions/workflows/inject-postinstall.yml/badge.svg)
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
 ## Operator Overview - Updated 10/26/2025 ##
 
 This repository documents the ongoing evolution of my Proxmox-based homelab cluster — not as a generic how-to, but as a
@@ -37,11 +38,9 @@ directly related.
 > [vIOMMU][pvel-IOMMU] |
 > [Resource Mapping][pvel-resourcemap]
 
-- Post-install process - Enable apt i.e. enterprise or no-subscription repos, update system to test connectivity.
-
 ### Manually added packages ###
 
-Adjust based on your hardware profiles:
+Adjust based on your hardware, integration and compliance needs:
 
 <pre style="white-space: pre-wrap;">
 apt install sudo iperf3 btop gcc make cmake automake autoconf build-essential
@@ -49,12 +48,26 @@ git unzip lm-sensors powertop htop btop pve-headers dkms devscripts debhelper
 equivs nut nut-server nut-monitor ipmitool redfishtool nvme-cli
 </pre>
 
+#### Post-Install Process ####
+
+The post-install phase can be quick or deeply customized depending on your environment. While community scripts exist,
+the most reliable and maintainable approach is to build your own — tailored to your infrastructure, workflows, and
+operational standards. For inspiration, check out the post-install script I’ve put together. It’s modular, 
+operator-friendly, and easy to extend:
+
+<details>
+<summary>📜 View Full Post-Install Script</summary>
+
+<!-- POSTINSTALL:START -->
+<!-- POSTINSTALL:END -->
+
+</details>
+
 ### CPU Scaling Governor ###
 
 In order to get the desired functionality out of your setup the CPU governor needs to match your workload and power
-expectations. I use on-demand for my three nodes. The modes available vary widely depending on your CPU model, it's age,
-and if a p-state driver is available. The ```cpupower``` command can get you additional information about your CPU so you can
-an informed decision on the setting itself:
+expectations. I use on-demand for my three nodes. The modes to you vary depending on your CPU model, it's age, and if 
+a p-state driver is available. The ```cpupower``` command will show you which governors are available to you.
 
 ```bash
 sudo apt update && sudo apt install linux-cpupower
@@ -518,16 +531,11 @@ Commercial use requires a separate license. Contact [licensing-email].
 
 [licensing-email]: mailto:licensing@techinasnap.com
 -->
-## License ##
 
-This project is dual-licensed:
+> 📜 This repository is licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).  
+> You may reuse, remix, and adapt the content non-commercially with attribution.  
+> Commercial use requires explicit permission — because good infrastructure deserves respect, not exploitation.
 
-- 🛠️ Scripts: [SSPL](https://www.mongodb.com/licensing/server-side-public-license)
-- 📚 Docs: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)
-
-Free to learn. Not free to resell.  
-If you profit, I invoice.  
-Contact [licensing][licensing-email] for commercial use.
 <!--
 🤖 Copilot Attribution Advisory
 
