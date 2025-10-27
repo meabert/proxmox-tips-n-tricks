@@ -20,9 +20,9 @@ directly related.
 ### What to install before starting ###
 
 - A new Proxmox instance installed, booted and ready to go. Existing installs will also work just fine, however, I do
-not recommend testing these changes on a live production server without ample testing. If your end goal is live
-production, please for ones own sanity get a lab or replica to break before trying to roll this. The wrong boot flags
-can kill a system, literally.
+  not recommend testing these changes on a live production server without ample testing. If your end goal is live
+  production, please for ones own sanity get a lab or replica to break before trying to roll this. The wrong boot flags
+  can kill a system, literally.
 
 - If you are new to Proxmox or Linux overall I suggest reviewing the official documentation before reading further:
 
@@ -37,13 +37,7 @@ can kill a system, literally.
 > [vIOMMU][pvel-IOMMU] |
 > [Resource Mapping][pvel-resourcemap]
 
-- Post-install process - Enable apt repositories i.e. enterprise or no-subscription, 
-
-
-- Clusters Only: 
-
-If you're running multiple Proxmox nodes and want full control over high availability behavior, you'll need to disable
-Proxmox HA services. In my lab, I’ve done exactly that — HA is disabled, but Corosync remains active for:
+- Post-install process - Enable apt i.e. enterprise or no-subscription repos, update system to test connectivity.
 
 - Node-to-node transfers
 
@@ -51,64 +45,21 @@ Proxmox HA services. In my lab, I’ve done exactly that — HA is disabled, but
 
 - Access all nodes from one UI
 
-Instead of relying on Proxmox’s HA stack, I use a redundant HAProxy + Keepalived setup to manage frontend failover and routing. This gives me full visibility and control over how services are exposed — without the risk of Proxmox auto-restarting VMs in ways I didn’t authorize.
+### Clusters Only - Skip for Single Nodes ###
 
-[!WARNING] You own the failover logic. With HA disabled, LXC containers and VMs won’t auto-migrate or restart on other nodes. If a node dies, it’s on you to detect it and recover workloads manually.
+If you're running multiple Proxmox nodes and want full control over high availability behavior, you'll
+need to disable Proxmox HA services. In my lab, I’ve done exactly that — HA is disabled, but Corosync active for:
 
-This setup is ideal for labs and edge deployments where predictability and control matter more than automation. Just make sure your HAProxy + Keepalived config is tight — and test failover before you trust it.
+Instead of relying on Proxmox’s HA stack, I use a redundant HAProxy + Keepalived setup to manage frontend failover and
+routing. This gives me full visibility and control over how services are exposed — without the risk of Proxmox
+auto-restarting VMs in ways I didn’t authorize.
 
-Want to add a diagram or table showing how your HAProxy + Keepalived setup routes traffic across nodes? I can help you sketch it out in Markdown or Mermaid.
+> [!WARNING] You own the failover logic. With HA disabled, LXC containers and VMs won’t auto-migrate or restart on other
+> nodes. If a node dies, it’s on you to detect it and recover workloads manually. This setup is ideal for labs and edge
+> deployments where predictability and control matter more than automation. Just make sure your HAProxy + Keepalived
+> config is tight — and test failover before you trust it. Want to add a diagram or table showing how your 
+> HAProxy + Keepalived setup routes traffic across nodes? I can help you sketch it out in Markdown or Mermaid.
 
-- Ensure apt is working with either the non-subscription or subscription repos:
-
-- Optional: **Nala** - a drop in replacement for apt that enables parallel package downloads and agile dependency
-resolution by way of verbose terminal output of changes as they are made:
-
-TBD Screenshot
-
-Nala is reminiscent of yum or dnf from CentOS/Fedora/Red Hat and can be used as a drop in replacement for apt:
-
-```bash
-sudo apt update && sudo apt install nala
-```
-
-apt will remain if you decide for whatever reason you like apt better.
-
-For command details refer to the help page:
-
-```bash
-root@proxmox:~# nala help
-                                                                                                                
- Usage: nala [OPTIONS] COMMAND [ARGS]...                                                                        
-                                                                                                                
- Each command has its own help page.                                                                            
- For Example: `nala history --help`                                                                             
-                                                                                                                
-╭─ Options ────────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ --version                       Show program's version number and exit.                                      │
-│ --license                       Reads the GPLv3 which Nala is licensed under.                                │
-│ --install-completion            Install completion for the current shell.                                    │
-│ --show-completion               Show completion for the current shell, to copy it or customize the           │
-│                                 installation.                                                                │
-│ --help                -h        Show this message and exit.                                                  │
-╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭─ Commands ───────────────────────────────────────────────────────────────────────────────────────────────────╮
-│ fetch          Fetch fast mirrors to speed up downloads.                                                     │
-│ update         Update package list.                                                                          │
-│ upgrade        Upgrade the system by upgrading packages only.                                                │
-│ full-upgrade   Upgrade the system by removing/installing/upgrading packages.                                 │
-│ install        Install packages.                                                                             │
-│ purge          Purge packages.                                                                               │
-│ remove         Remove packages.                                                                              │
-│ autopurge      Autopurge packages that are no longer needed.                                                 │
-│ autoremove     Autoremove packages that are no longer needed.                                                │
-│ show           Show package details.                                                                         │
-│ search         Search package names and descriptions.                                                        │
-│ list           List packages based on package names.                                                         │
-│ clean          Clear out the local archive of downloaded package files.                                      │
-│ history        Show transaction history.                                                                     │
-╰──────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-```
 
 ### CPU Scaling Governor ###
 
