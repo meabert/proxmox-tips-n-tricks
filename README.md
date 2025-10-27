@@ -5,8 +5,8 @@
 | Workflow | Status |
 |----------|--------|
 | markdownlint-cli2 | ![Markdown Validation](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/markdownlint-cli2-action.yml/badge.svg) |
-| Inject Post-Install Script | [![Inject Script](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/inject-postinstall.yml/badge.svg)](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/inject-postinstall.yml) |
-| License | [![CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/) |
+| Post-Install Script | [![Script Injection](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/inject-postinstall.yml/badge.svg)](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/inject-postinstall.yml) |
+| Repo Permission | [![CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/) |
 
 ## Operator Overview - Updated 10/26/2025 ##
 
