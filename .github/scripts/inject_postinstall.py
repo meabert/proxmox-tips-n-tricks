@@ -32,4 +32,3 @@ updated = pattern.sub(replacement, readme)
 # Write the updated README
 with open(README, "w", encoding="utf-8") as f:
     f.write(updated)
-print("Post-install script injected into README.md")
