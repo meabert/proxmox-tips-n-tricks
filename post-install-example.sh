@@ -23,7 +23,7 @@ for arg in "$@"; do
   esac
 done
 
-# Spinner progress function
+# Spinner function
 spin() {
   local pid=$1
   local delay=0.1
