@@ -26,7 +26,7 @@ jobs:
         env:
           GH_PAT: ${{ secrets.GH_PAT }}
         run: |
-        git config user.name "Auto Commit Bot"
-        git config user.email "actions@github.com"
-        git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
-        git diff --quiet || (git add README.md && git commit -m "📎 Inject updated post-install script into README" && git push)
+          git config user.name "Auto Commit Bot"
+          git config user.email "actions@github.com"
+          git remote set-url origin https://x-access-token:${GH_PAT}@github.com/${{ github.repository }}
+          git diff --quiet || (git add README.md && git commit -m "📎 Inject updated post-install script into README" && git push)
