@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'post-install-example.sh'
+      - 'README.md'
   workflow_dispatch:
 
 jobs:
