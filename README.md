@@ -378,9 +378,8 @@ Use ```lspci -nnk``` to find your device and its function numbers. Example outpu
 ```
 
 > [!NOTE]
-> Most GPUs expose **multiple functions** - video, audio, USB-C, optical. You must bind **all functions** to 
+> Most GPUs expose **multiple functions** - video, audio, USB-C, optical. You must bind **all functions** to
 > VFIO or passthrough will break.
-
 
 #### PCI ID Breakdown ####
 
@@ -400,6 +399,7 @@ echo "vfio-pci" > /sys/bus/pci/devices/YOUR:DE:VI.CE/driver_override
 echo 1 > /sys/bus/pci/devices/YOUR:DE:VI.CE/remove
 echo 1 > /sys/bus/pci/rescan
 ```
+
 Ensure there is an entry for each **device function** or you risk a kernel module loading which will block VFIO:
 
 ```bash
