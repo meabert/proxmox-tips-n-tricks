@@ -285,7 +285,7 @@ echo "options vfio-pci ids=1000:00ac,10de:2803,10de:22bd" >> \
 ### Be aware of device functions ###
 
 If you only isolate the GPU, but not the audio you won't get any audio. Some GPU's also have USB-C connections for VR
-and various other functions - these are no different, if the USB-C is not isolated and passed through in addition to 
+and various other functions - these are no different, if the USB-C is not isolated and passed through in addition to
 the GPU the function will not work.
 
 #### HDMI Audio ####
@@ -365,9 +365,7 @@ echo "softdep snd_hda_codec_hdmi pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 
 > [!TIP]
 > Update your PCI and SMART databases before running lspci — this helps decode ambiguous device names:
-> ```bash
-> sudo update-pciids && update-smart-drivedb
-> ```
+> ```sudo update-pciids && update-smart-drivedb```
 
 #### Step 1: Identify Your PCI Device ####
 
