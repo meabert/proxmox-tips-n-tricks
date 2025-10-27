@@ -1,4 +1,4 @@
-name: markdownlint-cli2
+name: Markdown Validation
 
 on:
   push:
