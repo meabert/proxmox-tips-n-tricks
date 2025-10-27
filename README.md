@@ -60,12 +60,10 @@ auto-restarting VMs in ways I didn’t authorize.
 
 ### CPU Scaling Governor ###
 
-In order to get the desired functionality out of your setup the CPU governor
-needs to match your workload and power expectations. I use on-demand for my
-three nodes. The modes available vary widely depending on your CPU model,
-it's age, if it has a p-state driver available. The cpupower command can
-get you additional information about your CPU. This way make an informed
-choice on the setting itself:
+In order to get the desired functionality out of your setup the CPU governor needs to match your workload and power
+expectations. I use on-demand for my three nodes. The modes available vary widely depending on your CPU model, it's age,
+and if a p-state driver is available. The cpupower command can get you additional information about your CPU so you can
+an informed decision on the setting itself:
 
 ```bash
 sudo apt update && sudo apt install linux-cpupower
