@@ -43,7 +43,7 @@ log() {
   $DEBUG && echo "[DEBUG] $1"
 }
 
-# 🛑 Help block — runs before anything else
+# 🛑 Help block — run before anything else
 if $SHOW_HELP; then
   echo "Usage: ./post-install.sh [options]"
   echo ""
