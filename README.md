@@ -1,6 +1,6 @@
 # Proxmox Tips & Tricks #
 
-## 🛠️ Automation Status ##
+## 🛠️ CI/CD Automation Status ##
 
 | Workflow | Status |
 |----------|--------|
@@ -691,23 +691,28 @@ echo 1 > /sys/bus/pci/rescan
 
 #### NVIDIA Modules ####
 
+```bash
 echo "blacklist nvidia" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist nvidia_modeset" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist nvidiafb" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist nvidia_drm" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist snd_hda_intel" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist snd_hda_codec_hdmi" >> /etc/modprobe.d/blacklist.conf
+```
 
 #### AMD Modules ####
 
+```bash
 echo "blacklist radeon" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist amdgpu" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist ccp" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist xhci_hcd" >> /etc/modprobe.d/blacklist.conf
 echo "blacklist snd_hda_intel" >> /etc/modprobe.d/blacklist.conf
+```
 
 #### Intel iGPU Modules ####
 
+```bash
 echo "softdep i915 pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep xe pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
@@ -715,18 +720,22 @@ echo "softdep snd_hda_codec_hdmi pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep i2c_algo_bit pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep drm_kms_helper pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
+```
 
 #### Intel ARC/Battlemage (dGPU) Blacklist ####
 
+```bash
 echo "blacklist xe" >> /etc/modprobe.d/vfio-blacklist.conf
 echo "blacklist snd_hda_intel" >> /etc/modprobe.d/vfio-blacklist.conf
 echo "blacklist drm" >> /etc/modprobe.d/vfio-blacklist.conf
 echo "blacklist drm_kms_helper" >> /etc/modprobe.d/vfio-blacklist.conf
 echo "blacklist i2c_algo_bit" >> /etc/modprobe.d/vfio-blacklist.conf
 echo "blacklist intel_vsec" >> /etc/modprobe.d/vfio-blacklist.conf
+```
 
 ##### Intel iGPU (Meteor Lake or older) Blacklist #####
 
+```bash
 echo "blacklist i915" >> /etc/modprobe.d/vfio-blacklist.conf
 echo "blacklist snd_hda_intel" >> /etc/modprobe.d/vfio-blacklist.conf
 echo "blacklist drm" >> /etc/modprobe.d/vfio-blacklist.conf
@@ -735,6 +744,7 @@ echo "blacklist i2c_algo_bit" >> /etc/modprobe.d/vfio-blacklist.conf
 echo "blacklist intel_gtt" >> /etc/modprobe.d/vfio-blacklist.conf
 echo "blacklist intel_uncore" >> /etc/modprobe.d/vfio-blacklist.conf
 echo "blacklist intel_vsec" >> /etc/modprobe.d/vfio-blacklist.conf
+```
 
 ### Update initramfs and refresh bootloader ###
 
