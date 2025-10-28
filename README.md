@@ -1,5 +1,7 @@
 # Proxmox Tips & Tricks #
 
+A curated set of Proxmox enhancements for homelab and edge deployments — with CI/CD swagger.
+
 ## 🛠️ CI/CD Automation Status ##
 
 | Workflow | Status |
@@ -10,15 +12,39 @@
 
 ## Operator Overview - Updated 10/26/2025 ##
 
-This repository documents the ongoing evolution of my Proxmox-based homelab cluster — not as a generic how-to, but as a
-curated archive of edge-case fixes, hardware quirks, and kernel-level tooling. It’s built for operators who’ve Googled
-a boot flag and landed in a 12-post thread with zero answers.
+This repository documents my personal Proxmox VE setup across a three-node homelab cluster, blending production-grade
+hygiene with experimental edge configurations. It includes post-install tweaks, microcode patching, PCI passthrough
+strategies, and general system hardening — all designed to be auditable, maintainable, and operator-friendly.
+
+Each node serves a distinct role:
+
+- **Selene** 
+  High-performance compute and storage node built on an AMD EPYC 7513 (32-core) with 256 GB ECC RAM and dual GPUs
+  (NVIDIA RTX 4060 Ti + ASPEED). It uses VFIO passthrough for a Broadcom 9400-16i HBA connected to 12× 8TB IronWolf
+  drives. ZFS is configured locally on Proxmox as a six-vdev mirror RAID (2-wide), with three additional 2-wide SSD
+  metadata vdevs. Intel Optane drives are used for both SLOG and L2ARC, improving sync write performance and read
+  caching for high-IO workloads.
+
+- **Pandorum**  
+  Fast NVMe node built on a Minisforum MS-01 with an Intel Core i5-12600H with 96 GB RAM. This unit is all NVMe,
+  including the PCIe slot (with NVMe adapter) It hosts multiple USB Seagate externals as an “escape pod” for emergency
+  recovery and offsite sync.
+
+- **Nyx**  
+  High-speed NVMe node built on a Minisforum MS-01 with an Intel Core i5-12600H and 96 GB RAM. All storage is
+  NVMe-based, including the PCIe slot via adapter, allowing for dense, low-latency workloads. This node also hosts
+  multiple USB-connected Seagate externals, serving as an “escape pod” for emergency recovery, offsite sync, and cold
+  storage. It’s optimized for fast I/O and flexible backup workflows, with minimal overhead and clean topology.
+
+While some configurations push the edge (firmware, kernel flags, VFIO), others focus on onboarding clarity, contributor
+safety, and long-term maintainability. This repo is designed to be both technically rigorous and approachable — useful
+for homelabbers, but presentable for professional review.
 
 > [!CAUTION]
 > Your hardware is not my hardware. Always verify kernel flags, BIOS settings, and driver behavior before applying
 > anything here. Especially if your PCI slot is hosting a particle accelerator.
 
-## Objectives ##
+## Project Objectives and Setup Prerequisites ##
 
 Create a centralized repository for the inner workings of Proxmox, Homelab tools and general Linux items that are
 directly related.
@@ -43,7 +69,7 @@ directly related.
 > [vIOMMU][pvel-IOMMU] |
 > [Resource Mapping][pvel-resourcemap]
 
-### Manually added packages ###
+### Recommended Packages ###
 
 Adjust based on your hardware, integration and compliance needs:
 
