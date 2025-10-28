@@ -18,7 +18,7 @@ strategies, and general system hardening — all designed to be auditable, maint
 
 Each node serves a distinct role:
 
-- **Selene** 
+- **Selene**
   High-performance compute and storage node built on an AMD EPYC 7513 (32-core) with 256 GB ECC RAM and dual GPUs
   (NVIDIA RTX 4060 Ti + ASPEED). It uses VFIO passthrough for a Broadcom 9400-16i HBA connected to 12× 8TB IronWolf
   drives. ZFS is configured locally on Proxmox as a six-vdev mirror RAID (2-wide), with three additional 2-wide SSD
