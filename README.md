@@ -17,6 +17,7 @@ It blends production-grade hygiene with experimental edge configurations — inc
 patching, PCI passthrough, and kernel-level tuning.
 
 The goal is to create a repeatable, contributor-savvy setup that’s:
+
 - ✅ Maintainable across hardware generations
 - ✅ Transparent for audit and recovery
 - ✅ Loud enough to warn future operators before regret sets in
