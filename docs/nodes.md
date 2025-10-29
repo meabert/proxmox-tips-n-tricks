@@ -8,9 +8,6 @@
 - NVIDIA GeForce RTX 4060 Ti
 - Mellanox ConnectX-5 OCP 2.0 - Dual 25Gb SFP+
 - Broadcom 9400-16i - SFF 8643 - Tri-Mode
-- 
--
--
 - 1.5TB Intel Optane 905p (x1)
 - 8TB Seagate Ironwolf Pro (x12)
 - 1TB SATA SSD's (x8)
