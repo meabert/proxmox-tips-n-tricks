@@ -10,64 +10,60 @@ A curated set of Proxmox enhancements for homelab and edge deployments — with 
 | Post-Install Script | [![Script Injection](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/inject-postinstall.yml/badge.svg)](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/inject-postinstall.yml) |
 | Repo Permission | [![CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/) |
 
-## Operator Overview - Updated 10/26/2025 ##
+## Operator Overview ##
 
-This repository documents my personal Proxmox VE setup across a three-node homelab cluster, blending production-grade
-hygiene with experimental edge configurations. It includes post-install tweaks, microcode patching, PCI passthrough
-strategies, and general system hardening — all designed to be auditable, maintainable, and operator-friendly.
+This repository documents a multi-node Proxmox VE homelab designed for performance, auditability, and operator clarity.
+It blends production-grade hygiene with experimental edge configurations — including post-install scripting, microcode
+patching, PCI passthrough, and kernel-level tuning.
 
-Each node serves a distinct role:
+The goal is to create a repeatable, contributor-savvy setup that’s:
+- ✅ Maintainable across hardware generations
+- ✅ Transparent for audit and recovery
+- ✅ Loud enough to warn future operators before regret sets in
 
-- **Selene**
-  High-performance compute and storage node built on an AMD EPYC 7513 (32-core) with 256 GB ECC RAM and dual GPUs
-  (NVIDIA RTX 4060 Ti + ASPEED). It uses VFIO passthrough for a Broadcom 9400-16i HBA connected to 12× 8TB IronWolf
-  drives. ZFS is configured locally on Proxmox as a six-vdev mirror RAID (2-wide), with three additional 2-wide SSD
-  metadata vdevs. Intel Optane drives are used for both SLOG and L2ARC, improving sync write performance and read
-  caching for high-IO workloads.
-
-- **Pandorum**  
-  Fast NVMe node built on a Minisforum MS-01 with an Intel Core i5-12600H with 96 GB RAM. This unit is all NVMe,
-  including the PCIe slot (with NVMe adapter) It hosts multiple USB Seagate externals as an “escape pod” for emergency
-  recovery and offsite sync.
-
-- **Nyx**  
-  High-speed NVMe node built on a Minisforum MS-01 with an Intel Core i5-12600H and 96 GB RAM. All storage is
-  NVMe-based, including the PCIe slot via adapter, allowing for dense, low-latency workloads. This node also hosts
-  multiple USB-connected Seagate externals, serving as an “escape pod” for emergency recovery, offsite sync, and cold
-  storage. It’s optimized for fast I/O and flexible backup workflows, with minimal overhead and clean topology.
-
-While some configurations push the edge (firmware, kernel flags, VFIO), others focus on onboarding clarity, contributor
-safety, and long-term maintainability. This repo is designed to be both technically rigorous and approachable — useful
-for homelabbers, but presentable for professional review.
+For a breakdown of the hardware roles and topology, see [`Nodes Hardware`](docs/nodes.md).
 
 > [!CAUTION]
 > Your hardware is not my hardware. Always verify kernel flags, BIOS settings, and driver behavior before applying
 > anything here. Especially if your PCI slot is hosting a particle accelerator.
 
-## Project Objectives and Setup Prerequisites ##
+## Project Objectives & Setup Prerequisites ##
 
-Create a centralized repository for the inner workings of Proxmox, Homelab tools and general Linux items that are
-directly related.
+This repository serves as a centralized reference for Proxmox VE enhancements, homelab tooling, and Linux configurations
+directly related to virtualization, hardware provisioning, and infrastructure hygiene. It’s designed to help operators
+build reliable, auditable systems with branded onboarding and contributor clarity.
 
-### What to install before starting ###
+### Objectives ###
 
-- A new Proxmox instance installed, booted and ready to go. Existing installs will also work just fine, however, I do
-  not recommend testing these changes on a live production server without ample testing. If your end goal is live
-  production, please for ones own sanity get a lab or replica to break before trying to roll this. The wrong boot flags
-  can kill a system, literally.
+- Document repeatable post-install workflows for Proxmox VE
+- Share PCI passthrough strategies, kernel tuning, and VFIO setups
+- Provide modular scripts and advisory blocks for onboarding and recovery
+- Blend homelab experimentation with production-grade hygiene
 
-- If you are new to Proxmox or Linux overall I suggest reviewing the official documentation before reading further:
+### Prerequisites ###
 
-> [Proxmox Official Documentation][pvel-docs] |
-> [Admin Guide][pvel-admin] |
-> [QEMU/KVM Virtual Machines][pvel-kvm] |
-> [PCIe Passthrough][pvel-pcie] |
-> [General Requirements][pvel-requirements] |
-> [Host Device Passthrough][pvel-hostpass] |
-> [SR-IOV][pvel-SR-IOV] |
-> [Mediated Devices][pvel-mediated] |
-> [vIOMMU][pvel-IOMMU] |
-> [Resource Mapping][pvel-resourcemap]
+Before applying any changes or running scripts from this repository, ensure the following:
+
+- ✅ A fresh or existing Proxmox VE instance is installed and accessible
+- ✅ You are **not** testing on a live production server without a lab or replica
+- ✅ You’ve reviewed the official Proxmox documentation and understand the risks of kernel flag changes
+
+> [!WARNING]
+> The wrong boot flags can render a system unbootable. Always test in a
+> controlled environment before applying changes to production.
+
+If you're new to Proxmox or Linux, start with the official documentation:
+
+- [Proxmox Official Documentation][pvel-docs]
+- [Admin Guide][pvel-admin]
+- [QEMU/KVM Virtual Machines][pvel-kvm]
+- [PCIe Passthrough][pvel-pcie]
+- [General Requirements][pvel-requirements]
+- [Host Device Passthrough][pvel-hostpass]
+- [SR-IOV][pvel-SR-IOV]
+- [Mediated Devices][pvel-mediated]
+- [vIOMMU][pvel-IOMMU]
+- [Resource Mapping][pvel-resourcemap]
 
 ### Recommended Packages ###
 
