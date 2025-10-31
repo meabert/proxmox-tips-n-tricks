@@ -7,7 +7,7 @@ A curated set of Proxmox enhancements for homelab and edge deployments — with 
 | Workflow | Status |
 |----------|--------|
 | markdownlint-cli2 | ![Markdown Validation](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/markdownlint-cli2-action.yml/badge.svg) |
-| Post-Install | [![Script Injection](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/inject-postinstall.yml/badge.svg)](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/inject-postinstall.yml) |
+| Dynamic Script Injection | [![Script Injection](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/inject-postinstall.yml/badge.svg)](https://github.com/meabert/proxmox-tips-n-tricks/actions/workflows/inject-postinstall.yml) |
 | Repo Permission | [![CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/) |
 
 ## Operator Overview ##
@@ -76,7 +76,7 @@ git unzip lm-sensors powertop htop btop pve-headers dkms devscripts debhelper
 equivs nut nut-server nut-monitor ipmitool redfishtool nvme-cli
 </pre>
 
-#### Post-Install Process ####
+### Post-Install Process ###
 
 The post-install phase can be quick or deeply customized depending on your environment. While community scripts exist,
 the most reliable and maintainable approach is to build your own — tailored to your infrastructure, workflows, and
