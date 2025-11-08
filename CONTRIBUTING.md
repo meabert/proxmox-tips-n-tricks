@@ -1,8 +1,8 @@
-# 🤝 Contributing to Proxmox Tips & Tricks
+# 🤝 Contributing to Proxmox Tips & Tricks #
 
 Found something useful? Spotted a mistake? Pull requests are welcome — just follow these rules:
 
-## 🧠 Contribution Rules
+## 🧠 Contribution Rules ##
 
 1. **Every tip must be actionable**  
    Include a command, config snippet, GUI path, or a technical explanation tied to:
