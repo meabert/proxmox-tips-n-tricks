@@ -604,7 +604,7 @@ echo "softdep nvidia_drm pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 echo "softdep snd_hda_intel pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 ```
 
-#### Dedicated - AMD GPU's Navi, Vega, Polaris, Instinct, Radeon Pro ####
+#### AMD GPU's Navi, Vega, Polaris, Instinct, Radeon Pro ####
 
 ```bash
 echo "softdep radeon pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
@@ -622,7 +622,7 @@ echo "softdep xhci_hcd pre: vfio-pci" >> /etc/modprobe.d/vfio.conf
 
 - iGPU uses ```i915``` - blocking this will break host graphics unless you have a fallback GPU that does not rely on
 the **i915** module.
-- ARC uses ```xe``` - this is the module you want to block for dedicated GPU's like the B580.
+- ARC uses ```xe``` - this is the module you want to block for dedicated GPU's like the B580 Battlemage.
 
 - Both GPU's may share the same HDMI audio ```snd_hda_intel``` and DRM stack ```drm``` & ```drm_kms_helper``` - block
 these only if you're passing through a dedicated Intel ARC GPU.
