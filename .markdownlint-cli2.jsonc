@@ -12,10 +12,8 @@
     "first-line-heading": false, // MD041: allow non-heading first lines
     "no-hard-tabs": false,       // MD010: allow hard tabs
     "no-trailing-spaces": false,  // MD009: allow trailing spaces
-    "heading-style": {
-      "style": "atx_closed"      // MD003: require # Heading #
-    },
-
+    "blanks-around-lists": false, // MD022: allow no blank lines around lists
+    "heading-style": false,      // MD003: allow any heading style
     "ul-indent": {
       "indent": 4                // MD007: list indentation
     },
